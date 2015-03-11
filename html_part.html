@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+    <title>HTML&CSS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+</head>
+
+<body>
+    <h1>HTML</h1>
+    <h2>第二章</h2>
+    <p>处理路径：../ 向上跳到父文件夹</p>
+
+    <h2>第三章</h2>
+    <p>q标签：有的会有双引号有的没有，比如：<q> 引用一句话</q>  </p>
+    <p>blockquote标签： 长引用， 会建立单独的文本块</p>
+    <h3>构建列表</h3>
+    <p>
+        <li>li标签：列表项（list item）</li>
+        <li>li标签列表项第二项</li>
+        <ol>ol标签：有序列表(ordered list)</ol>
+        <ol>有序列表第二项</ol>
+        <ul>ul标签：无序列表(unordered list)</ul>
+        <ul>ul标签第二项</ul>
+        <p>自带编号</p>
+    </p>
+
+    <p>
+        块元素（block）特立独行，内联元素（inline）随波逐流
+            br标签：void元素，无内容
+    </p>
+    <p>
+        嵌套:           
+            保证元素完整嵌套
+    </p>
+
+    <h3>更新元素：</h3>
+
+    <p>code标签：<code>显示代码</code> </p>
+
+    <p>time标签:告诉browser内容是时间<time>20150310</time> </p>
+    <p>strong标签：<strong>强调</strong> </p>
+    <p>pre 标签:按原样预览 </p>
+
+    <h2>第四章</h2>
+    <p>域名 网站：一个域名下可以有好多种网站</p>
+    <p>根文件夹很重要</p>
+    <pre>
+            FTP：
+            URL：（uniform resource locator）
+            连接：
+            输入：www.baidu.com/ 其实是找当前目录下的一个默认文件
+        </pre>
+    <h3>外链：直接加http:// URL就好</h3>
+    <p>《a herf = “ aaaa” title = “bbbb”》, 链接的title属性，鼠标指上去会有说明bbb</p>
+    <h3>链接的ID属性：直接定位到特定点的传送门</h3>
+    <p>
+        id = “id的名称，要唯一”,链接id的时候《a herf = “index.html #id的名称”》链接名《/《a》
+    </p>
+    <p>
+        《a target = “_blank”》属性打开新窗口，实际上是给新窗口命名
+    </p>
+    <h2>第五章：图像媒体</h2>
+    <h3>格式：</h3>
+    <li>Jpeg：照片和复杂图像使用</li>
+    <li>Png和Gif：单色，logo，几何图形使用,Png的透明度控制更好</li>
+    <p>《img src = “wenjian.gif”》 是void元素， 同时也可以是URL链接</p>
+    <p>候选格式：<《alt = “这个文本会替代图像显示，当图像挂掉的时候”》</p>
+    <h3>调整图像大小：</h3>
+    <p>Width  = “20” height = “30”，宽高最好和原本图像大小一致</p>
+    <h3>缩略图：thumbnails</h3>
+    <p>用缩略图作为链接：把 img 元素换掉 a 元素的字就好</p>
+</body>
+</html>
+
+
