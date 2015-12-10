@@ -20,7 +20,7 @@ categories: Leetcode
 3.Power of Two - 231 [leetcode传送门](https://leetcode.com/problems/power-of-two/)<br/>
 题目：Given an integer, write a function to determine if it is a power of two.
 
-思路：if the integer can be divided by two till the remain equals two then it is power of two, otherwise not. REMEMBER to conisder special case: n==1.
+思路：if the integer can be divided by two till the remain equals two then it is power of two, otherwise not. REMEMBER to conisder special case: n==1. *其实还有一个tricky的办法：*use binary, if it is the power of two, then the highest number of the integer must be 1 and all the other should be 0. Thus, we could minus 1 and & with the original integer to see if the result equals to 0. e.g. 100&010==0 => true
 
 4.Balanced Binary Tree [leetcode传送门](https://leetcode.com/problems/balanced-binary-tree/)<br/>
 题目：Given a binary tree, determine if it is height-balanced.

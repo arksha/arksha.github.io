@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html>
-  	<head>
-  		<title>Arksha's blog</title>
-  		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  		<meta name="description" content="" />
-  		<meta name="keywords" content="" />
-  		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-  		<script src="/js/jquery.min.js"></script>
-  		<script src="/js/jquery.poptrox.min.js"></script>
-  		<script src="/js/skel.min.js"></script>
-  		<script src="/js/init.js"></script>
-  		<noscript>
-  			<link rel="stylesheet" href="/css/skel.css" />
-  			<link rel="stylesheet" href="/css/style.css" />
-  			<link rel="stylesheet" href="/css/style-xlarge.css" />
-  		</noscript>
-  		<!--[if lte IE 8]><link rel="stylesheet" href="/css/ie/v8.css" /><![endif]-->
-  	</head>
+    <head>
+      <title>Arksha's blog</title>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <meta name="description" content="" />
+      <meta name="keywords" content="" />
+      <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+      <script src="/js/jquery.min.js"></script>
+      <script src="/js/jquery.poptrox.min.js"></script>
+      <script src="/js/skel.min.js"></script>
+      <script src="/js/init.js"></script>
+      <noscript>
+        <link rel="stylesheet" href="/css/skel.css" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/style-xlarge.css" />
+      </noscript>
+      <!--[if lte IE 8]><link rel="stylesheet" href="/css/ie/v8.css" /><![endif]-->
+    </head>
 
 	<body id="top">
+     
+      {% include sidebar.html %}
+    <label for="sidebar-checkbox" class="sidebar-toggle">This is label</label> 
 
-      <header id="header">
+ <div class="wrap">
+    <header id="header">
           <a href="#" class="image avatar"><img src="/images/avatar.jpg" alt="" /></a>
           <h1>I am <strong><a href="/">Arksha</a></strong> ,a developer in LA.<br/>
           Specific in Graphics and Game Developing.<br/>
           <br/>This blog is just for pushing me to write somethingˊ_>ˋ<br/></h1>
       </header>
-
-
-        {{ content }}
-
-        <!-- Footer -->
+       {{ content }}
+       <!-- Footer -->
         <footer id="footer">
             <ul class="icons">
 
@@ -95,6 +96,31 @@
                 <li>Jekyll Template: <a href="http://cloudcannon.com">Cloud Cannon</a></li>
             </ul>
         </footer>
+
+ </div>
+      
+
+       
+
+
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
 
 	</body>
 </html>
