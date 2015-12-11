@@ -19,88 +19,129 @@
     </head>
 
 	<body id="top">
-    {% include sidebar.html %} 
      
-    <div class="wrap">
-      <header id="header">
+     
+
+ <div class="wrap">
+    <header id="header">
           <a href="#" class="image avatar"><img src="/images/avatar.jpg" alt="" /></a>
           <h1>I am <strong><a href="/">Arksha</a></strong> ,a developer in LA.<br/>
           Specific in Graphics and Game Developing.<br/>
           <br/>This blog is just for pushing me to write somethingˊ_>ˋ<br/></h1>
       </header>
-      <div class="container content">
-        {{ content }}
-      </div>
+       <div class="page">
+  <h1 class="page-title"></h1>
+  
+</div>
+
+        <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+    
+      
+    
+
+    <a class="sidebar-nav-item" href="/archive/v.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2015. All rights reserved.
+    </p>
+  </div>
+</div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle">This is label</label> 
        <!-- Footer -->
         <footer id="footer">
             <ul class="icons">
 
-              {% if site.github_username %}
+              
               <li>
-                <a href="https://github.com/{{ site.github_username }}" class="icon fa-github">
+                <a href="https://github.com/arksha" class="icon fa-github">
                   <span class="label">GitHub</span>
                 </a>
               </li>
-              {% endif %}
+              
 
-              {% if site.twitter_username %}
+              
               <li>
-                <a href="https://twitter.com/{{ site.twitter_username }}" class="icon fa-twitter">
+                <a href="https://twitter.com/gongt92kyo" class="icon fa-twitter">
                   <span class="label">Twitter</span>
                 </a>
               </li>
-              {% endif %}
+              
 
-              {% if site.linkedin_username %}
+              
               <li>
-                <a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="icon fa-linkedin">
+                <a href="https://linkedin.com/in/example" class="icon fa-linkedin">
                   <span class="label">LinkedIn</span>
                 </a>
               </li>
-              {% endif %}
+              
 
-              {% if site.google_plus_username %}
+              
               <li>
-                <a href="https://plus.google.com/{{ site.google_plus_username }}" class="icon fa-google-plus">
+                <a href="https://plus.google.com/example" class="icon fa-google-plus">
                   <span class="label">Google+</span>
                 </a>
               </li>
-              {% endif %}
+              
 
-              {% if site.facebook_username %}
+              
               <li>
-                <a href="https://www.facebook.com/{{ site.facebook_username }}" class="icon fa-facebook">
+                <a href="https://www.facebook.com/Ting Gong" class="icon fa-facebook">
                   <span class="label">Facebook</span>
                 </a>
               </li>
-              {% endif %}
+              
 
-              {% if site.dribbble_username %}
+              
               <li>
                 <a href="#" class="icon fa-dribbble">
                   <span class="label">Dribbble</span>
                 </a>
               </li>
-              {% endif %}
+              
 
-              {% if site.email %}
+              
               <li>
-                <a href="mailto:{{ site.email }}" class="icon fa-envelope-o">
+                <a href="mailto:tingg@usc.edu" class="icon fa-envelope-o">
                   <span class="label">Email</span>
                 </a>
               </li>
-              {% endif %}
+              
             </ul>
             <ul class="copyright">
                 <li>&copy; Arksha Gong</li>
             </ul>
         </footer>
-    </div>
 
-    <div class = "sidebar">
-    <label for="sidebar-checkbox" class="sidebar-toggle">This is label</label> 
-    </div>
- 
+ </div>
+      
+
+       
+
+
+
     <script>
       (function(document) {
         var toggle = document.querySelector('.sidebar-toggle');

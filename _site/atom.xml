@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>In Side Of ARK</title>
+ <link href="http://yourdomain.com/atom.xml" rel="self"/>
+ <link href="http://yourdomain.com/"/>
+ <updated>2015-12-10T23:21:06-08:00</updated>
+ <id>http://yourdomain.com</id>
+ <author>
+   <name></name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>链表特辑</title>
+   <link href="http://yourdomain.com/leetcode/2015/12/10/Linked-List.html"/>
+   <updated>2015-12-10T00:00:00-08:00</updated>
+   <id>http://yourdomain.com/leetcode/2015/12/10/Linked-List</id>
+   <content type="html">&lt;h1 id=&quot;section&quot;&gt;链表&lt;/h1&gt;
+
+&lt;p&gt;链表题还是有很多的。三道hard，12道medium。
+在leetcode中给定的链表都是单向链表
+####&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Word Search 引发的 Trie Tree 系列</title>
+   <link href="http://yourdomain.com/leetcode/2015/12/09/TrieTree.html"/>
+   <updated>2015-12-09T00:00:00-08:00</updated>
+   <id>http://yourdomain.com/leetcode/2015/12/09/TrieTree</id>
+   <content type="html">&lt;h3 id=&quot;word-search--leetcodehttpsleetcodecomproblemsword-search&quot;&gt;Word Search -&amp;gt;&lt;a href=&quot;https://leetcode.com/problems/word-search/&quot;&gt;Leetcode传送门&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;题目：要把给定word在一个board里找出来。&lt;/p&gt;
+
+&lt;p&gt;回路：Just use backtracking method to revursively find the word. Using DFS to implement. When checked an element in the board, use “#” to mark this has been visited and doesn’t have to be checked again.&lt;/p&gt;
+
+&lt;h3 id=&quot;word-search-2--leetcodehttpsleetcodecomproblemsword-search-ii&quot;&gt;Word Search 2 -&amp;gt;&lt;a href=&quot;https://leetcode.com/problems/word-search-ii/&quot;&gt;Leetcode传送门&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;题目给了一个word表找出存在于board中的每一个单词。&lt;/p&gt;
+
+&lt;p&gt;回路：from the Word Search method, it is normal to follow the first method of Word Search to solve this problem. Just to check if every word in the list or not, call the function to do this. However, this could run out exceed time limit. Therefore, Trie Tree, this data structure can be used to solve this.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-trie-tree&quot;&gt;What is Trie Tree&lt;/h2&gt;
+&lt;p&gt;Trie Tree, also call prefix tree（radix tree， digital tree，Yes =_= all those are the same thing！）. Trie for retrieval. It has node conatains character, its children have a common prefix. The root is associated with empty string, values only associated with leaves, and some inner nodes.
+&lt;img src=&quot;/images/postimg/2015-12-09-trie.png&quot; alt=&quot;trie&quot; /&gt; from wiki&lt;/p&gt;
+
+&lt;p&gt;于是， 有到leetcode题目可以拿来练手辣～&lt;/p&gt;
+
+&lt;h3 id=&quot;implement-trie-prefix-tree-leetcodehttpsleetcodecomproblemsimplement-trie-prefix-tree&quot;&gt;Implement Trie (Prefix Tree)-&amp;gt;&lt;a href=&quot;https://leetcode.com/problems/implement-trie-prefix-tree/&quot;&gt;leetcode传送门&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;此题用来实现三个方法：Implement a trie with insert, search, and startsWith methods.
+可以用HashMap来存node信息。&lt;/p&gt;
+
+&lt;p&gt;1.Trie Node&lt;/p&gt;
+
+&lt;p&gt;由节点和是否为叶子节点组成。HashMap里用char来当key，value存储的是TrieNode节点。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class TrieNode{
+	char c;
+	HashMap&amp;lt;Character, TrieNode&amp;gt; children = new HashMap&amp;lt;Character, TrieNode&amp;gt;(); 
+	boolean isleaf;
+
+	public TrieNode(){}
+	public TrieNode(char c){
+		this.c = c;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2.Trie Tree&lt;/p&gt;
+
+&lt;p&gt;有根节点和三个基本操作组成。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Trie{
+	private TrieNode root;
+	public Trie(){
+		root = new TrieNode();
+	}
+	public void insert(String word){}
+	public boolean search(String word){}
+	public boolean starsWith(String prefix){}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;3.Insert(String word)&lt;/p&gt;
+
+&lt;p&gt;遍历插入的字，如果在hashmap里查到的话就把map中的节点加到map中，不存在的话就新建节点加到map中。最后设定所有的叶节点的值。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public void insert(String word) {
+    HashMap&amp;lt;Character, TrieNode&amp;gt; children = root.children;
+ 
+    for(int i=0; i&amp;lt;word.length(); i++){
+        char c = word.charAt(i);
+ 
+        TrieNode t;
+        if(children.containsKey(c)){
+                t = children.get(c);
+        }else{
+            t = new TrieNode(c);
+            children.put(c, t);
+        }
+ 
+        children = t.children;
+ 
+        //set leaf node
+        if(i==word.length()-1)
+            t.isLeaf = true;    
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;4.search(String word)&lt;/p&gt;
+
+&lt;p&gt;遍历hashmap，从root开始查找，终结在叶节点或者是中间节点则是查找成功，否则不存在。使用searchNode（）来遍历hashmap，返回查找的最后一个节点。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public boolean search(String word) {
+    TrieNode t = searchNode(word);
+ 
+    if(t != null &amp;amp;&amp;amp; t.isLeaf) 
+        return true;
+    else
+        return false;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;5.startsWith(String prefix)&lt;/p&gt;
+
+&lt;p&gt;若在遍历trie tree 的时候发现prefix最后的节点是空，则不存在树中。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; public boolean startsWith(String prefix) {
+    if(searchNode(prefix) == null) 
+        return false;
+    else
+        return true;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;6.searchNode(String str)&lt;/p&gt;
+
+&lt;p&gt;给定string，返回string最后的TrieNode。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public TrieNode searchNode(String str){
+    Map&amp;lt;Character, TrieNode&amp;gt; children = root.children; 
+    TrieNode t = null;
+    for(int i=0; i&amp;lt;str.length(); i++){
+        char c = str.charAt(i);
+        if(children.containsKey(c)){
+            t = children.get(c);
+            children = t.children;
+        }else{
+            return null;
+        }
+    }
+ 
+    return t;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;word-search-2&quot;&gt;回来再看Word Search 2&lt;/h3&gt;
+&lt;p&gt;绝对是follow up 的解法。这题好难&amp;gt; &amp;lt;,整理一下。&lt;/p&gt;
+
+&lt;p&gt;First, we need to implement trie Tree. We can simply use array of TrieNode instead of HashMap. Every node has at most 26 children, use a string to store word that node represents.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class TrieNode{
+   		public TrieNode[] children = new TrieNode[26];
+	public String item = &quot;&quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Second, we implement Trie Tree just as we did before. To notice that, when traversal word, we can change String to a char array by using &lt;em&gt;.toCharArray()&lt;/em&gt; function. use c-‘a’ to represent transformed index of char array.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//Trie
+class Trie{
+    public TrieNode root = new TrieNode();
+ 
+    public void insert(String word){
+        TrieNode node = root;
+        for(char c: word.toCharArray()){
+            if(node.children[c-&#39;a&#39;]==null){
+                node.children[c-&#39;a&#39;]= new TrieNode();
+            }
+            node = node.children[c-&#39;a&#39;];
+        }
+        node.item = word;
+    }
+ 
+    public boolean search(String word){
+        TrieNode node = root;
+        for(char c: word.toCharArray()){
+            if(node.children[c-&#39;a&#39;]==null)
+                return false;
+            node = node.children[c-&#39;a&#39;];
+        }
+        if(node.item.equals(word)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+ 
+    public boolean startsWith(String prefix){
+        TrieNode node = root;
+        for(char c: prefix.toCharArray()){
+            if(node.children[c-&#39;a&#39;]==null)
+                return false;
+            node = node.children[c-&#39;a&#39;];
+        }
+        return true;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;然后可以照着之前1中的dfs方法来用trie tree来判断是否存在word。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+    Trie trie = new Trie();
+    Set&amp;lt;String&amp;gt; res = new HashSet&amp;lt;String&amp;gt;(); 
+    public List&amp;lt;String&amp;gt; findWords(char[][] board, String[] words) {
+        
+         int m=board.length;
+         int n=board[0].length;
+        boolean mark[][] = new boolean[m][n];
+        for (int i = 0;i&amp;lt;words.length;i++)
+        {
+            trie.insert(words[i]);
+        }
+        for (int i = 0;i&amp;lt;board.length;i++)
+        {
+            for (int j = 0;j&amp;lt;board[0].length;j++)
+            {
+                dfs(board,&quot;&quot;,i,j,trie,mark);
+            }
+        }
+     return new ArrayList&amp;lt;String&amp;gt;(res);   
+	}
+    public void dfs(char[][] board,String str, int i,int j,Trie trie,boolean mark[][]){
+        int m=board.length;
+        int n=board[0].length;
+        
+        if(i&amp;lt;0||i&amp;gt;=m||j&amp;lt;0||j&amp;gt;=n)
+            return;
+        if(mark[i][j])//剪枝，访问过了用true
+            return;
+        str += board[i][j];
+        if(!trie.startsWith(str))
+            return;
+        if(trie.search(str))
+            if(!res.contains(str))
+            res.add(str);
+        mark[i][j] = true;
+        dfs(board,str,i-1,j,trie,mark);
+        dfs(board,str,i+1,j,trie,mark);
+        dfs(board,str,i,j+1,trie,mark);
+        dfs(board,str,i,j-1,trie,mark);
+        mark[i][j] = false;
+        
+    	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在实现时出现了res应不应该当做一个参数传到dfs里。如果传了，会有个重复的case失败，因为输出了同样的字比如[“a”，”a”] 尽管board里只有aa。如果用一个HashSet可以先判断是否重复，如果重复就不要加到res中了，然后在最后返回的时候new 一个Arraylist把所有的HashSet里的string都加进去返回最终的结果。&lt;/p&gt;
+
+&lt;p&gt;以上，这题还有另外一个问题。在Hint中有提到：&lt;br /&gt;
+You would need to optimize your backtracking to pass the larger test. Could you stop backtracking earlier?&lt;br /&gt;
+If the current candidate does not exist in all words’ prefix, you could stop backtracking immediately. What kind of data structure could answer such query efficiently? Does a hash table work? Why or why not? How about a Trie?&lt;br /&gt;
+用trie 完全可以解决这些了。&lt;/p&gt;
+
+&lt;p&gt;好吧最后一个题是&lt;br /&gt;
+###Add and Search Word - Data structure design -&amp;gt;&lt;a href=&quot;https://leetcode.com/problems/add-and-search-word-data-structure-design/&quot;&gt;Leetcode传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;好累明天再写总结orz&lt;/p&gt;
+
+&lt;p&gt;Update 2015-12-10：&lt;/p&gt;
+
+&lt;p&gt;星战到了！手好残，不玩游戏默默回来写总结：&lt;br /&gt;
+有了TrieTree的数据结构，此题思路非常简单，只需实现前面写过的两个trie函数就好，即addWord（）和search（）。首先是插入word到树中，然后遍历树来查找。这里插入操作完全和前一个题一样， 需要对应题来修改的是search（），用dfs来实现树的遍历。在dfs中，一共有三个参数，一个是用 HashMap实现的children表示子节点，当前位置指针p，查找的字符串word。终止条件是当前位置p到了word结尾，若子节点数量为零，则找到了word，否则不存在。若children中存在当前位置的字符，分三种情况：1.到了倒数第二层节点，其子节点是叶节点，这样word就存在。2.当前字符里面有‘.’，代表其子节点中任意一个字符都是可以的，这里需要遍历整个children HashMap。用到的是Map.Entry()和entryset（）来实现。分别在每个hashmap的元素中再进行dfs搜索，查看接下来的字符是不是在其中。3.如果不符合以上几种情况那么就在树中没有这个word。&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Leetcode继续刷的日常</title>
+   <link href="http://yourdomain.com/leetcode/2015/12/08/Leetcode%E7%BB%A7%E7%BB%AD%E5%88%B7%E7%9A%84%E6%97%A5%E5%B8%B8.html"/>
+   <updated>2015-12-08T00:00:00-08:00</updated>
+   <id>http://yourdomain.com/leetcode/2015/12/08/Leetcode继续刷的日常</id>
+   <content type="html">&lt;p&gt;今天的日常其实是睡到了中午12点才起床，收拾好屋子之后就来leetcode辣。都是easy题也是题啊嗯ˊ_&amp;gt;ˋ&lt;br /&gt;
+1.Implement Queue using Stacks － 232&lt;a href=&quot;https://leetcode.com/problems/implement-queue-using-stacks/&quot;&gt; leetcode传送门&lt;/a&gt;&lt;br /&gt;
+题目：用Stacks来实现Queue.&lt;/p&gt;
+
+&lt;p&gt;思路：using two stacks to let elements in stacks reverse to Queue order form. 
+&lt;img src=&quot;/images/postimg/2015-12-08-lc232-sol.png&quot; class=&quot;fit image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2.Merge Two Sorted Lists － 21 &lt;a href=&quot;https://leetcode.com/problems/merge-two-sorted-lists/&quot;&gt;leetcode传送门&lt;/a&gt;&lt;br /&gt;
+题目：Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.&lt;/p&gt;
+
+&lt;p&gt;思路：use two pointers. Remember to use a fake head. Pure usage of link lists. Which element is smaller, then put it into the merge list.&lt;/p&gt;
+
+&lt;p&gt;3.Power of Two - 231 &lt;a href=&quot;https://leetcode.com/problems/power-of-two/&quot;&gt;leetcode传送门&lt;/a&gt;&lt;br /&gt;
+题目：Given an integer, write a function to determine if it is a power of two.&lt;/p&gt;
+
+&lt;p&gt;思路：if the integer can be divided by two till the remain equals two then it is power of two, otherwise not. REMEMBER to conisder special case: n==1. &lt;em&gt;其实还有一个tricky的办法：&lt;/em&gt;use binary, if it is the power of two, then the highest number of the integer must be 1 and all the other should be 0. Thus, we could minus 1 and &amp;amp; with the original integer to see if the result equals to 0. e.g. 100&amp;amp;010==0 =&amp;gt; true&lt;/p&gt;
+
+&lt;p&gt;4.Balanced Binary Tree &lt;a href=&quot;https://leetcode.com/problems/balanced-binary-tree/&quot;&gt;leetcode传送门&lt;/a&gt;&lt;br /&gt;
+题目：Given a binary tree, determine if it is height-balanced.
+For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.&lt;/p&gt;
+
+&lt;p&gt;思路：easy DFS&lt;/p&gt;
+
+&lt;p&gt;5.Symmetric Tree &lt;a href=&quot;https://leetcode.com/problems/symmetric-tree/&quot;&gt;leetcode传送门&lt;/a&gt;&lt;br /&gt;
+题目: 判断一颗树是否对称
+Bonus points if you could solve it both recursively and iteratively.
+&lt;strong&gt;诶？！这个居然没看见，只是实现了recursive版，用DFS。之后写iterative～～补充进来。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;思路：同样DFS，left child compare with right chiild&lt;/p&gt;
+
+&lt;p&gt;6.Remove Element &lt;a href=&quot;https://leetcode.com/problems/remove-element/&quot;&gt;leetcode传送门&lt;/a&gt;&lt;br /&gt;
+题目：Given an array and a value, remove all instances of that value in place and return the new length.说实话开始题目并没有懂啥意思＝ ＝，以为算出来重复的数然后用数组的长度一减就好了，其实应该还要真的要删掉数组，不要只看反悔类型是int啊。&lt;/p&gt;
+
+&lt;p&gt;思路：easy way to use two pointers, when element in array is different form value given, give pointer B element to pointer A, move pointer A to next. Then iterate pointer B till array’s end.&lt;/p&gt;
+
+&lt;p&gt;结尾：&lt;br /&gt;
+1.啊啊啊markdown总是忘记怎么写orz，明明之前总结了很多现在突然写的话还是会忘，多用的话还是王道，latex不也是这样记住的么。所以practice makes perfect。&lt;/p&gt;
+
+&lt;p&gt;2.发现这个templete不好用啊，需要一个索引列表来找每篇blog完全乱进去了。没有sidebar。首页只需要显示有限的字数和标题就好，而且thumbnail显示的问题也很麻烦。之后修复这俩问题还需要加评论系统。还有文章tag和分类系统也需要做好。&lt;/p&gt;
+
+&lt;p&gt;3.今天Victoria‘s Secret Show 看到了赶着due都要去参加趴的美帝人民的热情。把复习资料和电脑带过去一遍开趴一遍写论文这是心有多大才能做出来的事情(￣▽￣)。对对我final完了才过来乱晃来吃一堆甜食（大满足）又意外被抽中一个Victoria‘s secret 礼物wwww。 虽然今天星战估计还在lorenzo人民黑五的包裹山下吧´д` ；心塞，明明是为了快一点来才在amazon上买的orz，结果和gamestop有啥区别掀～&lt;/p&gt;
+
+&lt;p&gt;4.下次要把leetcode和日常分开写。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>New first post</title>
+   <link href="http://yourdomain.com/diary/2015/12/07/New-post.html"/>
+   <updated>2015-12-07T00:00:00-08:00</updated>
+   <id>http://yourdomain.com/diary/2015/12/07/New-post</id>
+   <content type="html">&lt;p&gt;今天终于把jekyll搞定了配置好，然后在templete上面花了一下午时间强迫症做preference修改。我也真是执着，starwar都到货了等着我去玩呢啊啊啊啊。&lt;/p&gt;
+
+&lt;p&gt;其实我真的有想来着，并没有想绝地武士＝ ＝。我是黑暗阵营的Vadar的粉啊～&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>

@@ -235,3 +235,10 @@ If the current candidate does not exist in all words' prefix, you could stop bac
 ###Add and Search Word - Data structure design ->[Leetcode传送门](https://leetcode.com/problems/add-and-search-word-data-structure-design/)
 
 好累明天再写总结orz
+
+Update 2015-12-10：
+
+星战到了！手好残，不玩游戏默默回来写总结：<br/>
+有了TrieTree的数据结构，此题思路非常简单，只需实现前面写过的两个trie函数就好，即addWord（）和search（）。首先是插入word到树中，然后遍历树来查找。这里插入操作完全和前一个题一样， 需要对应题来修改的是search（），用dfs来实现树的遍历。在dfs中，一共有三个参数，一个是用 HashMap实现的children表示子节点，当前位置指针p，查找的字符串word。终止条件是当前位置p到了word结尾，若子节点数量为零，则找到了word，否则不存在。若children中存在当前位置的字符，分三种情况：1.到了倒数第二层节点，其子节点是叶节点，这样word就存在。2.当前字符里面有‘.’，代表其子节点中任意一个字符都是可以的，这里需要遍历整个children HashMap。用到的是Map.Entry()和entryset（）来实现。分别在每个hashmap的元素中再进行dfs搜索，查看接下来的字符是不是在其中。3.如果不符合以上几种情况那么就在树中没有这个word。
+
+

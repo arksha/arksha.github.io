@@ -19,8 +19,7 @@
     </head>
 
 	<body id="top">
-     
-      <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
      styles, `#sidebar-checkbox` for behavior. -->
 <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
 
@@ -40,6 +39,8 @@
     
       
     
+      
+    
 
     <a class="sidebar-nav-item" href="/archive/v.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
@@ -52,274 +53,31 @@
     </p>
   </div>
 </div>
-
-    <label for="sidebar-checkbox" class="sidebar-toggle">This is label</label> 
-
- <div class="wrap">
-    <header id="header">
+ 
+     
+    <div class="wrap">
+      <header id="header">
           <a href="#" class="image avatar"><img src="/images/avatar.jpg" alt="" /></a>
           <h1>I am <strong><a href="/">Arksha</a></strong> ,a developer in LA.<br/>
           Specific in Graphics and Game Developing.<br/>
           <br/>This blog is just for pushing me to write somethingˊ_>ˋ<br/></h1>
       </header>
-       <!-- Main -->
+      <div class="container content">
+        <!-- Main -->
 <div id="main">
     <section>
         
             <header class="major">
-                <h2>Word Search 引发的 Trie Tree 系列</h2>
-                <p class="post-meta">Dec 9, 2015</p>
+                <h2>链表特辑</h2>
+                <p class="post-meta">Dec 10, 2015</p>
             </header>
 
             <section>
-                <h3 id="word-search--leetcodehttpsleetcodecomproblemsword-search">Word Search -&gt;<a href="https://leetcode.com/problems/word-search/">Leetcode传送门</a></h3>
+                <h1 id="section">链表</h1>
 
-<p>题目：要把给定word在一个board里找出来。</p>
-
-<p>回路：Just use backtracking method to revursively find the word. Using DFS to implement. When checked an element in the board, use “#” to mark this has been visited and doesn’t have to be checked again.</p>
-
-<h3 id="word-search-2--leetcodehttpsleetcodecomproblemsword-search-ii">Word Search 2 -&gt;<a href="https://leetcode.com/problems/word-search-ii/">Leetcode传送门</a></h3>
-<p>题目给了一个word表找出存在于board中的每一个单词。</p>
-
-<p>回路：from the Word Search method, it is normal to follow the first method of Word Search to solve this problem. Just to check if every word in the list or not, call the function to do this. However, this could run out exceed time limit. Therefore, Trie Tree, this data structure can be used to solve this.</p>
-
-<h2 id="what-is-trie-tree">What is Trie Tree</h2>
-<p>Trie Tree, also call prefix tree（radix tree， digital tree，Yes =_= all those are the same thing！）. Trie for retrieval. It has node conatains character, its children have a common prefix. The root is associated with empty string, values only associated with leaves, and some inner nodes.
-<img src="/images/postimg/2015-12-09-trie.png" alt="trie" /> from wiki</p>
-
-<p>于是， 有到leetcode题目可以拿来练手辣～</p>
-
-<h3 id="implement-trie-prefix-tree-leetcodehttpsleetcodecomproblemsimplement-trie-prefix-tree">Implement Trie (Prefix Tree)-&gt;<a href="https://leetcode.com/problems/implement-trie-prefix-tree/">leetcode传送门</a></h3>
-<p>此题用来实现三个方法：Implement a trie with insert, search, and startsWith methods.
-可以用HashMap来存node信息。</p>
-
-<p>1.Trie Node</p>
-
-<p>由节点和是否为叶子节点组成。HashMap里用char来当key，value存储的是TrieNode节点。</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>class TrieNode{
-	char c;
-	HashMap&lt;Character, TrieNode&gt; children = new HashMap&lt;Character, TrieNode&gt;(); 
-	boolean isleaf;
-
-	public TrieNode(){}
-	public TrieNode(char c){
-		this.c = c;
-	}
-}
-</code></pre>
-</div>
-
-<p>2.Trie Tree</p>
-
-<p>有根节点和三个基本操作组成。</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>public class Trie{
-	private TrieNode root;
-	public Trie(){
-		root = new TrieNode();
-	}
-	public void insert(String word){}
-	public boolean search(String word){}
-	public boolean starsWith(String prefix){}
-}
-</code></pre>
-</div>
-
-<p>3.Insert(String word)</p>
-
-<p>遍历插入的字，如果在hashmap里查到的话就把map中的节点加到map中，不存在的话就新建节点加到map中。最后设定所有的叶节点的值。</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>public void insert(String word) {
-    HashMap&lt;Character, TrieNode&gt; children = root.children;
- 
-    for(int i=0; i&lt;word.length(); i++){
-        char c = word.charAt(i);
- 
-        TrieNode t;
-        if(children.containsKey(c)){
-                t = children.get(c);
-        }else{
-            t = new TrieNode(c);
-            children.put(c, t);
-        }
- 
-        children = t.children;
- 
-        //set leaf node
-        if(i==word.length()-1)
-            t.isLeaf = true;    
-    }
-}
-</code></pre>
-</div>
-
-<p>4.search(String word)</p>
-
-<p>遍历hashmap，从root开始查找，终结在叶节点或者是中间节点则是查找成功，否则不存在。使用searchNode（）来遍历hashmap，返回查找的最后一个节点。</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>public boolean search(String word) {
-    TrieNode t = searchNode(word);
- 
-    if(t != null &amp;&amp; t.isLeaf) 
-        return true;
-    else
-        return false;
-}
-</code></pre>
-</div>
-
-<p>5.startsWith(String prefix)</p>
-
-<p>若在遍历trie tree 的时候发现prefix最后的节点是空，则不存在树中。</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code> public boolean startsWith(String prefix) {
-    if(searchNode(prefix) == null) 
-        return false;
-    else
-        return true;
-}
-</code></pre>
-</div>
-
-<p>6.searchNode(String str)</p>
-
-<p>给定string，返回string最后的TrieNode。</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>public TrieNode searchNode(String str){
-    Map&lt;Character, TrieNode&gt; children = root.children; 
-    TrieNode t = null;
-    for(int i=0; i&lt;str.length(); i++){
-        char c = str.charAt(i);
-        if(children.containsKey(c)){
-            t = children.get(c);
-            children = t.children;
-        }else{
-            return null;
-        }
-    }
- 
-    return t;
-}
-</code></pre>
-</div>
-
-<h3 id="word-search-2">回来再看Word Search 2</h3>
-<p>绝对是follow up 的解法。这题好难&gt; &lt;,整理一下。</p>
-
-<p>First, we need to implement trie Tree. We can simply use array of TrieNode instead of HashMap. Every node has at most 26 children, use a string to store word that node represents.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>class TrieNode{
-   		public TrieNode[] children = new TrieNode[26];
-	public String item = "";
-}
-</code></pre>
-</div>
-
-<p>Second, we implement Trie Tree just as we did before. To notice that, when traversal word, we can change String to a char array by using <em>.toCharArray()</em> function. use c-‘a’ to represent transformed index of char array.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>//Trie
-class Trie{
-    public TrieNode root = new TrieNode();
- 
-    public void insert(String word){
-        TrieNode node = root;
-        for(char c: word.toCharArray()){
-            if(node.children[c-'a']==null){
-                node.children[c-'a']= new TrieNode();
-            }
-            node = node.children[c-'a'];
-        }
-        node.item = word;
-    }
- 
-    public boolean search(String word){
-        TrieNode node = root;
-        for(char c: word.toCharArray()){
-            if(node.children[c-'a']==null)
-                return false;
-            node = node.children[c-'a'];
-        }
-        if(node.item.equals(word)){
-            return true;
-        }else{
-            return false;
-        }
-    }
- 
-    public boolean startsWith(String prefix){
-        TrieNode node = root;
-        for(char c: prefix.toCharArray()){
-            if(node.children[c-'a']==null)
-                return false;
-            node = node.children[c-'a'];
-        }
-        return true;
-    }
-}
-</code></pre>
-</div>
-
-<p>然后可以照着之前1中的dfs方法来用trie tree来判断是否存在word。</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>public class Solution {
-    Trie trie = new Trie();
-    Set&lt;String&gt; res = new HashSet&lt;String&gt;(); 
-    public List&lt;String&gt; findWords(char[][] board, String[] words) {
-        
-         int m=board.length;
-         int n=board[0].length;
-        boolean mark[][] = new boolean[m][n];
-        for (int i = 0;i&lt;words.length;i++)
-        {
-            trie.insert(words[i]);
-        }
-        for (int i = 0;i&lt;board.length;i++)
-        {
-            for (int j = 0;j&lt;board[0].length;j++)
-            {
-                dfs(board,"",i,j,trie,mark);
-            }
-        }
-     return new ArrayList&lt;String&gt;(res);   
-	}
-    public void dfs(char[][] board,String str, int i,int j,Trie trie,boolean mark[][]){
-        int m=board.length;
-        int n=board[0].length;
-        
-        if(i&lt;0||i&gt;=m||j&lt;0||j&gt;=n)
-            return;
-        if(mark[i][j])//剪枝，访问过了用true
-            return;
-        str += board[i][j];
-        if(!trie.startsWith(str))
-            return;
-        if(trie.search(str))
-            if(!res.contains(str))
-            res.add(str);
-        mark[i][j] = true;
-        dfs(board,str,i-1,j,trie,mark);
-        dfs(board,str,i+1,j,trie,mark);
-        dfs(board,str,i,j+1,trie,mark);
-        dfs(board,str,i,j-1,trie,mark);
-        mark[i][j] = false;
-        
-    	}
-}
-</code></pre>
-</div>
-
-<p>在实现时出现了res应不应该当做一个参数传到dfs里。如果传了，会有个重复的case失败，因为输出了同样的字比如[“a”，”a”] 尽管board里只有aa。如果用一个HashSet可以先判断是否重复，如果重复就不要加到res中了，然后在最后返回的时候new 一个Arraylist把所有的HashSet里的string都加进去返回最终的结果。</p>
-
-<p>以上，这题还有另外一个问题。在Hint中有提到：<br />
-You would need to optimize your backtracking to pass the larger test. Could you stop backtracking earlier?<br />
-If the current candidate does not exist in all words’ prefix, you could stop backtracking immediately. What kind of data structure could answer such query efficiently? Does a hash table work? Why or why not? How about a Trie?<br />
-用trie 完全可以解决这些了。</p>
-
-<p>好吧最后一个题是<br />
-###Add and Search Word - Data structure design -&gt;<a href="https://leetcode.com/problems/add-and-search-word-data-structure-design/">Leetcode传送门</a></p>
-
-<p>好累明天再写总结orz</p>
+<p>链表题还是有很多的。三道hard，12道medium。
+在leetcode中给定的链表都是单向链表
+####</p>
 
             </section>
         
@@ -329,6 +87,24 @@ If the current candidate does not exist in all words’ prefix, you could stop b
             
 
                 <article class="6u 12u(small)">
+                    <header>
+                        <h2><a href="/leetcode/2015/12/09/TrieTree.html">Word Search 引发的 Trie Tree 系列</a></h2>
+                    </header>
+                    <section>
+                        <h3 id="word-search--leetcodehttpsleetcodecomproblemsword-search">Word Search -&gt;<a href="https://leetcode.com/problems/word-search/">Leetcode传送门</a></h3>
+
+
+                    </section>
+                    <footer>
+                        <ul class="actions">
+                            <li><a href="/leetcode/2015/12/09/TrieTree.html" class="button">Read More</a></li>
+                        </ul>
+                    </footer>
+                </article>
+
+            
+
+                <article class="6u$ 12u(small)">
                     <header>
                         <h2><a href="/leetcode/2015/12/08/Leetcode%E7%BB%A7%E7%BB%AD%E5%88%B7%E7%9A%84%E6%97%A5%E5%B8%B8.html">Leetcode继续刷的日常</a></h2>
                     </header>
@@ -348,7 +124,7 @@ If the current candidate does not exist in all words’ prefix, you could stop b
 
             
 
-                <article class="6u$ 12u(small)">
+                <article class="6u 12u(small)">
                     <header>
                         <h2><a href="/diary/2015/12/07/New-post.html">New first post</a></h2>
                     </header>
@@ -369,6 +145,7 @@ If the current candidate does not exist in all words’ prefix, you could stop b
     </section>
 </div>
 
+      </div>
        <!-- Footer -->
         <footer id="footer">
             <ul class="icons">
@@ -431,17 +208,14 @@ If the current candidate does not exist in all words’ prefix, you could stop b
             </ul>
             <ul class="copyright">
                 <li>&copy; Arksha Gong</li>
-                <li>Jekyll Template: <a href="http://cloudcannon.com">Cloud Cannon</a></li>
             </ul>
         </footer>
+    </div>
 
- </div>
-      
-
-       
-
-
-
+    <div class = "sidebar">
+    <label for="sidebar-checkbox" class="sidebar-toggle">This is label</label> 
+    </div>
+ 
     <script>
       (function(document) {
         var toggle = document.querySelector('.sidebar-toggle');
