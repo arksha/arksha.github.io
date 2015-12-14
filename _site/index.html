@@ -68,98 +68,16 @@
     <section>
         
             <header class="major">
-                <h2>链表特辑</h2>
-                <p class="post-meta">Dec 10, 2015</p>
+                <h2>日常</h2>
+                <p class="post-meta">Dec 13, 2015</p>
             </header>
 
             <section>
-                <h1 id="section">链表</h1>
-
-<p>链表题还是有很多的。三道hard，12道medium。在leetcode中给定的链表都是单向链表<br />
-Update: 2015-12-13</p>
-
-<h2 id="reverse-linked-list">Reverse Linked List</h2>
-<p><a href="https://leetcode.com/problems/reverse-linked-list/">传送门</a></p>
-
-<p>Two ways to implement:</p>
-
-<ol>
-  <li>iteratively</li>
-</ol>
-
-<p>抓住要点就是将当前节点的后一个节点先保存，然后把当前的next指向之前的节点，pre用来维护当前节点的前面一个节点。</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>public ListNode reverseList(ListNode head) {
-   
-    ListNode pre = null;
-    ListNode cur = head;
-    while(cur!=null){
-        ListNode p = cur.next;
-        cur.next = pre;
-        pre = cur;
-        cur = p;
-    }
-    return pre;
-}
-</code></pre>
-</div>
-
-<ol>
-  <li>recursively</li>
-</ol>
-
-<p>这个做法比较tricky， 就是每次只看两个节点。吧已经递归好的后面的节点记到一个叫rest的节点上，然后从第二个节点开始递归，将当前的第二个节点的next指向当前的头节点head上。最后返回所有已经反好向的头rest。</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>public ListNode reverseList(ListNode head) {
-    
-   if(head==null || head.next == null)
-    return head;
-
-    ListNode second = head.next;//get second node   
-    head.next = null;//set first's next to be null
-
-    ListNode rest = reverseList(second);
-    second.next = head;
-    return rest;
-}
-</code></pre>
-</div>
-
-<h2 id="add-two-numbers">Add Two Numbers</h2>
-<p><a href="https://leetcode.com/problems/add-two-numbers/">传送门</a></p>
-
-<p>给l1,l2 算和用链表形式输出。<br />
-Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
-Output: 7 -&gt; 0 -&gt; 8</p>
-
-<p>这个题的思路非常简单：分3中情况，l1短，l2短，一样长。 然后新建链表l3 将和输出。这个题自己写了很久发现思路非常冗余。写了3个while来分别确认每种情况。其实应该用一个while就可以搞定，里面分别判断前面两种情况。然后while做完了判断是否还需要再进位。一下的写法是参考一个非常简洁的写法，感觉buf这个东西用的很妙啊，能用一个绝对不会用俩来维护个位数字和进位数字的。</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode p = l1;
-        ListNode q = l2;
-        ListNode l3 = new ListNode(0);
-        ListNode r = l3;
-        int buf = 0;
-        while(p!=null||q!=null){
-            if(p!=null){
-                buf += p.val;
-                p = p.next;
-            }
-            if(q!=null){
-                buf += q.val;
-                q = q.next;
-            }
-            r.next  = new ListNode(buf%10);
-            r = r.next; 
-            buf /= 10;
-        }
-        if(buf&gt;0)
-            r.next  = new ListNode(buf);
-        return l3.next;
-    }
-</code></pre>
-</div>
-
+                <p>于是今天去趟超市不容易，发现有点尴尬癌晚期。由此想到两种：
+独立性自尊（Independent Self-esteem, 简称ISE)的人往往幸福感水平很高，更少的具有”完美主义“倾向，情绪也更平稳。
+依赖性自尊(Dependent Self-esteem, 简称DES）
+的人则更容易感到情绪波动和焦虑、沮丧等负面情绪。
+感觉以前的ISE的我哪里去了……反而DES占比极大。</p>
 
             </section>
         
@@ -169,6 +87,24 @@ Output: 7 -&gt; 0 -&gt; 8</p>
             
 
                 <article class="6u 12u(small)">
+                    <header>
+                        <h2><a href="/leetcode/2015/12/10/Linked-List.html">链表特辑</a></h2>
+                    </header>
+                    <section>
+                        <h1 id="section">链表</h1>
+
+
+                    </section>
+                    <footer>
+                        <ul class="actions">
+                            <li><a href="/leetcode/2015/12/10/Linked-List.html" class="button">Read More</a></li>
+                        </ul>
+                    </footer>
+                </article>
+
+            
+
+                <article class="6u$ 12u(small)">
                     <header>
                         <h2><a href="/leetcode/2015/12/09/TrieTree.html">Word Search 引发的 Trie Tree 系列</a></h2>
                     </header>
@@ -186,7 +122,7 @@ Output: 7 -&gt; 0 -&gt; 8</p>
 
             
 
-                <article class="6u$ 12u(small)">
+                <article class="6u 12u(small)">
                     <header>
                         <h2><a href="/leetcode/2015/12/08/Leetcode%E7%BB%A7%E7%BB%AD%E5%88%B7%E7%9A%84%E6%97%A5%E5%B8%B8.html">Leetcode继续刷的日常</a></h2>
                     </header>
@@ -206,7 +142,7 @@ Output: 7 -&gt; 0 -&gt; 8</p>
 
             
 
-                <article class="6u 12u(small)">
+                <article class="6u$ 12u(small)">
                     <header>
                         <h2><a href="/diary/2015/12/07/New-post.html">New first post</a></h2>
                     </header>

@@ -4,13 +4,26 @@
  <title>In Side Of ARK</title>
  <link href="http://yourdomain.com/atom.xml" rel="self"/>
  <link href="http://yourdomain.com/"/>
- <updated>2015-12-13T23:15:16-08:00</updated>
+ <updated>2015-12-13T23:30:21-08:00</updated>
  <id>http://yourdomain.com</id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>日常</title>
+   <link href="http://yourdomain.com/diary/2015/12/13/%E6%97%A5%E5%B8%B8.html"/>
+   <updated>2015-12-13T00:00:00-08:00</updated>
+   <id>http://yourdomain.com/diary/2015/12/13/日常</id>
+   <content type="html">&lt;p&gt;于是今天去趟超市不容易，发现有点尴尬癌晚期。由此想到两种：
+独立性自尊（Independent Self-esteem, 简称ISE)的人往往幸福感水平很高，更少的具有”完美主义“倾向，情绪也更平稳。
+依赖性自尊(Dependent Self-esteem, 简称DES）
+的人则更容易感到情绪波动和焦虑、沮丧等负面情绪。
+感觉以前的ISE的我哪里去了……反而DES占比极大。&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>链表特辑</title>
