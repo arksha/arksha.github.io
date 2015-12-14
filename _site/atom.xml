@@ -4,7 +4,7 @@
  <title>In Side Of ARK</title>
  <link href="http://yourdomain.com/atom.xml" rel="self"/>
  <link href="http://yourdomain.com/"/>
- <updated>2015-12-10T23:21:06-08:00</updated>
+ <updated>2015-12-13T23:15:16-08:00</updated>
  <id>http://yourdomain.com</id>
  <author>
    <name></name>
@@ -19,9 +19,91 @@
    <id>http://yourdomain.com/leetcode/2015/12/10/Linked-List</id>
    <content type="html">&lt;h1 id=&quot;section&quot;&gt;链表&lt;/h1&gt;
 
-&lt;p&gt;链表题还是有很多的。三道hard，12道medium。
-在leetcode中给定的链表都是单向链表
-####&lt;/p&gt;
+&lt;p&gt;链表题还是有很多的。三道hard，12道medium。在leetcode中给定的链表都是单向链表&lt;br /&gt;
+Update: 2015-12-13&lt;/p&gt;
+
+&lt;h2 id=&quot;reverse-linked-list&quot;&gt;Reverse Linked List&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/reverse-linked-list/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Two ways to implement:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;iteratively&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;抓住要点就是将当前节点的后一个节点先保存，然后把当前的next指向之前的节点，pre用来维护当前节点的前面一个节点。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public ListNode reverseList(ListNode head) {
+   
+    ListNode pre = null;
+    ListNode cur = head;
+    while(cur!=null){
+        ListNode p = cur.next;
+        cur.next = pre;
+        pre = cur;
+        cur = p;
+    }
+    return pre;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;recursively&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这个做法比较tricky， 就是每次只看两个节点。吧已经递归好的后面的节点记到一个叫rest的节点上，然后从第二个节点开始递归，将当前的第二个节点的next指向当前的头节点head上。最后返回所有已经反好向的头rest。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public ListNode reverseList(ListNode head) {
+    
+   if(head==null || head.next == null)
+    return head;
+
+    ListNode second = head.next;//get second node   
+    head.next = null;//set first&#39;s next to be null
+
+    ListNode rest = reverseList(second);
+    second.next = head;
+    return rest;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;add-two-numbers&quot;&gt;Add Two Numbers&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/add-two-numbers/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;给l1,l2 算和用链表形式输出。&lt;br /&gt;
+Input: (2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4)
+Output: 7 -&amp;gt; 0 -&amp;gt; 8&lt;/p&gt;
+
+&lt;p&gt;这个题的思路非常简单：分3中情况，l1短，l2短，一样长。 然后新建链表l3 将和输出。这个题自己写了很久发现思路非常冗余。写了3个while来分别确认每种情况。其实应该用一个while就可以搞定，里面分别判断前面两种情况。然后while做完了判断是否还需要再进位。一下的写法是参考一个非常简洁的写法，感觉buf这个东西用的很妙啊，能用一个绝对不会用俩来维护个位数字和进位数字的。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode p = l1;
+        ListNode q = l2;
+        ListNode l3 = new ListNode(0);
+        ListNode r = l3;
+        int buf = 0;
+        while(p!=null||q!=null){
+            if(p!=null){
+                buf += p.val;
+                p = p.next;
+            }
+            if(q!=null){
+                buf += q.val;
+                q = q.next;
+            }
+            r.next  = new ListNode(buf%10);
+            r = r.next; 
+            buf /= 10;
+        }
+        if(buf&amp;gt;0)
+            r.next  = new ListNode(buf);
+        return l3.next;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 </content>
  </entry>
  
