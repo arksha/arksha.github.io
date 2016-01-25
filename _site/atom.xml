@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>In Side Of ARK</title>
- <link href="http://yourdomain.com/atom.xml" rel="self"/>
- <link href="http://yourdomain.com/"/>
- <updated>2015-12-14T23:39:37-08:00</updated>
- <id>http://yourdomain.com</id>
+ <link href="http://arkshagong.comarkshagong.com/atom.xml" rel="self"/>
+ <link href="http://arkshagong.comarkshagong.com/"/>
+ <updated>2016-01-24T23:54:30-08:00</updated>
+ <id>http://arkshagong.com</id>
  <author>
    <name></name>
    <email></email>
@@ -13,10 +13,539 @@
 
  
  <entry>
+   <title>Word Brothers</title>
+   <link href="http://arkshagong.com/2016/01/21/word-brothers.html"/>
+   <updated>2016-01-21T00:00:00-08:00</updated>
+   <id>http://arkshagong.comarkshagong.com/2016/01/21/word-brothers</id>
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;layout: post
+title: Word Brother’s
+date: 2016-01-21
+categories: Leetcode
+—S&lt;/p&gt;
+
+&lt;h1 id=&quot;word-ladder&quot;&gt;Word Ladder&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/word-ladder/&quot;&gt;传送门&lt;/a&gt;
+ Solution: BFS, use hashmap to reduce repeat elements,and use queue to implement BFS&lt;/p&gt;
+
+&lt;p&gt;code:
+ 	public class Solution {
+    public int ladderLength(String beginWord, String endWord, Set&lt;string&gt; wordList) {
+        if(wordList.size()==0||wordList==null) return 0;
+        HashSet&lt;string&gt; hash = new HashSet&amp;lt;&amp;gt;();
+        Queue&lt;string&gt; q = new LinkedList&amp;lt;&amp;gt;();
+        q.offer(beginWord);
+        hash.add(beginWord);
+        int length = 1;
+        while(!q.isEmpty()){
+            length++;
+            int size = q.size();
+            for(int i = 0;i&amp;lt;size;i++){
+                String word = q.poll();
+                for(String next: getnext(word,wordList)){
+                    if(hash.contains(next))
+                        continue;
+                    if(next.equals(endWord))
+                        return length;
+                    hash.add(next);
+                    q.offer(next);
+                }
+            }
+        }
+        return 0;
+    }
+    private String replace(String s, int index, char c) {
+        char[] chars = s.toCharArray();
+        chars[index] = c;
+        return new String(chars);
+    }
+    private ArrayList&lt;string&gt; getnext(String word,Set&lt;string&gt; wordList){
+        ArrayList&lt;string&gt; nextWords = new ArrayList&lt;string&gt;();
+        for (char c = &#39;a&#39;; c &amp;lt;= &#39;z&#39;; c++) {
+            for (int i = 0; i &amp;lt; word.length(); i++) {
+                if (c == word.charAt(i)) {
+                    continue;
+                }
+                String nextWord = replace(word, i, c);
+                if (wordList.contains(nextWord)) {
+                    nextWords.add(nextWord);
+                }
+            }
+        }
+        return nextWords;
+    }
+}&lt;/string&gt;&lt;/string&gt;&lt;/string&gt;&lt;/string&gt;&lt;/string&gt;&lt;/string&gt;&lt;/string&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;word-ladder-&quot;&gt;Word Ladder ②&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/word-ladder-ii/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;solution：&lt;/p&gt;
+
+&lt;p&gt;code：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+public List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; findLadders(String start, String end,
+        Set&amp;lt;String&amp;gt; dict) {
+    List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; ladders = new ArrayList&amp;lt;List&amp;lt;String&amp;gt;&amp;gt;();
+    Map&amp;lt;String, List&amp;lt;String&amp;gt;&amp;gt; map = new HashMap&amp;lt;String, List&amp;lt;String&amp;gt;&amp;gt;();
+    Map&amp;lt;String, Integer&amp;gt; distance = new HashMap&amp;lt;String, Integer&amp;gt;();
+
+    dict.add(start);
+    dict.add(end);
+ 
+    bfs(map, distance, start, end, dict);
+    
+    List&amp;lt;String&amp;gt; path = new ArrayList&amp;lt;String&amp;gt;();
+    
+    dfs(ladders, path, end, start, distance, map);
+
+    return ladders;
+}
+
+void dfs(List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; ladders, List&amp;lt;String&amp;gt; path, String crt,
+        String start, Map&amp;lt;String, Integer&amp;gt; distance,
+        Map&amp;lt;String, List&amp;lt;String&amp;gt;&amp;gt; map) {
+    path.add(crt);
+    if (crt.equals(start)) {
+        Collections.reverse(path);
+        ladders.add(new ArrayList&amp;lt;String&amp;gt;(path));
+        Collections.reverse(path);
+    } else {
+        for (String next : map.get(crt)) {
+            if (distance.containsKey(next) &amp;amp;&amp;amp; distance.get(crt) == distance.get(next) + 1) { 
+                dfs(ladders, path, next, start, distance, map);
+            }
+        }           
+    }
+    path.remove(path.size() - 1);
+}
+
+void bfs(Map&amp;lt;String, List&amp;lt;String&amp;gt;&amp;gt; map, Map&amp;lt;String, Integer&amp;gt; distance,
+        String start, String end, Set&amp;lt;String&amp;gt; dict) {
+    Queue&amp;lt;String&amp;gt; q = new LinkedList&amp;lt;String&amp;gt;();
+    q.offer(start);
+    distance.put(start, 0);
+    for (String s : dict) {
+        map.put(s, new ArrayList&amp;lt;String&amp;gt;());
+    }
+    
+    while (!q.isEmpty()) {
+        String crt = q.poll();
+
+        List&amp;lt;String&amp;gt; nextList = expand(crt, dict);
+        for (String next : nextList) {
+            map.get(next).add(crt);
+            if (!distance.containsKey(next)) {
+                distance.put(next, distance.get(crt) + 1);
+                q.offer(next);
+            }
+        }
+    }
+}
+
+List&amp;lt;String&amp;gt; expand(String crt, Set&amp;lt;String&amp;gt; dict) {
+    List&amp;lt;String&amp;gt; expansion = new ArrayList&amp;lt;String&amp;gt;();
+
+    for (int i = 0; i &amp;lt; crt.length(); i++) {
+        for (char ch = &#39;a&#39;; ch &amp;lt;= &#39;z&#39;; ch++) {
+            if (ch != crt.charAt(i)) {
+                String expanded = crt.substring(0, i) + ch
+                        + crt.substring(i + 1);
+                if (dict.contains(expanded)) {
+                    expansion.add(expanded);
+                }
+            }
+        }
+    }
+
+    return expansion;
+} }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;word-break&quot;&gt;Word Break&lt;/h1&gt;
+
+&lt;p&gt;solution:&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+&lt;p&gt;1.naive approach:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+public boolean wordBreak(String s, Set&amp;lt;String&amp;gt; dict) {
+         return wordBreakHelper(s, dict, 0);
+}
+ 
+    public boolean wordBreakHelper(String s, Set&amp;lt;String&amp;gt; dict, int start){
+        if(start == s.length()) 
+            return true;
+ 
+        for(String a: dict){
+            int len = a.length();
+            int end = start+len;
+ 
+            //end index should be &amp;lt;= string length
+            if(end &amp;gt; s.length()) 
+                continue;
+ 
+            if(s.substring(start, start+len).equals(a))
+                if(wordBreakHelper(s, dict, start+len))
+                    return true;
+        }
+ 
+        return false;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2.DP&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+    public boolean wordBreak(String s, Set&amp;lt;String&amp;gt; dict) {
+        boolean[] t = new boolean[s.length()+1];
+        t[0] = true; //set first to be true, why?
+        //Because we need initial state
+ 
+        for(int i=0; i&amp;lt;s.length(); i++){
+            //should continue from match position
+            if(!t[i]) 
+                continue;
+ 
+            for(String a: dict){
+                int len = a.length();
+                int end = i + len;
+                if(end &amp;gt; s.length())
+                    continue;
+ 
+                if(t[end]) continue;
+ 
+                if(s.substring(i, end).equals(a)){
+                    t[end] = true;
+                }
+            }
+        }
+ 
+        return t[s.length()];
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;word-break-ii&quot;&gt;Word Break II&lt;/h1&gt;
+
+&lt;p&gt;solution: DP&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static List&amp;lt;String&amp;gt; wordBreak(String s, Set&amp;lt;String&amp;gt; dict) {
+    //create an array of ArrayList&amp;lt;String&amp;gt;
+    List&amp;lt;String&amp;gt; dp[] = new ArrayList[s.length()+1];
+    dp[0] = new ArrayList&amp;lt;String&amp;gt;();
+ 
+    for(int i=0; i&amp;lt;s.length(); i++){
+        if( dp[i] == null ) 
+            continue; 
+ 
+        for(String word:dict){
+            int len = word.length();
+            int end = i+len;
+            if(end &amp;gt; s.length()) 
+                continue;
+ 
+            if(s.substring(i,end).equals(word)){
+                if(dp[end] == null){
+                    dp[end] = new ArrayList&amp;lt;String&amp;gt;();
+                }
+                dp[end].add(word);
+            }
+        }
+    }
+ 
+    List&amp;lt;String&amp;gt; result = new LinkedList&amp;lt;String&amp;gt;();
+    if(dp[s.length()] == null) 
+        return result; 
+ 
+    ArrayList&amp;lt;String&amp;gt; temp = new ArrayList&amp;lt;String&amp;gt;();
+    dfs(dp, s.length(), result, temp);
+ 
+    return result;
+}
+ 
+public static void dfs(List&amp;lt;String&amp;gt; dp[],int end,List&amp;lt;String&amp;gt; result, ArrayList&amp;lt;String&amp;gt; tmp){
+    if(end &amp;lt;= 0){
+        String path = tmp.get(tmp.size()-1);
+        for(int i=tmp.size()-2; i&amp;gt;=0; i--){
+            path += &quot; &quot; + tmp.get(i) ;
+        }
+ 
+        result.add(path);
+        return;
+    }
+ 
+    for(String str : dp[end]){
+        tmp.add(str);
+        dfs(dp, end-str.length(), result, tmp);
+        tmp.remove(tmp.size()-1);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;word-search&quot;&gt;Word Search&lt;/h1&gt;
+
+&lt;p&gt;solution:&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+    public boolean exist(char[][] board, String word) {
+        int n = board.length;
+        int m = board[0].length;
+        boolean res = false;
+        for(int i = 0;i&amp;lt;n;i++){
+            for(int j = 0;j&amp;lt;m;j++){
+                if(gothrough(i,j,board,word,0))
+                    res = true;
+            }
+        }
+
+      
+        return res;
+    }
+    public boolean gothrough(int a,int b, char[][] board,String word,int cur){
+        int num = word.length();
+        int n = board.length;
+        int m = board[0].length;
+            if(a&amp;gt;=n||a&amp;lt;0||b&amp;lt;0||b&amp;gt;=m)
+                return false;
+           
+            if(board[a][b]==word.charAt(cur)){
+                char temp = board[a][b];
+                board[a][b] = &#39;#&#39;;
+                if(cur==num-1)
+                    return true;
+                else if(gothrough(a+1,b,board,word,cur+1)||
+                    gothrough(a,b+1,board,word,cur+1)||
+                    gothrough(a-1,b,board,word,cur+1)||
+                    gothrough(a,b-1,board,word,cur+1)
+                   )
+                    return true;  
+                
+              board[a][b] = temp;
+            }
+            return false;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;word-search-ii&quot;&gt;Word Search II&lt;/h1&gt;
+
+&lt;p&gt;solution: use trie tree&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+    Trie trie = new Trie();
+    Set&amp;lt;String&amp;gt; res = new HashSet&amp;lt;String&amp;gt;(); 
+    public List&amp;lt;String&amp;gt; findWords(char[][] board, String[] words) {
+        
+         int m=board.length;
+         int n=board[0].length;
+        boolean mark[][] = new boolean[m][n];
+        for (int i = 0;i&amp;lt;words.length;i++)
+        {
+            trie.insert(words[i]);
+        }
+        for (int i = 0;i&amp;lt;board.length;i++)
+        {
+            for (int j = 0;j&amp;lt;board[0].length;j++)
+            {
+                dfs(board,&quot;&quot;,i,j,trie,mark);
+            }
+        }
+     return new ArrayList&amp;lt;String&amp;gt;(res);   
+    }
+    
+
+    public void dfs(char[][] board,String str, int i,int j,Trie trie,boolean mark[][]){
+        int m=board.length;
+        int n=board[0].length;
+        
+        if(i&amp;lt;0||i&amp;gt;=m||j&amp;lt;0||j&amp;gt;=n)
+            return;
+        if(mark[i][j])
+            return;
+        str += board[i][j];
+        if(!trie.startsWith(str))
+            return;
+        if(trie.search(str))
+            if(!res.contains(str))
+            res.add(str);
+        mark[i][j] = true;
+        dfs(board,str,i-1,j,trie,mark);
+        dfs(board,str,i+1,j,trie,mark);
+        dfs(board,str,i,j+1,trie,mark);
+        dfs(board,str,i,j-1,trie,mark);
+        mark[i][j] = false;
+        
+    }
+}
+class TrieNode{
+    public TrieNode[] children = new TrieNode[26];
+    public String item = &quot;&quot;;
+}
+ 
+//Trie
+class Trie{
+    public TrieNode root = new TrieNode();
+ 
+    public void insert(String word){
+        TrieNode node = root;
+        for(char c: word.toCharArray()){
+            if(node.children[c-&#39;a&#39;]==null){
+                node.children[c-&#39;a&#39;]= new TrieNode();
+            }
+            node = node.children[c-&#39;a&#39;];
+        }
+        node.item = word;
+    }
+ 
+    public boolean search(String word){
+        TrieNode node = root;
+        for(char c: word.toCharArray()){
+            if(node.children[c-&#39;a&#39;]==null)
+                return false;
+            node = node.children[c-&#39;a&#39;];
+        }
+        if(node.item.equals(word)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+ 
+    public boolean startsWith(String prefix){
+        TrieNode node = root;
+        for(char c: prefix.toCharArray()){
+            if(node.children[c-&#39;a&#39;]==null)
+                return false;
+            node = node.children[c-&#39;a&#39;];
+        }
+        return true;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;word-pattern&quot;&gt;Word Pattern&lt;/h1&gt;
+
+&lt;p&gt;solution:&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        String[] dict = str.split(&quot; &quot;);
+        if(pattern.length()!=dict.length){
+            return false;
+        }
+        Map index = new HashMap();
+        for(int i = 0;i&amp;lt;dict.length;i++){
+            if(!Objects.equals(index.put(pattern.charAt(i),i),
+                              index.put(dict[i],i)))
+                return false;
+           
+        }
+            return true;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Word Brother's</title>
+   <link href="http://arkshagong.com/leetcode/2016/01/21/BFS.html"/>
+   <updated>2016-01-21T00:00:00-08:00</updated>
+   <id>http://arkshagong.comarkshagong.com/leetcode/2016/01/21/BFS</id>
+   <content type="html">&lt;h1 id=&quot;word-ladder&quot;&gt;Word Ladder&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/word-ladder/&quot;&gt;传送门&lt;/a&gt;
+ Solution: BFS, use hashmap to reduce repeat elements,and use queue to implement BFS&lt;/p&gt;
+
+&lt;p&gt;code:
+ 	public class Solution {
+    public int ladderLength(String beginWord, String endWord, Set&lt;string&gt; wordList) {
+        if(wordList.size()==0||wordList==null) return 0;
+        HashSet&lt;string&gt; hash = new HashSet&amp;lt;&amp;gt;();
+        Queue&lt;string&gt; q = new LinkedList&amp;lt;&amp;gt;();
+        q.offer(beginWord);
+        hash.add(beginWord);
+        int length = 1;
+        while(!q.isEmpty()){
+            length++;
+            int size = q.size();
+            for(int i = 0;i&amp;lt;size;i++){
+                String word = q.poll();
+                for(String next: getnext(word,wordList)){
+                    if(hash.contains(next))
+                        continue;
+                    if(next.equals(endWord))
+                        return length;
+                    hash.add(next);
+                    q.offer(next);
+                }
+            }
+        }
+        return 0;
+    }
+    private String replace(String s, int index, char c) {
+        char[] chars = s.toCharArray();
+        chars[index] = c;
+        return new String(chars);
+    }
+    private ArrayList&lt;string&gt; getnext(String word,Set&lt;string&gt; wordList){
+        ArrayList&lt;string&gt; nextWords = new ArrayList&lt;string&gt;();
+        for (char c = &#39;a&#39;; c &amp;lt;= &#39;z&#39;; c++) {
+            for (int i = 0; i &amp;lt; word.length(); i++) {
+                if (c == word.charAt(i)) {
+                    continue;
+                }
+                String nextWord = replace(word, i, c);
+                if (wordList.contains(nextWord)) {
+                    nextWords.add(nextWord);
+                }
+            }
+        }
+        return nextWords;
+    }
+}&lt;/string&gt;&lt;/string&gt;&lt;/string&gt;&lt;/string&gt;&lt;/string&gt;&lt;/string&gt;&lt;/string&gt;&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
    <title>日常</title>
-   <link href="http://yourdomain.com/diary/2015/12/13/%E6%97%A5%E5%B8%B8.html"/>
+   <link href="http://arkshagong.com/diary/2015/12/13/dfs%E6%80%BB%E7%BB%93.html"/>
    <updated>2015-12-13T00:00:00-08:00</updated>
-   <id>http://yourdomain.com/diary/2015/12/13/日常</id>
+   <id>http://arkshagong.comarkshagong.com/diary/2015/12/13/dfs总结</id>
+   <content type="html">&lt;p&gt;于是今天去趟超市不容易，发现有点尴尬癌晚期。由此想到两种：
+独立性自尊（Independent Self-esteem, 简称ISE)的人往往幸福感水平很高，更少的具有”完美主义“倾向，情绪也更平稳。
+依赖性自尊(Dependent Self-esteem, 简称DES）
+的人则更容易感到情绪波动和焦虑、沮丧等负面情绪。
+感觉以前的ISE的我哪里去了……反而DES占比极大。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>日常</title>
+   <link href="http://arkshagong.com/diary/2015/12/13/%E6%97%A5%E5%B8%B8.html"/>
+   <updated>2015-12-13T00:00:00-08:00</updated>
+   <id>http://arkshagong.comarkshagong.com/diary/2015/12/13/日常</id>
    <content type="html">&lt;p&gt;于是今天去趟超市不容易，发现有点尴尬癌晚期。由此想到两种：
 独立性自尊（Independent Self-esteem, 简称ISE)的人往往幸福感水平很高，更少的具有”完美主义“倾向，情绪也更平稳。
 依赖性自尊(Dependent Self-esteem, 简称DES）
@@ -27,9 +556,9 @@
  
  <entry>
    <title>链表特辑</title>
-   <link href="http://yourdomain.com/leetcode/2015/12/10/Linked-List.html"/>
+   <link href="http://arkshagong.com/leetcode/2015/12/10/Linked-List.html"/>
    <updated>2015-12-10T00:00:00-08:00</updated>
-   <id>http://yourdomain.com/leetcode/2015/12/10/Linked-List</id>
+   <id>http://arkshagong.comarkshagong.com/leetcode/2015/12/10/Linked-List</id>
    <content type="html">&lt;h1 id=&quot;section&quot;&gt;链表&lt;/h1&gt;
 
 &lt;p&gt;链表题还是有很多的。三道hard，12道medium。在leetcode中给定的链表都是单向链表&lt;br /&gt;
@@ -301,9 +830,9 @@ return pre;
  
  <entry>
    <title>Word Search 引发的 Trie Tree 系列</title>
-   <link href="http://yourdomain.com/leetcode/2015/12/09/TrieTree.html"/>
+   <link href="http://arkshagong.com/leetcode/2015/12/09/TrieTree.html"/>
    <updated>2015-12-09T00:00:00-08:00</updated>
-   <id>http://yourdomain.com/leetcode/2015/12/09/TrieTree</id>
+   <id>http://arkshagong.comarkshagong.com/leetcode/2015/12/09/TrieTree</id>
    <content type="html">&lt;h3 id=&quot;word-search--leetcodehttpsleetcodecomproblemsword-search&quot;&gt;Word Search -&amp;gt;&lt;a href=&quot;https://leetcode.com/problems/word-search/&quot;&gt;Leetcode传送门&lt;/a&gt;&lt;/h3&gt;
 
 &lt;p&gt;题目：要把给定word在一个board里找出来。&lt;/p&gt;
@@ -563,9 +1092,9 @@ If the current candidate does not exist in all words’ prefix, you could stop b
  
  <entry>
    <title>Leetcode继续刷的日常</title>
-   <link href="http://yourdomain.com/leetcode/2015/12/08/Leetcode%E7%BB%A7%E7%BB%AD%E5%88%B7%E7%9A%84%E6%97%A5%E5%B8%B8.html"/>
+   <link href="http://arkshagong.com/leetcode/2015/12/08/Leetcode%E7%BB%A7%E7%BB%AD%E5%88%B7%E7%9A%84%E6%97%A5%E5%B8%B8.html"/>
    <updated>2015-12-08T00:00:00-08:00</updated>
-   <id>http://yourdomain.com/leetcode/2015/12/08/Leetcode继续刷的日常</id>
+   <id>http://arkshagong.comarkshagong.com/leetcode/2015/12/08/Leetcode继续刷的日常</id>
    <content type="html">&lt;p&gt;今天的日常其实是睡到了中午12点才起床，收拾好屋子之后就来leetcode辣。都是easy题也是题啊嗯ˊ_&amp;gt;ˋ&lt;br /&gt;
 1.Implement Queue using Stacks － 232&lt;a href=&quot;https://leetcode.com/problems/implement-queue-using-stacks/&quot;&gt; leetcode传送门&lt;/a&gt;&lt;br /&gt;
 题目：用Stacks来实现Queue.&lt;/p&gt;
@@ -614,9 +1143,9 @@ Bonus points if you could solve it both recursively and iteratively.
  
  <entry>
    <title>New first post</title>
-   <link href="http://yourdomain.com/diary/2015/12/07/New-post.html"/>
+   <link href="http://arkshagong.com/diary/2015/12/07/New-post.html"/>
    <updated>2015-12-07T00:00:00-08:00</updated>
-   <id>http://yourdomain.com/diary/2015/12/07/New-post</id>
+   <id>http://arkshagong.comarkshagong.com/diary/2015/12/07/New-post</id>
    <content type="html">&lt;p&gt;今天终于把jekyll搞定了配置好，然后在templete上面花了一下午时间强迫症做preference修改。我也真是执着，starwar都到货了等着我去玩呢啊啊啊啊。&lt;/p&gt;
 
 &lt;p&gt;其实我真的有想来着，并没有想绝地武士＝ ＝。我是黑暗阵营的Vadar的粉啊～&lt;/p&gt;
