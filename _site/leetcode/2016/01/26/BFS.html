@@ -66,16 +66,65 @@
         <div id="main">
     <article>
         <header class="major">
-            <h2 class="post-title">日常</h2>
-                <p class="post-meta">Dec 13, 2015</p>
+            <h2 class="post-title">BFS</h2>
+                <p class="post-meta">Jan 26, 2016</p>
         </header>
 
         <section>
-            <p>于是今天去趟超市不容易，发现有点尴尬癌晚期。由此想到两种：
-独立性自尊（Independent Self-esteem, 简称ISE)的人往往幸福感水平很高，更少的具有”完美主义“倾向，情绪也更平稳。
-依赖性自尊(Dependent Self-esteem, 简称DES）
-的人则更容易感到情绪波动和焦虑、沮丧等负面情绪。
-感觉以前的ISE的我哪里去了……反而DES占比极大。</p>
+            <h1 id="section">#</h1>
+<p><a href="https://leetcode.com/problems/word-ladder/">传送门</a>
+ Solution: BFS, use hashmap to reduce repeat elements,and use queue to implement BFS</p>
+
+<p>code:</p>
+
+ 	public class Solution {
+<div class="highlighter-rouge"><pre class="highlight"><code>public int ladderLength(String beginWord, String endWord, Set&lt;String&gt; wordList) {
+    if(wordList.size()==0||wordList==null) return 0;
+    HashSet&lt;String&gt; hash = new HashSet&lt;&gt;();
+    Queue&lt;String&gt; q = new LinkedList&lt;&gt;();
+    q.offer(beginWord);
+    hash.add(beginWord);
+    int length = 1;
+    while(!q.isEmpty()){
+        length++;
+        int size = q.size();
+        for(int i = 0;i&lt;size;i++){
+            String word = q.poll();
+            for(String next: getnext(word,wordList)){
+                if(hash.contains(next))
+                    continue;
+                if(next.equals(endWord))
+                    return length;
+                hash.add(next);
+                q.offer(next);
+            }
+        }
+    }
+    return 0;
+}
+private String replace(String s, int index, char c) {
+    char[] chars = s.toCharArray();
+    chars[index] = c;
+    return new String(chars);
+}
+private ArrayList&lt;String&gt; getnext(String word,Set&lt;String&gt; wordList){
+    ArrayList&lt;String&gt; nextWords = new ArrayList&lt;String&gt;();
+    for (char c = 'a'; c &lt;= 'z'; c++) {
+        for (int i = 0; i &lt; word.length(); i++) {
+            if (c == word.charAt(i)) {
+                continue;
+            }
+            String nextWord = replace(word, i, c);
+            if (wordList.contains(nextWord)) {
+                nextWords.add(nextWord);
+            }
+        }
+    }
+    return nextWords;
+} }
+</code></pre>
+</div>
+
 
         </section>
         
@@ -85,33 +134,10 @@
             
                 <article class="6u 12u(small) excerpt">
                     <header>
-                        <h2><a href="/diary/2015/12/13/%E6%97%A5%E5%B8%B8.html">日常</a></h2>
-                    </header>
-                    <section>
-                        <p>于是今天去趟超市不容易，发现有点尴尬癌晚期。由此想到两种：
-独立性自尊（Independent Self-esteem, 简称ISE)的人往往幸福感水平很高，更少的具有”完美主义“倾向，情绪也更平稳。
-依赖性自尊(Dependent Self-esteem, 简称DES）
-的人则更容易感到情绪波动和焦虑、沮丧等负面情绪。
-感觉以前的ISE的我哪里去了……反而DES占比极大。</p>
-
-                    </section>
-                    <footer>
-                        <ul class="actions">
-                            <li><a href="/diary/2015/12/13/%E6%97%A5%E5%B8%B8.html" class="button">Read More</a></li>
-                        </ul>
-                    </footer>
-                </article>
-            
-            
-            
-            
-                <article class="6u$ 12u(small) excerpt f-right">
-                    <header>
                         <h2><a href="/2016/01/21/word-brothers.html">Word Brothers</a></h2>
                     </header>
                     <section>
                         <hr />
-
 <p>layout: post
 title: Word Brother’s
 date: 2016-01-21
@@ -123,6 +149,25 @@ categories: Leetcode
                     <footer>
                         <ul class="actions">
                             <li><a href="/2016/01/21/word-brothers.html" class="button">Read More</a></li>
+                        </ul>
+                    </footer>
+                </article>
+            
+            
+            
+            
+                <article class="6u$ 12u(small) excerpt f-right">
+                    <header>
+                        <h2><a href="/diary/2016/01/26/ROSES.html">Roses - My status now</a></h2>
+                    </header>
+                    <section>
+                        <h1 id="roses">ROSES</h1>
+
+
+                    </section>
+                    <footer>
+                        <ul class="actions">
+                            <li><a href="/diary/2016/01/26/ROSES.html" class="button">Read More</a></li>
                         </ul>
                     </footer>
                 </article>

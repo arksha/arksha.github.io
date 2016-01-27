@@ -1,16 +1,17 @@
 ---
 layout: post
-title: Word Brother's
-date: 2016-01-21
+title: BFS
+date: 2016-01-26
 categories: Leetcode
 ---
 
 
-#Word Ladder#
+##
 [传送门](https://leetcode.com/problems/word-ladder/)
  Solution: BFS, use hashmap to reduce repeat elements,and use queue to implement BFS
 
 code:
+
  	public class Solution {
     public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
         if(wordList.size()==0||wordList==null) return 0;
