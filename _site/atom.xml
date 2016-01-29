@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>In Side Of ARK</title>
- <link href="/atom.xml" rel="self"/>
- <link href="/"/>
- <updated>2016-01-26T19:27:44-08:00</updated>
- <id></id>
+ <link href="arkshagong.com/atom.xml" rel="self"/>
+ <link href="arkshagong.com/"/>
+ <updated>2016-01-28T19:07:08-08:00</updated>
+ <id>arkshagong.com</id>
  <author>
    <name></name>
    <email></email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>Roses - My status now</title>
-   <link href="/diary/2016/01/26/ROSES.html"/>
+   <link href="arkshagong.com/diary/2016/01/26/ROSES.html"/>
    <updated>2016-01-26T00:00:00-08:00</updated>
-   <id>/diary/2016/01/26/ROSES</id>
+   <id>arkshagong.com/diary/2016/01/26/ROSES</id>
    <content type="html">&lt;h1 id=&quot;roses&quot;&gt;ROSES&lt;/h1&gt;
 
 &lt;p&gt;Take it slow but it’s not typical&lt;/p&gt;
@@ -55,9 +55,9 @@
  
  <entry>
    <title>BFS</title>
-   <link href="/leetcode/2016/01/26/BFS.html"/>
+   <link href="arkshagong.com/leetcode/2016/01/26/BFS.html"/>
    <updated>2016-01-26T00:00:00-08:00</updated>
-   <id>/leetcode/2016/01/26/BFS</id>
+   <id>arkshagong.com/leetcode/2016/01/26/BFS</id>
    <content type="html">&lt;h1 id=&quot;section&quot;&gt;#&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/word-ladder/&quot;&gt;传送门&lt;/a&gt;
  Solution: BFS, use hashmap to reduce repeat elements,and use queue to implement BFS&lt;/p&gt;
@@ -117,9 +117,9 @@ private ArrayList&amp;lt;String&amp;gt; getnext(String word,Set&amp;lt;String&am
  
  <entry>
    <title>Word Brothers</title>
-   <link href="/2016/01/21/word-brothers.html"/>
+   <link href="arkshagong.com/2016/01/21/word-brothers.html"/>
    <updated>2016-01-21T00:00:00-08:00</updated>
-   <id>/2016/01/21/word-brothers</id>
+   <id>arkshagong.com/2016/01/21/word-brothers</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;layout: post
 title: Word Brother’s
@@ -573,9 +573,9 @@ class Trie{
  
  <entry>
    <title>日常</title>
-   <link href="/diary/2015/12/13/dfs%E6%80%BB%E7%BB%93.html"/>
+   <link href="arkshagong.com/diary/2015/12/13/dfs%E6%80%BB%E7%BB%93.html"/>
    <updated>2015-12-13T00:00:00-08:00</updated>
-   <id>/diary/2015/12/13/dfs总结</id>
+   <id>arkshagong.com/diary/2015/12/13/dfs总结</id>
    <content type="html">&lt;p&gt;于是今天去趟超市不容易，发现有点尴尬癌晚期。由此想到两种：
 独立性自尊（Independent Self-esteem, 简称ISE)的人往往幸福感水平很高，更少的具有”完美主义“倾向，情绪也更平稳。
 依赖性自尊(Dependent Self-esteem, 简称DES）
@@ -586,9 +586,9 @@ class Trie{
  
  <entry>
    <title>日常</title>
-   <link href="/diary/2015/12/13/%E6%97%A5%E5%B8%B8.html"/>
+   <link href="arkshagong.com/diary/2015/12/13/%E6%97%A5%E5%B8%B8.html"/>
    <updated>2015-12-13T00:00:00-08:00</updated>
-   <id>/diary/2015/12/13/日常</id>
+   <id>arkshagong.com/diary/2015/12/13/日常</id>
    <content type="html">&lt;p&gt;于是今天去趟超市不容易，发现有点尴尬癌晚期。由此想到两种：
 独立性自尊（Independent Self-esteem, 简称ISE)的人往往幸福感水平很高，更少的具有”完美主义“倾向，情绪也更平稳。
 依赖性自尊(Dependent Self-esteem, 简称DES）
@@ -599,9 +599,9 @@ class Trie{
  
  <entry>
    <title>链表特辑</title>
-   <link href="/leetcode/2015/12/10/Linked-List.html"/>
+   <link href="arkshagong.com/leetcode/2015/12/10/Linked-List.html"/>
    <updated>2015-12-10T00:00:00-08:00</updated>
-   <id>/leetcode/2015/12/10/Linked-List</id>
+   <id>arkshagong.com/leetcode/2015/12/10/Linked-List</id>
    <content type="html">&lt;h1 id=&quot;section&quot;&gt;链表&lt;/h1&gt;
 
 &lt;p&gt;链表题还是有很多的。三道hard，12道medium。在leetcode中给定的链表都是单向链表&lt;br /&gt;
@@ -873,9 +873,9 @@ return pre;
  
  <entry>
    <title>Word Search 引发的 Trie Tree 系列</title>
-   <link href="/leetcode/2015/12/09/TrieTree.html"/>
+   <link href="arkshagong.com/leetcode/2015/12/09/TrieTree.html"/>
    <updated>2015-12-09T00:00:00-08:00</updated>
-   <id>/leetcode/2015/12/09/TrieTree</id>
+   <id>arkshagong.com/leetcode/2015/12/09/TrieTree</id>
    <content type="html">&lt;h3 id=&quot;word-search--leetcodehttpsleetcodecomproblemsword-search&quot;&gt;Word Search -&amp;gt;&lt;a href=&quot;https://leetcode.com/problems/word-search/&quot;&gt;Leetcode传送门&lt;/a&gt;&lt;/h3&gt;
 
 &lt;p&gt;题目：要把给定word在一个board里找出来。&lt;/p&gt;
@@ -1135,9 +1135,9 @@ If the current candidate does not exist in all words’ prefix, you could stop b
  
  <entry>
    <title>Leetcode继续刷的日常</title>
-   <link href="/leetcode/2015/12/08/Leetcode%E7%BB%A7%E7%BB%AD%E5%88%B7%E7%9A%84%E6%97%A5%E5%B8%B8.html"/>
+   <link href="arkshagong.com/leetcode/2015/12/08/Leetcode%E7%BB%A7%E7%BB%AD%E5%88%B7%E7%9A%84%E6%97%A5%E5%B8%B8.html"/>
    <updated>2015-12-08T00:00:00-08:00</updated>
-   <id>/leetcode/2015/12/08/Leetcode继续刷的日常</id>
+   <id>arkshagong.com/leetcode/2015/12/08/Leetcode继续刷的日常</id>
    <content type="html">&lt;p&gt;今天的日常其实是睡到了中午12点才起床，收拾好屋子之后就来leetcode辣。都是easy题也是题啊嗯ˊ_&amp;gt;ˋ&lt;br /&gt;
 1.Implement Queue using Stacks － 232&lt;a href=&quot;https://leetcode.com/problems/implement-queue-using-stacks/&quot;&gt; leetcode传送门&lt;/a&gt;&lt;br /&gt;
 题目：用Stacks来实现Queue.&lt;/p&gt;
@@ -1186,9 +1186,9 @@ Bonus points if you could solve it both recursively and iteratively.
  
  <entry>
    <title>New first post</title>
-   <link href="/diary/2015/12/07/New-post.html"/>
+   <link href="arkshagong.com/diary/2015/12/07/New-post.html"/>
    <updated>2015-12-07T00:00:00-08:00</updated>
-   <id>/diary/2015/12/07/New-post</id>
+   <id>arkshagong.com/diary/2015/12/07/New-post</id>
    <content type="html">&lt;p&gt;今天终于把jekyll搞定了配置好，然后在templete上面花了一下午时间强迫症做preference修改。我也真是执着，starwar都到货了等着我去玩呢啊啊啊啊。&lt;/p&gt;
 
 &lt;p&gt;其实我真的有想来着，并没有想绝地武士＝ ＝。我是黑暗阵营的Vadar的粉啊～&lt;/p&gt;
