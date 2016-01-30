@@ -11,6 +11,7 @@ categories: Leetcode
  Solution: BFS, use hashmap to reduce repeat elements,and use queue to implement BFS
 
 code:
+ 	
  	public class Solution {
     public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
         if(wordList.size()==0||wordList==null) return 0;
@@ -36,11 +37,13 @@ code:
         }
         return 0;
     }
+    
     private String replace(String s, int index, char c) {
         char[] chars = s.toCharArray();
         chars[index] = c;
         return new String(chars);
     }
+    
     private ArrayList<String> getnext(String word,Set<String> wordList){
         ArrayList<String> nextWords = new ArrayList<String>();
         for (char c = 'a'; c <= 'z'; c++) {
@@ -59,7 +62,7 @@ code:
 }
 
 
-#Word Ladder ②#
+#Word Ladder ii#
 [传送门](https://leetcode.com/problems/word-ladder-ii/)
 
 solution：

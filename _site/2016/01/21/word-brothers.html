@@ -9,55 +9,59 @@ categories: Leetcode
 <p><a href="https://leetcode.com/problems/word-ladder/">传送门</a>
  Solution: BFS, use hashmap to reduce repeat elements,and use queue to implement BFS</p>
 
-<p>code:
- 	public class Solution {
-    public int ladderLength(String beginWord, String endWord, Set<string> wordList) {
-        if(wordList.size()==0||wordList==null) return 0;
-        HashSet<string> hash = new HashSet&lt;&gt;();
-        Queue<string> q = new LinkedList&lt;&gt;();
-        q.offer(beginWord);
-        hash.add(beginWord);
-        int length = 1;
-        while(!q.isEmpty()){
-            length++;
-            int size = q.size();
-            for(int i = 0;i&lt;size;i++){
-                String word = q.poll();
-                for(String next: getnext(word,wordList)){
-                    if(hash.contains(next))
-                        continue;
-                    if(next.equals(endWord))
-                        return length;
-                    hash.add(next);
-                    q.offer(next);
-                }
-            }
-        }
-        return 0;
-    }
-    private String replace(String s, int index, char c) {
-        char[] chars = s.toCharArray();
-        chars[index] = c;
-        return new String(chars);
-    }
-    private ArrayList<string> getnext(String word,Set<string> wordList){
-        ArrayList<string> nextWords = new ArrayList<string>();
-        for (char c = 'a'; c &lt;= 'z'; c++) {
-            for (int i = 0; i &lt; word.length(); i++) {
-                if (c == word.charAt(i)) {
-                    continue;
-                }
-                String nextWord = replace(word, i, c);
-                if (wordList.contains(nextWord)) {
-                    nextWords.add(nextWord);
-                }
-            }
-        }
-        return nextWords;
-    }
-}</string></string></string></string></string></string></string></p>
+<p>code:</p>
 
-<h1 id="word-ladder-">Word Ladder ②</h1>
+ 	public class Solution {
+<div class="highlighter-rouge"><pre class="highlight"><code>public int ladderLength(String beginWord, String endWord, Set&lt;String&gt; wordList) {
+    if(wordList.size()==0||wordList==null) return 0;
+    HashSet&lt;String&gt; hash = new HashSet&lt;&gt;();
+    Queue&lt;String&gt; q = new LinkedList&lt;&gt;();
+    q.offer(beginWord);
+    hash.add(beginWord);
+    int length = 1;
+    while(!q.isEmpty()){
+        length++;
+        int size = q.size();
+        for(int i = 0;i&lt;size;i++){
+            String word = q.poll();
+            for(String next: getnext(word,wordList)){
+                if(hash.contains(next))
+                    continue;
+                if(next.equals(endWord))
+                    return length;
+                hash.add(next);
+                q.offer(next);
+            }
+        }
+    }
+    return 0;
+}
+
+private String replace(String s, int index, char c) {
+    char[] chars = s.toCharArray();
+    chars[index] = c;
+    return new String(chars);
+}
+
+private ArrayList&lt;String&gt; getnext(String word,Set&lt;String&gt; wordList){
+    ArrayList&lt;String&gt; nextWords = new ArrayList&lt;String&gt;();
+    for (char c = 'a'; c &lt;= 'z'; c++) {
+        for (int i = 0; i &lt; word.length(); i++) {
+            if (c == word.charAt(i)) {
+                continue;
+            }
+            String nextWord = replace(word, i, c);
+            if (wordList.contains(nextWord)) {
+                nextWords.add(nextWord);
+            }
+        }
+    }
+    return nextWords;
+} }
+</code></pre>
+</div>
+
+<h1 id="word-ladder-ii">Word Ladder ii</h1>
 <p><a href="https://leetcode.com/problems/word-ladder-ii/">传送门</a></p>
 
 <p>solution：</p>

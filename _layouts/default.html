@@ -19,14 +19,13 @@
     </head>
 
 	<body id="top">
-    {% include sidebar.html %} 
      
     <div class="wrap">
       <header id="header">
           <a href="#" class="image avatar"><img src="/images/avatar.jpg" alt="" /></a>
           <h1>I am <strong><a href="/">Arksha</a></strong> ,a developer in LA.<br/>
-          Specific in Graphics and Game Developing.<br/>
-          <br/>This blog is just for pushing me to write somethingˊ_>ˋ<br/></h1>
+          Specific in Web Development and Software Development. Have experience in Graphics and Game Developing.<br/>
+          <br/>Blogging is fun<br/></h1>
       </header>
       <div class="container content">
         {{ content }}
@@ -97,27 +96,7 @@
         </footer>
     </div>
 
-    <div class = "sidebar">
-    <label for="sidebar-checkbox" class="sidebar-toggle">This is label</label> 
-    </div>
- 
-    <script>
-      (function(document) {
-        var toggle = document.querySelector('.sidebar-toggle');
-        var sidebar = document.querySelector('#sidebar');
-        var checkbox = document.querySelector('#sidebar-checkbox');
-
-        document.addEventListener('click', function(e) {
-          var target = e.target;
-
-          if(!checkbox.checked ||
-             sidebar.contains(target) ||
-             (target === checkbox || target === toggle)) return;
-
-          checkbox.checked = false;
-        }, false);
-      })(document);
-    </script>
+    
 
 	</body>
 </html>
