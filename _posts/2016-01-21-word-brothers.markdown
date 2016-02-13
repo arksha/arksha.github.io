@@ -3,7 +3,7 @@ layout: post
 title: Word Brother's
 date: 2016-01-21
 categories: Leetcode
----S
+---
 
 
 #Word Ladder#
