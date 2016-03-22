@@ -4,7 +4,8 @@ title: Node.JS Recap
 date: 2016-03-10
 categories: web
 ---
-##How Node.js works
+
+##How Node.js works##
 1.single threaded
 	
 * no blocking, single threaded
@@ -13,7 +14,7 @@ categories: web
 
 * asynchronously, more than one thing at a time 
 
-##The global object
+##The global object##
 	
 Basic use of global object:
 
@@ -36,8 +37,9 @@ require path model:
 	var path = require("path");
 	console.log(`require from ${path.basename(__filename)}`);
 
-***we can run without .js extension, it doesn't matter**
-##Process object
+**we can run without .js extension, it doesn't matter**
+
+##Process object##
 
 1.get environment information, grab a information:
 
@@ -101,8 +103,7 @@ This is a great tool if we want to specify certain ports, or specify certain fil
 
 So process.stdin and process.stdout are ways that we can communicate with a running process.
 
-***Control C will kill application
-**
+**Control C will kill application**
 
 3.Global timing funcions
 
@@ -135,4 +136,56 @@ So process.stdin and process.stdout are ways that we can communicate with a runn
 
 	process.stdout.write("\n\n");
 	writeWaitingPercent(percentWaited);
+	
+##Core modules##
 
+1.util module, v8 (get memory information)
+	
+	var util = require('util');
+	var v8 = require('v8');
+	
+	//also adds date and time stamp on log function
+	util.log( path.basename(__filename) );
+	//will give us current information on our current memory statistics
+	util.log(v8.getHeapStatistics());
+	
+	var dirUploads = path.join(__dirname, 'www', 'files', 'uploads');
+
+	util.log(dirUploads);
+
+2.collect information with readline
+
+readline instance can create a interface to manage stdin and stdout
+
+	var rl = readline.createInterface(process.stdin, process.stdout);
+create a js object realperson to store information from terminal
+
+	var realPerson = {
+		name: '',
+		sayings: []
+	};
+`question` funtion is to ask and trigger a function for this quesion
+`setPrompt` to ask the question over and over again
+
+	rl.question("What is the name of a real person? ", function(answer) {
+
+	realPerson.name = answer;
+	
+		rl.setPrompt(`What would ${realPerson.name} say? `);
+
+		rl.prompt();
+
+	rl.on('line', function(saying) {
+
+		realPerson.sayings.push(saying.trim());
+
+		if (saying.toLowerCase().trim() === 'exit') {
+			rl.close();
+		} else {
+			rl.setPrompt(`What else would ${realPerson.name} say? ('exit' to leave) `);
+		    rl.prompt();
+		}
+
+	});
+
+	});

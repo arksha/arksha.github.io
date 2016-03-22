@@ -1,0 +1,1442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>In Side Of ARK</title>
+ <link href="arkshagong.com//atom.xml" rel="self"/>
+ <link href="arkshagong.com//"/>
+ <updated>2016-03-18T10:53:49-07:00</updated>
+ <id>arkshagong.com</id>
+ <author>
+   <name></name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>Node.JS Recap</title>
+   <link href="arkshagong.com/web/2016/03/10/Nodejs-recap.html"/>
+   <updated>2016-03-10T00:00:00-08:00</updated>
+   <id>arkshagong.com//web/2016/03/10/Nodejs-recap</id>
+   <content type="html">&lt;h2 id=&quot;how-nodejs-works&quot;&gt;How Node.js works&lt;/h2&gt;
+&lt;p&gt;1.single threaded&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;no blocking, single threaded&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;in the cloud all behavior the same thread&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;asynchronously, more than one thing at a time&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;the-global-object&quot;&gt;The global object&lt;/h2&gt;
+
+&lt;p&gt;Basic use of global object:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;console.log(&quot;hello world&quot;);
+
+global.console.log(&quot;hello world&quot;);
+//get substring
+var hello = &quot;hello world&quot;;
+var nodejs = hello.slice(4);
+global.console.log(nodejs);
+global.console.log(`hhahahah ${nodejs}`);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Get current model and full path:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;console.log(__dirname);
+console.log(__filename);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;require path model:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var path = require(&quot;path&quot;);
+console.log(`require from ${path.basename(__filename)}`);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;we can run without .js extension, it doesn’t matter&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;process-object&quot;&gt;Process object&lt;/h2&gt;
+
+&lt;p&gt;1.get environment information, grab a information:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function grab(flag) {
+	var index = process.argv.indexOf(flag);
+	return (index === -1) ? null : process.argv[index+1];
+}
+
+var greeting = grab(&#39;--greeting&#39;);
+var user = grab(&#39;--user&#39;);
+
+if (!user || !greeting) {
+	console.log(&quot;You Blew it!&quot;);
+} else {
+	console.log(`Welcome ${user}, ${greeting}`);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This is a great tool if we want to specify certain ports, or specify certain file folders for our app to use at the very beginning.&lt;/p&gt;
+
+&lt;p&gt;2.Standard input and output(with event liseners):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;process.stdout.write(&quot;Hello~~\n&quot;);
+
+var questions = [
+ 		&quot;What is your name?&quot;,
+  		&quot;What is your fav hobby?&quot;,
+  	&quot;What is your preferred programming language?&quot;
+];
+
+var answers = [];
+
+function ask(i) {
+  		process.stdout.write(`\n\n\n\n ${questions[i]}`);
+  		process.stdout.write(&quot;  &amp;gt;  &quot;);
+}
+
+process.stdin.on(&#39;data&#39;, function(data) {
+
+	answers.push(data.toString().trim());
+
+	if (answers.length &amp;lt; questions.length) {
+		ask(answers.length);
+	} else {
+		process.exit();
+	}
+
+	});
+
+	process.on(&#39;exit&#39;, function() {
+
+	process.stdout.write(&quot;\n\n\n\n&quot;);
+
+	process.stdout.write(`Go ${answers[1]} ${answers[0]} you can finish writing ${answers[2]} later`);
+
+	process.stdout.write(&quot;\n\n\n\n&quot;);
+
+});
+
+ask(0);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So process.stdin and process.stdout are ways that we can communicate with a running process.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Control C will kill application&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;3.Global timing funcions&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setTimeout &lt;/code&gt; will create a delay of a certain time and then invoke a callback function&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setInterval&lt;/code&gt;where setInterval will fire the callback function over and over again on an interval time&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var waitTime = 3000;
+var currentTime = 0;
+var waitInterval = 10;
+var percentWaited = 0;
+
+function writeWaitingPercent(p) {
+	process.stdout.clearLine();
+	process.stdout.cursorTo(0);
+	process.stdout.write(`waiting ... ${p}%`);
+}
+
+var interval = setInterval(function() {
+	currentTime += waitInterval;
+	percentWaited = Math.floor((currentTime/waitTime) * 100);
+	writeWaitingPercent(percentWaited);
+}, waitInterval);
+
+setTimeout(function() {
+	clearInterval(interval);
+	writeWaitingPercent(100);
+	console.log(&quot;\n\n done \n\n&quot;);
+}, waitTime);
+
+process.stdout.write(&quot;\n\n&quot;);
+writeWaitingPercent(percentWaited);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;core-modules&quot;&gt;Core modules&lt;/h2&gt;
+
+&lt;p&gt;1.util module, v8 (get memory information)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var util = require(&#39;util&#39;);
+var v8 = require(&#39;v8&#39;);
+
+//also adds date and time stamp on log function
+util.log( path.basename(__filename) );
+//will give us current information on our current memory statistics
+util.log(v8.getHeapStatistics());
+
+var dirUploads = path.join(__dirname, &#39;www&#39;, &#39;files&#39;, &#39;uploads&#39;);
+
+util.log(dirUploads);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2.collect information with readline&lt;/p&gt;
+
+&lt;p&gt;readline instance can create a interface to manage stdin and stdout&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;var rl = readline.createInterface(process.stdin, process.stdout); create a js object realperson to store information from terminal
+
+var realPerson = {
+	name: &#39;&#39;,
+	sayings: []
+}; `question` funtion is to ask and trigger a function for this quesion `setPrompt` to ask the question over and over again
+
+rl.question(&quot;What is the name of a real person? &quot;, function(answer) {
+
+realPerson.name = answer;
+
+	rl.setPrompt(`What would ${realPerson.name} say? `);
+
+	rl.prompt();
+
+rl.on(&#39;line&#39;, function(saying) {
+
+	realPerson.sayings.push(saying.trim());
+
+	if (saying.toLowerCase().trim() === &#39;exit&#39;) {
+		rl.close();
+	} else {
+		rl.setPrompt(`What else would ${realPerson.name} say? (&#39;exit&#39; to leave) `);
+	    rl.prompt();
+	}
+
+});
+
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Node.JS Recap</title>
+   <link href="arkshagong.com/web/2016/03/10/Thread-and-Locks-Review.html"/>
+   <updated>2016-03-10T00:00:00-08:00</updated>
+   <id>arkshagong.com//web/2016/03/10/Thread-and-Locks-Review</id>
+   <content type="html">
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Roses - My status now</title>
+   <link href="arkshagong.com/diary/2016/01/26/ROSES.html"/>
+   <updated>2016-01-26T00:00:00-08:00</updated>
+   <id>arkshagong.com//diary/2016/01/26/ROSES</id>
+   <content type="html">&lt;h1 id=&quot;roses&quot;&gt;ROSES&lt;/h1&gt;
+
+&lt;p&gt;Take it slow but it’s not typical&lt;/p&gt;
+
+&lt;p&gt;He already knows that my love is fire&lt;/p&gt;
+
+&lt;p&gt;His heart was a stone, but then his hands roam&lt;/p&gt;
+
+&lt;p&gt;I turned him to gold and it took him higher&lt;/p&gt;
+
+&lt;p&gt;Oh, I’ll be your daydream, I’ll wear your favorite things&lt;/p&gt;
+
+&lt;p&gt;we could be beautiful, get drunk on the good life&lt;/p&gt;
+
+&lt;p&gt;I’ll take you to paradise&lt;/p&gt;
+
+&lt;p&gt;Say you’ll never let me go&lt;/p&gt;
+
+&lt;p&gt;Deep in my bones i can feel you&lt;/p&gt;
+
+&lt;p&gt;Take me back to a time only we knew&lt;/p&gt;
+
+&lt;p&gt;Hideaway&lt;/p&gt;
+
+&lt;p&gt;We could waste the night with an old film&lt;/p&gt;
+
+&lt;p&gt;Smoke a little weed on the couch in the backroom&lt;/p&gt;
+
+&lt;p&gt;Hideaway&lt;/p&gt;
+
+&lt;p&gt;Say you’ll never let me go&lt;/p&gt;
+
+&lt;p&gt;Say you’ll never let me go&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>BFS</title>
+   <link href="arkshagong.com/leetcode/2016/01/26/BFS.html"/>
+   <updated>2016-01-26T00:00:00-08:00</updated>
+   <id>arkshagong.com//leetcode/2016/01/26/BFS</id>
+   <content type="html">&lt;h1 id=&quot;section&quot;&gt;#&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/word-ladder/&quot;&gt;传送门&lt;/a&gt;
+ Solution: BFS, use hashmap to reduce repeat elements,and use queue to implement BFS&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+ 	public class Solution {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public int ladderLength(String beginWord, String endWord, Set&amp;lt;String&amp;gt; wordList) {
+    if(wordList.size()==0||wordList==null) return 0;
+    HashSet&amp;lt;String&amp;gt; hash = new HashSet&amp;lt;&amp;gt;();
+    Queue&amp;lt;String&amp;gt; q = new LinkedList&amp;lt;&amp;gt;();
+    q.offer(beginWord);
+    hash.add(beginWord);
+    int length = 1;
+    while(!q.isEmpty()){
+        length++;
+        int size = q.size();
+        for(int i = 0;i&amp;lt;size;i++){
+            String word = q.poll();
+            for(String next: getnext(word,wordList)){
+                if(hash.contains(next))
+                    continue;
+                if(next.equals(endWord))
+                    return length;
+                hash.add(next);
+                q.offer(next);
+            }
+        }
+    }
+    return 0;
+}
+private String replace(String s, int index, char c) {
+    char[] chars = s.toCharArray();
+    chars[index] = c;
+    return new String(chars);
+}
+private ArrayList&amp;lt;String&amp;gt; getnext(String word,Set&amp;lt;String&amp;gt; wordList){
+    ArrayList&amp;lt;String&amp;gt; nextWords = new ArrayList&amp;lt;String&amp;gt;();
+    for (char c = &#39;a&#39;; c &amp;lt;= &#39;z&#39;; c++) {
+        for (int i = 0; i &amp;lt; word.length(); i++) {
+            if (c == word.charAt(i)) {
+                continue;
+            }
+            String nextWord = replace(word, i, c);
+            if (wordList.contains(nextWord)) {
+                nextWords.add(nextWord);
+            }
+        }
+    }
+    return nextWords;
+} }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Word Brother's</title>
+   <link href="arkshagong.com/leetcode/2016/01/21/word-brothers.html"/>
+   <updated>2016-01-21T00:00:00-08:00</updated>
+   <id>arkshagong.com//leetcode/2016/01/21/word-brothers</id>
+   <content type="html">&lt;h1 id=&quot;word-ladder&quot;&gt;Word Ladder&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/word-ladder/&quot;&gt;传送门&lt;/a&gt;
+ Solution: BFS, use hashmap to reduce repeat elements,and use queue to implement BFS&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+ 	public class Solution {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public int ladderLength(String beginWord, String endWord, Set&amp;lt;String&amp;gt; wordList) {
+    if(wordList.size()==0||wordList==null) return 0;
+    HashSet&amp;lt;String&amp;gt; hash = new HashSet&amp;lt;&amp;gt;();
+    Queue&amp;lt;String&amp;gt; q = new LinkedList&amp;lt;&amp;gt;();
+    q.offer(beginWord);
+    hash.add(beginWord);
+    int length = 1;
+    while(!q.isEmpty()){
+        length++;
+        int size = q.size();
+        for(int i = 0;i&amp;lt;size;i++){
+            String word = q.poll();
+            for(String next: getnext(word,wordList)){
+                if(hash.contains(next))
+                    continue;
+                if(next.equals(endWord))
+                    return length;
+                hash.add(next);
+                q.offer(next);
+            }
+        }
+    }
+    return 0;
+}
+
+private String replace(String s, int index, char c) {
+    char[] chars = s.toCharArray();
+    chars[index] = c;
+    return new String(chars);
+}
+
+private ArrayList&amp;lt;String&amp;gt; getnext(String word,Set&amp;lt;String&amp;gt; wordList){
+    ArrayList&amp;lt;String&amp;gt; nextWords = new ArrayList&amp;lt;String&amp;gt;();
+    for (char c = &#39;a&#39;; c &amp;lt;= &#39;z&#39;; c++) {
+        for (int i = 0; i &amp;lt; word.length(); i++) {
+            if (c == word.charAt(i)) {
+                continue;
+            }
+            String nextWord = replace(word, i, c);
+            if (wordList.contains(nextWord)) {
+                nextWords.add(nextWord);
+            }
+        }
+    }
+    return nextWords;
+} }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;word-ladder-ii&quot;&gt;Word Ladder ii&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/word-ladder-ii/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;solution：&lt;/p&gt;
+
+&lt;p&gt;code：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+public List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; findLadders(String start, String end,
+        Set&amp;lt;String&amp;gt; dict) {
+    List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; ladders = new ArrayList&amp;lt;List&amp;lt;String&amp;gt;&amp;gt;();
+    Map&amp;lt;String, List&amp;lt;String&amp;gt;&amp;gt; map = new HashMap&amp;lt;String, List&amp;lt;String&amp;gt;&amp;gt;();
+    Map&amp;lt;String, Integer&amp;gt; distance = new HashMap&amp;lt;String, Integer&amp;gt;();
+
+    dict.add(start);
+    dict.add(end);
+ 
+    bfs(map, distance, start, end, dict);
+    
+    List&amp;lt;String&amp;gt; path = new ArrayList&amp;lt;String&amp;gt;();
+    
+    dfs(ladders, path, end, start, distance, map);
+
+    return ladders;
+}
+
+void dfs(List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; ladders, List&amp;lt;String&amp;gt; path, String crt,
+        String start, Map&amp;lt;String, Integer&amp;gt; distance,
+        Map&amp;lt;String, List&amp;lt;String&amp;gt;&amp;gt; map) {
+    path.add(crt);
+    if (crt.equals(start)) {
+        Collections.reverse(path);
+        ladders.add(new ArrayList&amp;lt;String&amp;gt;(path));
+        Collections.reverse(path);
+    } else {
+        for (String next : map.get(crt)) {
+            if (distance.containsKey(next) &amp;amp;&amp;amp; distance.get(crt) == distance.get(next) + 1) { 
+                dfs(ladders, path, next, start, distance, map);
+            }
+        }           
+    }
+    path.remove(path.size() - 1);
+}
+
+void bfs(Map&amp;lt;String, List&amp;lt;String&amp;gt;&amp;gt; map, Map&amp;lt;String, Integer&amp;gt; distance,
+        String start, String end, Set&amp;lt;String&amp;gt; dict) {
+    Queue&amp;lt;String&amp;gt; q = new LinkedList&amp;lt;String&amp;gt;();
+    q.offer(start);
+    distance.put(start, 0);
+    for (String s : dict) {
+        map.put(s, new ArrayList&amp;lt;String&amp;gt;());
+    }
+    
+    while (!q.isEmpty()) {
+        String crt = q.poll();
+
+        List&amp;lt;String&amp;gt; nextList = expand(crt, dict);
+        for (String next : nextList) {
+            map.get(next).add(crt);
+            if (!distance.containsKey(next)) {
+                distance.put(next, distance.get(crt) + 1);
+                q.offer(next);
+            }
+        }
+    }
+}
+
+List&amp;lt;String&amp;gt; expand(String crt, Set&amp;lt;String&amp;gt; dict) {
+    List&amp;lt;String&amp;gt; expansion = new ArrayList&amp;lt;String&amp;gt;();
+
+    for (int i = 0; i &amp;lt; crt.length(); i++) {
+        for (char ch = &#39;a&#39;; ch &amp;lt;= &#39;z&#39;; ch++) {
+            if (ch != crt.charAt(i)) {
+                String expanded = crt.substring(0, i) + ch
+                        + crt.substring(i + 1);
+                if (dict.contains(expanded)) {
+                    expansion.add(expanded);
+                }
+            }
+        }
+    }
+
+    return expansion;
+} }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;word-break&quot;&gt;Word Break&lt;/h1&gt;
+
+&lt;p&gt;solution:&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+&lt;p&gt;1.naive approach:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+public boolean wordBreak(String s, Set&amp;lt;String&amp;gt; dict) {
+         return wordBreakHelper(s, dict, 0);
+}
+ 
+    public boolean wordBreakHelper(String s, Set&amp;lt;String&amp;gt; dict, int start){
+        if(start == s.length()) 
+            return true;
+ 
+        for(String a: dict){
+            int len = a.length();
+            int end = start+len;
+ 
+            //end index should be &amp;lt;= string length
+            if(end &amp;gt; s.length()) 
+                continue;
+ 
+            if(s.substring(start, start+len).equals(a))
+                if(wordBreakHelper(s, dict, start+len))
+                    return true;
+        }
+ 
+        return false;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2.DP&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+    public boolean wordBreak(String s, Set&amp;lt;String&amp;gt; dict) {
+        boolean[] t = new boolean[s.length()+1];
+        t[0] = true; //set first to be true, why?
+        //Because we need initial state
+ 
+        for(int i=0; i&amp;lt;s.length(); i++){
+            //should continue from match position
+            if(!t[i]) 
+                continue;
+ 
+            for(String a: dict){
+                int len = a.length();
+                int end = i + len;
+                if(end &amp;gt; s.length())
+                    continue;
+ 
+                if(t[end]) continue;
+ 
+                if(s.substring(i, end).equals(a)){
+                    t[end] = true;
+                }
+            }
+        }
+ 
+        return t[s.length()];
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;word-break-ii&quot;&gt;Word Break II&lt;/h1&gt;
+
+&lt;p&gt;solution: DP&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public static List&amp;lt;String&amp;gt; wordBreak(String s, Set&amp;lt;String&amp;gt; dict) {
+    //create an array of ArrayList&amp;lt;String&amp;gt;
+    List&amp;lt;String&amp;gt; dp[] = new ArrayList[s.length()+1];
+    dp[0] = new ArrayList&amp;lt;String&amp;gt;();
+ 
+    for(int i=0; i&amp;lt;s.length(); i++){
+        if( dp[i] == null ) 
+            continue; 
+ 
+        for(String word:dict){
+            int len = word.length();
+            int end = i+len;
+            if(end &amp;gt; s.length()) 
+                continue;
+ 
+            if(s.substring(i,end).equals(word)){
+                if(dp[end] == null){
+                    dp[end] = new ArrayList&amp;lt;String&amp;gt;();
+                }
+                dp[end].add(word);
+            }
+        }
+    }
+ 
+    List&amp;lt;String&amp;gt; result = new LinkedList&amp;lt;String&amp;gt;();
+    if(dp[s.length()] == null) 
+        return result; 
+ 
+    ArrayList&amp;lt;String&amp;gt; temp = new ArrayList&amp;lt;String&amp;gt;();
+    dfs(dp, s.length(), result, temp);
+ 
+    return result;
+}
+ 
+public static void dfs(List&amp;lt;String&amp;gt; dp[],int end,List&amp;lt;String&amp;gt; result, ArrayList&amp;lt;String&amp;gt; tmp){
+    if(end &amp;lt;= 0){
+        String path = tmp.get(tmp.size()-1);
+        for(int i=tmp.size()-2; i&amp;gt;=0; i--){
+            path += &quot; &quot; + tmp.get(i) ;
+        }
+ 
+        result.add(path);
+        return;
+    }
+ 
+    for(String str : dp[end]){
+        tmp.add(str);
+        dfs(dp, end-str.length(), result, tmp);
+        tmp.remove(tmp.size()-1);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;word-search&quot;&gt;Word Search&lt;/h1&gt;
+
+&lt;p&gt;solution:&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+    public boolean exist(char[][] board, String word) {
+        int n = board.length;
+        int m = board[0].length;
+        boolean res = false;
+        for(int i = 0;i&amp;lt;n;i++){
+            for(int j = 0;j&amp;lt;m;j++){
+                if(gothrough(i,j,board,word,0))
+                    res = true;
+            }
+        }
+
+      
+        return res;
+    }
+    public boolean gothrough(int a,int b, char[][] board,String word,int cur){
+        int num = word.length();
+        int n = board.length;
+        int m = board[0].length;
+            if(a&amp;gt;=n||a&amp;lt;0||b&amp;lt;0||b&amp;gt;=m)
+                return false;
+           
+            if(board[a][b]==word.charAt(cur)){
+                char temp = board[a][b];
+                board[a][b] = &#39;#&#39;;
+                if(cur==num-1)
+                    return true;
+                else if(gothrough(a+1,b,board,word,cur+1)||
+                    gothrough(a,b+1,board,word,cur+1)||
+                    gothrough(a-1,b,board,word,cur+1)||
+                    gothrough(a,b-1,board,word,cur+1)
+                   )
+                    return true;  
+                
+              board[a][b] = temp;
+            }
+            return false;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;word-search-ii&quot;&gt;Word Search II&lt;/h1&gt;
+
+&lt;p&gt;solution: use trie tree&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+    Trie trie = new Trie();
+    Set&amp;lt;String&amp;gt; res = new HashSet&amp;lt;String&amp;gt;(); 
+    public List&amp;lt;String&amp;gt; findWords(char[][] board, String[] words) {
+        
+         int m=board.length;
+         int n=board[0].length;
+        boolean mark[][] = new boolean[m][n];
+        for (int i = 0;i&amp;lt;words.length;i++)
+        {
+            trie.insert(words[i]);
+        }
+        for (int i = 0;i&amp;lt;board.length;i++)
+        {
+            for (int j = 0;j&amp;lt;board[0].length;j++)
+            {
+                dfs(board,&quot;&quot;,i,j,trie,mark);
+            }
+        }
+     return new ArrayList&amp;lt;String&amp;gt;(res);   
+    }
+    
+
+    public void dfs(char[][] board,String str, int i,int j,Trie trie,boolean mark[][]){
+        int m=board.length;
+        int n=board[0].length;
+        
+        if(i&amp;lt;0||i&amp;gt;=m||j&amp;lt;0||j&amp;gt;=n)
+            return;
+        if(mark[i][j])
+            return;
+        str += board[i][j];
+        if(!trie.startsWith(str))
+            return;
+        if(trie.search(str))
+            if(!res.contains(str))
+            res.add(str);
+        mark[i][j] = true;
+        dfs(board,str,i-1,j,trie,mark);
+        dfs(board,str,i+1,j,trie,mark);
+        dfs(board,str,i,j+1,trie,mark);
+        dfs(board,str,i,j-1,trie,mark);
+        mark[i][j] = false;
+        
+    }
+}
+class TrieNode{
+    public TrieNode[] children = new TrieNode[26];
+    public String item = &quot;&quot;;
+}
+ 
+//Trie
+class Trie{
+    public TrieNode root = new TrieNode();
+ 
+    public void insert(String word){
+        TrieNode node = root;
+        for(char c: word.toCharArray()){
+            if(node.children[c-&#39;a&#39;]==null){
+                node.children[c-&#39;a&#39;]= new TrieNode();
+            }
+            node = node.children[c-&#39;a&#39;];
+        }
+        node.item = word;
+    }
+ 
+    public boolean search(String word){
+        TrieNode node = root;
+        for(char c: word.toCharArray()){
+            if(node.children[c-&#39;a&#39;]==null)
+                return false;
+            node = node.children[c-&#39;a&#39;];
+        }
+        if(node.item.equals(word)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+ 
+    public boolean startsWith(String prefix){
+        TrieNode node = root;
+        for(char c: prefix.toCharArray()){
+            if(node.children[c-&#39;a&#39;]==null)
+                return false;
+            node = node.children[c-&#39;a&#39;];
+        }
+        return true;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;word-pattern&quot;&gt;Word Pattern&lt;/h1&gt;
+
+&lt;p&gt;solution:&lt;/p&gt;
+
+&lt;p&gt;code:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        String[] dict = str.split(&quot; &quot;);
+        if(pattern.length()!=dict.length){
+            return false;
+        }
+        Map index = new HashMap();
+        for(int i = 0;i&amp;lt;dict.length;i++){
+            if(!Objects.equals(index.put(pattern.charAt(i),i),
+                              index.put(dict[i],i)))
+                return false;
+           
+        }
+            return true;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>After Siemens Interview</title>
+   <link href="arkshagong.com/diary/2015/12/13/After-Siemens-Interview.html"/>
+   <updated>2015-12-13T00:00:00-08:00</updated>
+   <id>arkshagong.com//diary/2015/12/13/After-Siemens-Interview</id>
+   <content type="html">&lt;h3 id=&quot;few-things-after-interview-today&quot;&gt;Few things After Interview today&lt;/h3&gt;
+
+&lt;p&gt;今天去Siemens的面试让我反思了很多。&lt;/p&gt;
+
+&lt;p&gt;第一次面试被接待大妈说nervous，我叫不紧张谢谢ˊ_&amp;gt;ˋ，三哥和北航叔轮番问我在project中的OO问题，对于我的project可真是挖到好深。本来45min硬是给问到了2h，因此辛苦好人掌机君开车载我来long beach 从早晨到下午才回来（而且还是堵着回的）想到这里就觉得今天破残的面试就有点对不起辛苦的掌机……&lt;/p&gt;
+
+&lt;p&gt;能遇见掌机觉得自己很幸运，掌机这种心如止水的淡定感是我一直以来难以自身克服而得到的技能。偶然聊到女生找工作的事情，掌机的话感觉很对啊，某人说女生拿到职位很有优势的blahblah，其实并没有优势到哪里去，反而很容易被人误解，能力好的进去了就不是真实力，没进去就是hello world 都不会写。能找到工作其实还是需要基本的技能的，其他的是井上添花的加分项。努力提升自己的技能和不可替代性才是主要的， 在此之上，那种快餐一般快捷方式有可能成功，但是谁又能保证每一次都能够撞倒大运呢？&lt;/p&gt;
+
+&lt;p&gt;面试的问题应该是基础的问题，然而我好像并没有能很流利得答出来，说明准备得不充分。在说简历里的project时候，我只是会泛泛地说出做了什么，具体如何做，做了哪些部分，用到了哪些技术，我在表达上还是没到可以面试的层次。&lt;strong&gt;对于自己的project还是缺少熟悉度&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;当时三哥问我说我想要做什么，我还是会犹豫一下。尽管申请的是SWE的职位，我的简历里的技能很分散，想做web手里只有一个.net的项目，graphic的俩课设，没有focus，没有专攻技能，可替代性太高。明明之前想发展web前端的能力但还是止于没法利用业余时间提升自己。于是现在这个不是紧急事项，但是有一天这个问题还是会再次出现的。&lt;strong&gt;需要在业余时间投入到这个职业的规划中。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;想想最近的生活状况，Things are getting little messy these days. 其实总结下来就是最近活得有点怂，觉得自己什么都做不好，什么都要失败，缩手缩脚，考虑一个简单到不用想的问题还要check十来遍。其实这也是一直以来自己存在的问题了。Social Circle太狭隘，没有很好的维系和朋友的关系，导致渐渐疏远，寄希望于一个人身上，越来越闭塞，越来越怂。 然后发生事情不敢面对，不敢去做，结果当然不会好。期望到还是那么高，自然而然就会崩坏。到底在害怕什么，干嘛这么怂，&lt;strong&gt;不要死抓着自己的缺点不放手。LET IT GO啊&lt;/strong&gt;，面试这点真的是死穴，对自己的不自信即使不是真的也会变成真的。想想自己的长处，想想擅长的，别人没有做到我却做到的，把自己看得太低真的是会吃亏的，现在想起父上的话已经是吃过这亏才能想起来的了。&lt;strong&gt;不要怕，放手去做，立刻去做，失败了没关系，还有机会。只要迈出那一步，接下来不由得你停，会一直在前进。即使在绕圈圈，那也不是原地踏步。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;加油去做！别闲着想这想那的，没时间去想这么多。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/postimg/Siemens.jpg&quot; alt=&quot;pic of today&quot; /&gt;&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>DFS心得</title>
+   <link href="arkshagong.com/leetcode/2015/12/13/dfs%E6%80%BB%E7%BB%93.html"/>
+   <updated>2015-12-13T00:00:00-08:00</updated>
+   <id>arkshagong.com//leetcode/2015/12/13/dfs总结</id>
+   <content type="html">
+</content>
+ </entry>
+ 
+ <entry>
+   <title>日常</title>
+   <link href="arkshagong.com/diary/2015/12/13/%E6%97%A5%E5%B8%B8.html"/>
+   <updated>2015-12-13T00:00:00-08:00</updated>
+   <id>arkshagong.com//diary/2015/12/13/日常</id>
+   <content type="html">&lt;p&gt;于是今天去趟超市不容易，发现有点尴尬癌晚期。&lt;/p&gt;
+
+&lt;p&gt;由此想到两种：&lt;/p&gt;
+
+&lt;p&gt;1.独立性自尊（Independent Self-esteem, 简称ISE)
+人往往幸福感水平很高，更少的具有”完美主义“倾向，情绪也更平稳。&lt;/p&gt;
+
+&lt;p&gt;2.依赖性自尊(Dependent Self-esteem, 简称DES）
+人则更容易感到情绪波动和焦虑、沮丧等负面情绪。
+感觉以前的ISE的我哪里去了……反而DES占比极大。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>链表特辑</title>
+   <link href="arkshagong.com/leetcode/2015/12/10/Linked-List.html"/>
+   <updated>2015-12-10T00:00:00-08:00</updated>
+   <id>arkshagong.com//leetcode/2015/12/10/Linked-List</id>
+   <content type="html">&lt;h1 id=&quot;section&quot;&gt;链表&lt;/h1&gt;
+
+&lt;p&gt;链表题还是有很多的。三道hard，12道medium。在leetcode中给定的链表都是单向链表&lt;br /&gt;
+Update: 2015-12-13&lt;/p&gt;
+
+&lt;h2 id=&quot;reverse-linked-list&quot;&gt;Reverse Linked List&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/reverse-linked-list/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Two ways to implement:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;iteratively&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;抓住要点就是将当前节点的后一个节点先保存，然后把当前的next指向之前的节点，pre用来维护当前节点的前面一个节点。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public ListNode reverseList(ListNode head) {
+   
+    ListNode pre = null;
+    ListNode cur = head;
+    while(cur!=null){
+        ListNode p = cur.next;
+        cur.next = pre;
+        pre = cur;
+        cur = p;
+    }
+    return pre;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;recursively&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这个做法比较tricky， 就是每次只看两个节点。吧已经递归好的后面的节点记到一个叫rest的节点上，然后从第二个节点开始递归，将当前的第二个节点的next指向当前的头节点head上。最后返回所有已经反好向的头rest。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public ListNode reverseList(ListNode head) {
+    
+   if(head==null || head.next == null)
+    return head;
+
+    ListNode second = head.next;//get second node   
+    head.next = null;//set first&#39;s next to be null
+
+    ListNode rest = reverseList(second);
+    second.next = head;
+    return rest;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;reverse-linked-list-ii&quot;&gt;Reverse Linked List II&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/reverse-linked-list-ii/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;reverse 升级版！只转链表中的某一段。思路和上题一样一样的，可以先数到m，然后从m开始到n截止去做reverse。
+Remember to use fakehead, add it to the real head of linklist. Then move pointer to find prenode of m, then use 3 pointers do the same reverve thing as first question. At last, just link the m node (now is the tail of reversed node) to the rest of linklist, and link the previous node (use cur pointer to index it) to the n node.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public ListNode reverseBetween(ListNode head, int m, int n) {
+    if(head==null)
+        return head;
+    ListNode fakehead = new ListNode(0);
+    fakehead.next = head;
+    head = fakehead;//////////////
+    for(int i = 1;i&amp;lt;m;i++){
+        if(head == null)
+            return null;
+        head = head.next;
+    }
+    ListNode pre = head;
+    ListNode nodem = head.next;
+    ListNode cur = nodem;
+    ListNode nt = cur.next;
+    for(int i = m;i&amp;lt;n;i++){
+        if(nt==null)
+            return null;
+        ListNode temp = nt.next;
+        nt.next = cur;
+        cur = nt;
+        nt = temp;
+    }
+    nodem.next = nt;
+    pre.next = cur;
+    return fakehead.next;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;add-two-numbers&quot;&gt;Add Two Numbers&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/add-two-numbers/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;给l1,l2 算和用链表形式输出。&lt;br /&gt;
+Input: (2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4)
+Output: 7 -&amp;gt; 0 -&amp;gt; 8&lt;/p&gt;
+
+&lt;p&gt;这个题的思路非常简单：分3中情况，l1短，l2短，一样长。 然后新建链表l3 将和输出。这个题自己写了很久发现思路非常冗余。写了3个while来分别确认每种情况。其实应该用一个while就可以搞定，里面分别判断前面两种情况。然后while做完了判断是否还需要再进位。一下的写法是参考一个非常简洁的写法，感觉buf这个东西用的很妙啊，能用一个绝对不会用俩来维护个位数字和进位数字的。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode p = l1;
+        ListNode q = l2;
+        ListNode l3 = new ListNode(0);
+        ListNode r = l3;
+        int buf = 0;
+        while(p!=null||q!=null){
+            if(p!=null){
+                buf += p.val;
+                p = p.next;
+            }
+            if(q!=null){
+                buf += q.val;
+                q = q.next;
+            }
+            r.next  = new ListNode(buf%10);
+            r = r.next; 
+            buf /= 10;
+        }
+        if(buf&amp;gt;0)
+            r.next  = new ListNode(buf);
+        return l3.next;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;mmerge-two-sorted-lists&quot;&gt;MMerge Two Sorted Lists&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/merge-two-sorted-lists/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;此题是基础而且相当简单，记得搞个fakehead做新的链表头，然后俩list里小的连在后面，同时更新次链表的指针直到俩都空。如果俩链表长度不同，则将链表的next指向长的那个链表。最后返回fakehead的下一个节点。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    ListNode p1 = l1;//pointer to l1
+    ListNode p2 = l2;//pointer to l2
+    ListNode fake = new ListNode(0);
+    ListNode L  = fake;// new pointer
+    while(p1!=null&amp;amp;&amp;amp;p2!=null){
+        if(p1.val&amp;lt;=p2.val){
+            L.next = p1;
+            p1 = p1.next;
+        }else{
+            L.next = p2;
+            p2 = p2.next;
+        }
+        L = L.next;//
+    }
+    if(p1==null)
+        L.next = p2;
+    else
+        L.next = p1;
+    return fake.next;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;merge-k-sorted-lists&quot;&gt;Merge k Sorted Lists&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/merge-k-sorted-lists/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;此题是上一个的延伸版。有三种解法：1.用上面的方法俩俩merge，一只merge到底。因为太傻了，而且时间复杂度很高，所以不用，总的时间复杂度是O(kn^2).因为是一个一个merge到里面的，所以一共有k个list，每个list访问要O(n)。2.第二种我第一反应是divide and conquer， 就是merge sort 的思想。 时间复杂度根据主定理是O(nklogk). T(k) = 2T(k/2)+T(nk) 3.最简单的方法，建最小堆。时间复杂度一样是O(nklogk),但是java PriorityQueue 好方便啊。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;merge sort：
+
+heap solution：
+public ListNode mergeKLists(ListNode[] lists) {
+    if(lists.length==0)
+        return null;
+    //init heap
+    PriorityQueue&amp;lt;ListNode&amp;gt; minheap = new PriorityQueue(lists.length,
+        new Comparator&amp;lt;ListNode&amp;gt;(){
+            public int compare(ListNode a,ListNode b){
+                if(a.val &amp;gt; b.val)
+                    return 1;
+                if(b.val&amp;gt;a.val)
+                    return -1;
+                else
+                    return 0;
+                
+            }
+        }
+    );
+    for(ListNode list :lists){//吧链表的节点加到堆里
+        if(list!=null)
+            minheap.add(list);
+    }
+    //pull出最小的加到链表中直到堆空
+    ListNode fake = new ListNode (0);
+    ListNode pointer = fake;
+    while(minheap.size()&amp;gt;0){
+        ListNode temp = minheap.poll();
+        pointer.next = temp;
+        if(temp.next!=null)
+            minheap.add(temp.next);//剩下的node不断加到堆里
+        pointer = pointer.next;
+    }
+return fake.next;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;remove-nth-node-from-end-of-list&quot;&gt;Remove Nth Node From End of List&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/remove-nth-node-from-end-of-list/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;remove-duplicates-from-sorted-list-ii&quot;&gt;Remove Duplicates from Sorted List II&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;rotate-list&quot;&gt;Rotate List&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/rotate-list/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;swap-nodes-in-pairs&quot;&gt;Swap Nodes in Pairs&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/swap-nodes-in-pairs/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;reverse-nodes-in-k-group&quot;&gt;Reverse Nodes in k-Group&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/reverse-nodes-in-k-group/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;reorder-list&quot;&gt;Reorder List&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/reorder-list/&quot;&gt;传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public void reorderList(ListNode head) {
+    if(head!=null&amp;amp;&amp;amp;head.next!=null){
+       
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast!=null&amp;amp;&amp;amp;fast.next!=null&amp;amp;&amp;amp;fast.next.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode mid = slow.next;
+        slow.next = null;
+        mid = reverse(mid);
+        ListNode p = head;
+        ListNode q = mid;
+        while(q!=null){
+            ListNode t1 = p.next;
+            ListNode t2 = q.next;
+            p.next = q;
+            q.next = t1;
+            p = t1;
+            q = t2;
+        }
+    }
+}
+public ListNode reverse(ListNode head){
+    if(head==null||head.next==null)
+        return head;
+    ListNode pre = head;
+    ListNode p = head.next;
+    while(p!=null){
+        ListNode temp = p.next;
+        p.next = pre;
+        pre = p;
+        p = temp;
+    }
+    head.next = null;
+return pre;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;总结&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;DummyNode的使用。
+做链表题目时，如果我们需要返回头部，一般情况我们可以创建一个虚拟节点，叫DummyNode，把头部挂在它的后面。这样就算头部变化了之后，只要返回DummyNode.next就能轻松得到新头部，而不用纠结新的头部到底 在哪里。&lt;/li&gt;
+  &lt;li&gt;Merge LinkedList是相当基础的题目，这么多题目是基于它的，必须写熟。&lt;/li&gt;
+  &lt;li&gt;Reverse linkedList最简单的写法就是创建DummyNode，然后把旧的链表不断插入到DummyNode的后面，就能轻松地返回链表了。&lt;/li&gt;
+  &lt;li&gt;操作链表的时候，我们经常会改变某些Node的下一个节点。如果你希望待一下会再用到被改变掉的下一个节点，一定记得用tmp先把它保存起来。&lt;/li&gt;
+  &lt;li&gt;查找链表的中间节点：使用2个快慢指针，一个进2步，一个进1步，快指针到达终点时，慢指针就会停留在链表的中间位置了。&lt;/li&gt;
+&lt;/ol&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Word Search 引发的 Trie Tree 系列</title>
+   <link href="arkshagong.com/leetcode/2015/12/09/TrieTree.html"/>
+   <updated>2015-12-09T00:00:00-08:00</updated>
+   <id>arkshagong.com//leetcode/2015/12/09/TrieTree</id>
+   <content type="html">&lt;h3 id=&quot;word-search--leetcodehttpsleetcodecomproblemsword-search&quot;&gt;Word Search -&amp;gt;&lt;a href=&quot;https://leetcode.com/problems/word-search/&quot;&gt;Leetcode传送门&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;题目：要把给定word在一个board里找出来。&lt;/p&gt;
+
+&lt;p&gt;回路：Just use backtracking method to revursively find the word. Using DFS to implement. When checked an element in the board, use “#” to mark this has been visited and doesn’t have to be checked again.&lt;/p&gt;
+
+&lt;h3 id=&quot;word-search-2--leetcodehttpsleetcodecomproblemsword-search-ii&quot;&gt;Word Search 2 -&amp;gt;&lt;a href=&quot;https://leetcode.com/problems/word-search-ii/&quot;&gt;Leetcode传送门&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;题目给了一个word表找出存在于board中的每一个单词。&lt;/p&gt;
+
+&lt;p&gt;回路：from the Word Search method, it is normal to follow the first method of Word Search to solve this problem. Just to check if every word in the list or not, call the function to do this. However, this could run out exceed time limit. Therefore, Trie Tree, this data structure can be used to solve this.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-trie-tree&quot;&gt;What is Trie Tree&lt;/h2&gt;
+&lt;p&gt;Trie Tree, also call prefix tree（radix tree， digital tree，Yes =_= all those are the same thing！）. Trie for retrieval. It has node conatains character, its children have a common prefix. The root is associated with empty string, values only associated with leaves, and some inner nodes.
+&lt;img src=&quot;/images/postimg/2015-12-09-trie.png&quot; alt=&quot;trie&quot; /&gt; from wiki&lt;/p&gt;
+
+&lt;p&gt;于是， 有到leetcode题目可以拿来练手辣～&lt;/p&gt;
+
+&lt;h3 id=&quot;implement-trie-prefix-tree-leetcodehttpsleetcodecomproblemsimplement-trie-prefix-tree&quot;&gt;Implement Trie (Prefix Tree)-&amp;gt;&lt;a href=&quot;https://leetcode.com/problems/implement-trie-prefix-tree/&quot;&gt;leetcode传送门&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;此题用来实现三个方法：Implement a trie with insert, search, and startsWith methods.
+可以用HashMap来存node信息。&lt;/p&gt;
+
+&lt;p&gt;1.Trie Node&lt;/p&gt;
+
+&lt;p&gt;由节点和是否为叶子节点组成。HashMap里用char来当key，value存储的是TrieNode节点。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class TrieNode{
+	char c;
+	HashMap&amp;lt;Character, TrieNode&amp;gt; children = new HashMap&amp;lt;Character, TrieNode&amp;gt;(); 
+	boolean isleaf;
+
+	public TrieNode(){}
+	public TrieNode(char c){
+		this.c = c;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2.Trie Tree&lt;/p&gt;
+
+&lt;p&gt;有根节点和三个基本操作组成。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Trie{
+	private TrieNode root;
+	public Trie(){
+		root = new TrieNode();
+	}
+	public void insert(String word){}
+	public boolean search(String word){}
+	public boolean starsWith(String prefix){}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;3.Insert(String word)&lt;/p&gt;
+
+&lt;p&gt;遍历插入的字，如果在hashmap里查到的话就把map中的节点加到map中，不存在的话就新建节点加到map中。最后设定所有的叶节点的值。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public void insert(String word) {
+    HashMap&amp;lt;Character, TrieNode&amp;gt; children = root.children;
+ 
+    for(int i=0; i&amp;lt;word.length(); i++){
+        char c = word.charAt(i);
+ 
+        TrieNode t;
+        if(children.containsKey(c)){
+                t = children.get(c);
+        }else{
+            t = new TrieNode(c);
+            children.put(c, t);
+        }
+ 
+        children = t.children;
+ 
+        //set leaf node
+        if(i==word.length()-1)
+            t.isLeaf = true;    
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;4.search(String word)&lt;/p&gt;
+
+&lt;p&gt;遍历hashmap，从root开始查找，终结在叶节点或者是中间节点则是查找成功，否则不存在。使用searchNode（）来遍历hashmap，返回查找的最后一个节点。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public boolean search(String word) {
+    TrieNode t = searchNode(word);
+ 
+    if(t != null &amp;amp;&amp;amp; t.isLeaf) 
+        return true;
+    else
+        return false;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;5.startsWith(String prefix)&lt;/p&gt;
+
+&lt;p&gt;若在遍历trie tree 的时候发现prefix最后的节点是空，则不存在树中。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; public boolean startsWith(String prefix) {
+    if(searchNode(prefix) == null) 
+        return false;
+    else
+        return true;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;6.searchNode(String str)&lt;/p&gt;
+
+&lt;p&gt;给定string，返回string最后的TrieNode。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public TrieNode searchNode(String str){
+    Map&amp;lt;Character, TrieNode&amp;gt; children = root.children; 
+    TrieNode t = null;
+    for(int i=0; i&amp;lt;str.length(); i++){
+        char c = str.charAt(i);
+        if(children.containsKey(c)){
+            t = children.get(c);
+            children = t.children;
+        }else{
+            return null;
+        }
+    }
+ 
+    return t;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;word-search-2&quot;&gt;回来再看Word Search 2&lt;/h3&gt;
+&lt;p&gt;绝对是follow up 的解法。这题好难&amp;gt; &amp;lt;,整理一下。&lt;/p&gt;
+
+&lt;p&gt;First, we need to implement trie Tree. We can simply use array of TrieNode instead of HashMap. Every node has at most 26 children, use a string to store word that node represents.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class TrieNode{
+   		public TrieNode[] children = new TrieNode[26];
+	public String item = &quot;&quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Second, we implement Trie Tree just as we did before. To notice that, when traversal word, we can change String to a char array by using &lt;em&gt;.toCharArray()&lt;/em&gt; function. use c-‘a’ to represent transformed index of char array.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//Trie
+class Trie{
+    public TrieNode root = new TrieNode();
+ 
+    public void insert(String word){
+        TrieNode node = root;
+        for(char c: word.toCharArray()){
+            if(node.children[c-&#39;a&#39;]==null){
+                node.children[c-&#39;a&#39;]= new TrieNode();
+            }
+            node = node.children[c-&#39;a&#39;];
+        }
+        node.item = word;
+    }
+ 
+    public boolean search(String word){
+        TrieNode node = root;
+        for(char c: word.toCharArray()){
+            if(node.children[c-&#39;a&#39;]==null)
+                return false;
+            node = node.children[c-&#39;a&#39;];
+        }
+        if(node.item.equals(word)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+ 
+    public boolean startsWith(String prefix){
+        TrieNode node = root;
+        for(char c: prefix.toCharArray()){
+            if(node.children[c-&#39;a&#39;]==null)
+                return false;
+            node = node.children[c-&#39;a&#39;];
+        }
+        return true;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;然后可以照着之前1中的dfs方法来用trie tree来判断是否存在word。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {
+    Trie trie = new Trie();
+    Set&amp;lt;String&amp;gt; res = new HashSet&amp;lt;String&amp;gt;(); 
+    public List&amp;lt;String&amp;gt; findWords(char[][] board, String[] words) {
+        
+         int m=board.length;
+         int n=board[0].length;
+        boolean mark[][] = new boolean[m][n];
+        for (int i = 0;i&amp;lt;words.length;i++)
+        {
+            trie.insert(words[i]);
+        }
+        for (int i = 0;i&amp;lt;board.length;i++)
+        {
+            for (int j = 0;j&amp;lt;board[0].length;j++)
+            {
+                dfs(board,&quot;&quot;,i,j,trie,mark);
+            }
+        }
+     return new ArrayList&amp;lt;String&amp;gt;(res);   
+	}
+    public void dfs(char[][] board,String str, int i,int j,Trie trie,boolean mark[][]){
+        int m=board.length;
+        int n=board[0].length;
+        
+        if(i&amp;lt;0||i&amp;gt;=m||j&amp;lt;0||j&amp;gt;=n)
+            return;
+        if(mark[i][j])//剪枝，访问过了用true
+            return;
+        str += board[i][j];
+        if(!trie.startsWith(str))
+            return;
+        if(trie.search(str))
+            if(!res.contains(str))
+            res.add(str);
+        mark[i][j] = true;
+        dfs(board,str,i-1,j,trie,mark);
+        dfs(board,str,i+1,j,trie,mark);
+        dfs(board,str,i,j+1,trie,mark);
+        dfs(board,str,i,j-1,trie,mark);
+        mark[i][j] = false;
+        
+    	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在实现时出现了res应不应该当做一个参数传到dfs里。如果传了，会有个重复的case失败，因为输出了同样的字比如[“a”，”a”] 尽管board里只有aa。如果用一个HashSet可以先判断是否重复，如果重复就不要加到res中了，然后在最后返回的时候new 一个Arraylist把所有的HashSet里的string都加进去返回最终的结果。&lt;/p&gt;
+
+&lt;p&gt;以上，这题还有另外一个问题。在Hint中有提到：&lt;br /&gt;
+You would need to optimize your backtracking to pass the larger test. Could you stop backtracking earlier?&lt;br /&gt;
+If the current candidate does not exist in all words’ prefix, you could stop backtracking immediately. What kind of data structure could answer such query efficiently? Does a hash table work? Why or why not? How about a Trie?&lt;br /&gt;
+用trie 完全可以解决这些了。&lt;/p&gt;
+
+&lt;p&gt;好吧最后一个题是&lt;br /&gt;
+###Add and Search Word - Data structure design -&amp;gt;&lt;a href=&quot;https://leetcode.com/problems/add-and-search-word-data-structure-design/&quot;&gt;Leetcode传送门&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;好累明天再写总结orz&lt;/p&gt;
+
+&lt;p&gt;Update 2015-12-10：&lt;/p&gt;
+
+&lt;p&gt;星战到了！手好残，不玩游戏默默回来写总结：&lt;br /&gt;
+有了TrieTree的数据结构，此题思路非常简单，只需实现前面写过的两个trie函数就好，即addWord（）和search（）。首先是插入word到树中，然后遍历树来查找。这里插入操作完全和前一个题一样， 需要对应题来修改的是search（），用dfs来实现树的遍历。在dfs中，一共有三个参数，一个是用 HashMap实现的children表示子节点，当前位置指针p，查找的字符串word。终止条件是当前位置p到了word结尾，若子节点数量为零，则找到了word，否则不存在。若children中存在当前位置的字符，分三种情况：1.到了倒数第二层节点，其子节点是叶节点，这样word就存在。2.当前字符里面有‘.’，代表其子节点中任意一个字符都是可以的，这里需要遍历整个children HashMap。用到的是Map.Entry()和entryset（）来实现。分别在每个hashmap的元素中再进行dfs搜索，查看接下来的字符是不是在其中。3.如果不符合以上几种情况那么就在树中没有这个word。&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Leetcode继续刷的日常</title>
+   <link href="arkshagong.com/leetcode/2015/12/08/Leetcode%E7%BB%A7%E7%BB%AD%E5%88%B7%E7%9A%84%E6%97%A5%E5%B8%B8.html"/>
+   <updated>2015-12-08T00:00:00-08:00</updated>
+   <id>arkshagong.com//leetcode/2015/12/08/Leetcode继续刷的日常</id>
+   <content type="html">&lt;p&gt;今天的日常其实是睡到了中午12点才起床，收拾好屋子之后就来leetcode辣。都是easy题也是题啊嗯ˊ_&amp;gt;ˋ&lt;br /&gt;
+1.Implement Queue using Stacks － 232&lt;a href=&quot;https://leetcode.com/problems/implement-queue-using-stacks/&quot;&gt; leetcode传送门&lt;/a&gt;&lt;br /&gt;
+题目：用Stacks来实现Queue.&lt;/p&gt;
+
+&lt;p&gt;思路：using two stacks to let elements in stacks reverse to Queue order form. 
+&lt;img src=&quot;/images/postimg/2015-12-08-lc232-sol.png&quot; class=&quot;fit image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2.Merge Two Sorted Lists － 21 &lt;a href=&quot;https://leetcode.com/problems/merge-two-sorted-lists/&quot;&gt;leetcode传送门&lt;/a&gt;&lt;br /&gt;
+题目：Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.&lt;/p&gt;
+
+&lt;p&gt;思路：use two pointers. Remember to use a fake head. Pure usage of link lists. Which element is smaller, then put it into the merge list.&lt;/p&gt;
+
+&lt;p&gt;3.Power of Two - 231 &lt;a href=&quot;https://leetcode.com/problems/power-of-two/&quot;&gt;leetcode传送门&lt;/a&gt;&lt;br /&gt;
+题目：Given an integer, write a function to determine if it is a power of two.&lt;/p&gt;
+
+&lt;p&gt;思路：if the integer can be divided by two till the remain equals two then it is power of two, otherwise not. REMEMBER to conisder special case: n==1. &lt;em&gt;其实还有一个tricky的办法：&lt;/em&gt;use binary, if it is the power of two, then the highest number of the integer must be 1 and all the other should be 0. Thus, we could minus 1 and &amp;amp; with the original integer to see if the result equals to 0. e.g. 100&amp;amp;010==0 =&amp;gt; true&lt;/p&gt;
+
+&lt;p&gt;4.Balanced Binary Tree &lt;a href=&quot;https://leetcode.com/problems/balanced-binary-tree/&quot;&gt;leetcode传送门&lt;/a&gt;&lt;br /&gt;
+题目：Given a binary tree, determine if it is height-balanced.
+For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.&lt;/p&gt;
+
+&lt;p&gt;思路：easy DFS&lt;/p&gt;
+
+&lt;p&gt;5.Symmetric Tree &lt;a href=&quot;https://leetcode.com/problems/symmetric-tree/&quot;&gt;leetcode传送门&lt;/a&gt;&lt;br /&gt;
+题目: 判断一颗树是否对称
+Bonus points if you could solve it both recursively and iteratively.
+&lt;strong&gt;诶？！这个居然没看见，只是实现了recursive版，用DFS。之后写iterative～～补充进来。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;思路：同样DFS，left child compare with right chiild&lt;/p&gt;
+
+&lt;p&gt;6.Remove Element &lt;a href=&quot;https://leetcode.com/problems/remove-element/&quot;&gt;leetcode传送门&lt;/a&gt;&lt;br /&gt;
+题目：Given an array and a value, remove all instances of that value in place and return the new length.说实话开始题目并没有懂啥意思＝ ＝，以为算出来重复的数然后用数组的长度一减就好了，其实应该还要真的要删掉数组，不要只看反悔类型是int啊。&lt;/p&gt;
+
+&lt;p&gt;思路：easy way to use two pointers, when element in array is different form value given, give pointer B element to pointer A, move pointer A to next. Then iterate pointer B till array’s end.&lt;/p&gt;
+
+&lt;p&gt;结尾：&lt;br /&gt;
+1.啊啊啊markdown总是忘记怎么写orz，明明之前总结了很多现在突然写的话还是会忘，多用的话还是王道，latex不也是这样记住的么。所以practice makes perfect。&lt;/p&gt;
+
+&lt;p&gt;2.发现这个templete不好用啊，需要一个索引列表来找每篇blog完全乱进去了。没有sidebar。首页只需要显示有限的字数和标题就好，而且thumbnail显示的问题也很麻烦。之后修复这俩问题还需要加评论系统。还有文章tag和分类系统也需要做好。&lt;/p&gt;
+
+&lt;p&gt;3.今天Victoria‘s Secret Show 看到了赶着due都要去参加趴的美帝人民的热情。把复习资料和电脑带过去一遍开趴一遍写论文这是心有多大才能做出来的事情(￣▽￣)。对对我final完了才过来乱晃来吃一堆甜食（大满足）又意外被抽中一个Victoria‘s secret 礼物wwww。 虽然今天星战估计还在lorenzo人民黑五的包裹山下吧´д` ；心塞，明明是为了快一点来才在amazon上买的orz，结果和gamestop有啥区别掀～&lt;/p&gt;
+
+&lt;p&gt;4.下次要把leetcode和日常分开写。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>New first post</title>
+   <link href="arkshagong.com/diary/2015/12/07/New-post.html"/>
+   <updated>2015-12-07T00:00:00-08:00</updated>
+   <id>arkshagong.com//diary/2015/12/07/New-post</id>
+   <content type="html">&lt;p&gt;今天终于把jekyll搞定了配置好，然后在templete上面花了一下午时间强迫症做preference修改。我也真是执着，starwar都到货了等着我去玩呢啊啊啊啊。&lt;/p&gt;
+
+&lt;p&gt;其实我真的有想来着，并没有想绝地武士＝ ＝。我是黑暗阵营的Vadar的粉啊～&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>
