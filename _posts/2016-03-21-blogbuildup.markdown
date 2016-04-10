@@ -34,6 +34,7 @@ categories: web
 `git commit --amend -m "message"` to amend commit 
 
 **update 4/10/2016  
+
 ##JS Recape
 
 1.js event delegation
