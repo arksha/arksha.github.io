@@ -4,7 +4,7 @@
  <title>In Side Of ARK</title>
  <link href="arkshagong.com//atom.xml" rel="self"/>
  <link href="arkshagong.com//"/>
- <updated>2016-04-09T23:56:06-07:00</updated>
+ <updated>2016-04-10T00:34:33-07:00</updated>
  <id>arkshagong.com</id>
  <author>
    <name></name>
@@ -99,11 +99,55 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Likewise,&lt;/p&gt;
+&lt;p&gt;On one hand, &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; meant “the new object.” On the other hand, we entered &lt;code class=&quot;highlighter-rouge&quot;&gt;the_question&lt;/code&gt; via &lt;code class=&quot;highlighter-rouge&quot;&gt;deep_thought&lt;/code&gt;, so while we’re executing that method, this means “whatever &lt;code class=&quot;highlighter-rouge&quot;&gt;deep_thought&lt;/code&gt; refers to”. this is not read from the scope chain as other variables are, but instead is reset on a context by context basis.&lt;/p&gt;
 
 &lt;p&gt;Function Call:&lt;/p&gt;
 
-&lt;p&gt;Event Handler:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;script type=&quot;text/javascript&quot;&amp;gt; 
+  function test_this() { 
+   return this; 
+  } 
+  var i_wonder_what_this_is = test_this(); 
+ &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; defaults to reference the most global thing it can: for web pages, this is the window object.&lt;/p&gt;
+
+&lt;p&gt;Event Handler:&lt;br /&gt;
+if the event handler is inline,&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;script type=&quot;text/javascript&quot;&amp;gt; 
+  function click_handler() { 
+   alert(this); // alerts the window object 
+  } 
+ &amp;lt;/script&amp;gt; 
+ ... 
+ &amp;lt;button id=&#39;thebutton&#39; onclick=&#39;click_handler()&#39;&amp;gt;Click me!&amp;lt;/button&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; refer to window object.&lt;/p&gt;
+
+&lt;p&gt;if it is not inline,&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;script type=&quot;text/javascript&quot;&amp;gt; 
+  function click_handler() { 
+   alert(this); // alerts the button DOM node 
+  } 
+
+  function addhandler() { 
+   document.getElementById(&#39;thebutton&#39;).onclick = click_handler; 
+  } 
+
+  window.onload = addhandler; 
+ &amp;lt;/script&amp;gt; 
+ ... 
+ &amp;lt;button id=&#39;thebutton&#39;&amp;gt;Click me!&amp;lt;/button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; refers to the DOM element that generated the event.&lt;/p&gt;
 
 &lt;p&gt;3.prototypal inheritance&lt;/p&gt;
 

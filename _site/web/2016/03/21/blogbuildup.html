@@ -106,11 +106,55 @@
 </code></pre>
 </div>
 
-<p>Likewise,</p>
+<p>On one hand, <code class="highlighter-rouge">this</code> meant “the new object.” On the other hand, we entered <code class="highlighter-rouge">the_question</code> via <code class="highlighter-rouge">deep_thought</code>, so while we’re executing that method, this means “whatever <code class="highlighter-rouge">deep_thought</code> refers to”. this is not read from the scope chain as other variables are, but instead is reset on a context by context basis.</p>
 
 <p>Function Call:</p>
 
-<p>Event Handler:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script type="text/javascript"&gt; 
+  function test_this() { 
+   return this; 
+  } 
+  var i_wonder_what_this_is = test_this(); 
+ &lt;/script&gt;
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">this</code> defaults to reference the most global thing it can: for web pages, this is the window object.</p>
+
+<p>Event Handler:<br />
+if the event handler is inline,</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script type="text/javascript"&gt; 
+  function click_handler() { 
+   alert(this); // alerts the window object 
+  } 
+ &lt;/script&gt; 
+ ... 
+ &lt;button id='thebutton' onclick='click_handler()'&gt;Click me!&lt;/button&gt;  
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">this</code> refer to window object.</p>
+
+<p>if it is not inline,</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script type="text/javascript"&gt; 
+  function click_handler() { 
+   alert(this); // alerts the button DOM node 
+  } 
+
+  function addhandler() { 
+   document.getElementById('thebutton').onclick = click_handler; 
+  } 
+
+  window.onload = addhandler; 
+ &lt;/script&gt; 
+ ... 
+ &lt;button id='thebutton'&gt;Click me!&lt;/button&gt;
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">this</code> refers to the DOM element that generated the event.</p>
 
 <p>3.prototypal inheritance</p>
 

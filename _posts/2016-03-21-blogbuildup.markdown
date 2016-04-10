@@ -57,7 +57,7 @@ Calling an object's method:
  	</script>
 
 
-in this code, When deep_thought.ask_question() is executed, JavaScript establishes an execution context for the function call, setting this to the object referenced by whatever came before the last ”.”, in this case: deep_thought. 
+in this code, When deep_thought.ask_question() is executed, JavaScript establishes an execution context for the function call, setting this to the object referenced by whatever came before the last ”.”, in this case: deep_thought.  
 
 constructor:  
 
@@ -73,11 +73,49 @@ constructor:
 	  var the_meaning = deep_thought.ask_question(); 
 	 </script>
 
-Likewise, 
+On one hand, `this` meant “the new object.” On the other hand, we entered `the_question` via `deep_thought`, so while we’re executing that method, this means “whatever `deep_thought` refers to”. this is not read from the scope chain as other variables are, but instead is reset on a context by context basis.  
 
 Function Call:
 
-Event Handler:
+	<script type="text/javascript"> 
+	  function test_this() { 
+	   return this; 
+	  } 
+	  var i_wonder_what_this_is = test_this(); 
+	 </script>
+
+`this` defaults to reference the most global thing it can: for web pages, this is the window object.  
+
+Event Handler:  
+if the event handler is inline,  
+
+	<script type="text/javascript"> 
+	  function click_handler() { 
+	   alert(this); // alerts the window object 
+	  } 
+	 </script> 
+	 ... 
+	 <button id='thebutton' onclick='click_handler()'>Click me!</button>  
+	 
+`this` refer to window object.  
+
+if it is not inline,
+
+	<script type="text/javascript"> 
+	  function click_handler() { 
+	   alert(this); // alerts the button DOM node 
+	  } 
+
+	  function addhandler() { 
+	   document.getElementById('thebutton').onclick = click_handler; 
+	  } 
+
+	  window.onload = addhandler; 
+	 </script> 
+	 ... 
+	 <button id='thebutton'>Click me!</button>
+	 
+`this` refers to the DOM element that generated the event.  
 
 3.prototypal inheritance
 
