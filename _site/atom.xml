@@ -4,13 +4,111 @@
  <title>In Side Of ARK</title>
  <link href="arkshagong.com//atom.xml" rel="self"/>
  <link href="arkshagong.com//"/>
- <updated>2016-03-18T10:53:49-07:00</updated>
+ <updated>2016-04-09T23:56:06-07:00</updated>
  <id>arkshagong.com</id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Graphic Recap</title>
+   <link href="arkshagong.com/graphics/2016/03/22/graphicrecap.html"/>
+   <updated>2016-03-22T00:00:00-07:00</updated>
+   <id>arkshagong.com//graphics/2016/03/22/graphicrecap</id>
+   <content type="html">&lt;h2 id=&quot;real-time-rendering-third-edition-book-review&quot;&gt;Real time rendering third Edition book review&lt;/h2&gt;
+
+&lt;h3 id=&quot;chap-2-the-graphic-rendering-pipeline&quot;&gt;Chap 2. The Graphic rendering pipeline&lt;/h3&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Blog messy build up log</title>
+   <link href="arkshagong.com/web/2016/03/21/blogbuildup.html"/>
+   <updated>2016-03-21T00:00:00-07:00</updated>
+   <id>arkshagong.com//web/2016/03/21/blogbuildup</id>
+   <content type="html">&lt;h2 id=&quot;about-git-i-dont-know-much&quot;&gt;About git I don’t know much&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git help&lt;/code&gt;  = &lt;code class=&quot;highlighter-rouge&quot;&gt;man git-log&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git help log&lt;/code&gt; will show specific usage of command, type &lt;code class=&quot;highlighter-rouge&quot;&gt;space bar&lt;/code&gt; will roll to next page&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git diff filename.html&lt;/code&gt; to check difference, use&lt;code class=&quot;highlighter-rouge&quot;&gt;f&lt;/code&gt;or &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;to move forward and backward to see whole log, it is pager, a page shows the results.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git mv a b&lt;/code&gt; to rename a file&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git ls -la&lt;/code&gt; special -la operation will show the hidden dash file, any file has a . before will be hidden(like .git).&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git log -n 2&lt;/code&gt; get log of 2 log&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git log --since=2016-03-21&lt;/code&gt; get log since that date&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git log --until=2016-03-21&lt;/code&gt; get log until that date&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git log --author=&quot;Ting&quot;&lt;/code&gt;get log by certain author&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git log --grep=&quot;keyword&quot;&lt;/code&gt;get log search commit message with keyword,&lt;strong&gt;this is why good commit message is really improtant&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout -- file.html (or directory)&lt;/code&gt; stay on the same branch and find this file or dir&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git reset HEAD file.html&lt;/code&gt; go HEAD pointer go last commit and reset as what last happend to undo changes&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git commit --amend -m &quot;message&quot;&lt;/code&gt; to amend commit&lt;/p&gt;
+
+&lt;h2 id=&quot;js-recape&quot;&gt;JS Recape&lt;/h2&gt;
+
+&lt;p&gt;1.js event delegation&lt;/p&gt;
+
+&lt;p&gt;event delegation is a simple way to handel events listeners to avoid adding event listeners to specific nodes especially when child nodes are frequently changed. Event delegation can add listeners to parent rather than on child.&lt;/p&gt;
+
+&lt;p&gt;2.about &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;When talking about &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;, we have to talk about scope (作用域)，just like  &lt;a href=&quot;http://web.archive.org/web/20110725013125/http://www.digital-web.com/articles/scope_in_javascript/&quot;&gt;This&lt;/a&gt; article said: scope is a neighbor of code and effect each other. JS resolves identifiers by climbing up scope chain, locally to globally. So just like two friends are talking about their close person, not a famous but not close person. With this understading, &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; is based on scope thing. More generally, in OOP, &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; is a way to identify and refer to current working object and get properties of it. There are several scenario of using &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Calling an object’s method:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;script type=&quot;text/javascript&quot;&amp;gt; 
+  		var deep_thought = { 
+    the_answer: 42, 
+		ask_question: function () { 
+		return this.the_answer; 
+		} 
+  	}; 
+	var the_meaning = deep_thought.ask_question(); 
+ 	&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;in this code, When deep_thought.ask_question() is executed, JavaScript establishes an execution context for the function call, setting this to the object referenced by whatever came before the last ”.”, in this case: deep_thought.&lt;/p&gt;
+
+&lt;p&gt;constructor:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;script type=&quot;text/javascript&quot;&amp;gt; 
+  function BigComputer(answer) { 
+   this.the_answer = answer; 
+   this.ask_question = function () { 
+	return this.the_answer; 
+   } 
+  } 
+
+  var deep_thought = new BigComputer(42); 
+  var the_meaning = deep_thought.ask_question(); 
+ &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Likewise,&lt;/p&gt;
+
+&lt;p&gt;Function Call:&lt;/p&gt;
+
+&lt;p&gt;Event Handler:&lt;/p&gt;
+
+&lt;p&gt;3.prototypal inheritance&lt;/p&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>Node.JS Recap</title>

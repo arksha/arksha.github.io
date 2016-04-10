@@ -33,219 +33,62 @@
     <section>
         
             <header class="major">
-                <h2>Node.JS Recap</h2>
-                <p class="post-meta">Mar 10, 2016</p>
+                <h2>Graphic Recap</h2>
+                <p class="post-meta">Mar 22, 2016</p>
             </header>
 
             <section>
-                <h2 id="how-nodejs-works">How Node.js works</h2>
-<p>1.single threaded</p>
+                <h2 id="real-time-rendering-third-edition-book-review">Real time rendering third Edition book review</h2>
 
-<ul>
-  <li>
-    <p>no blocking, single threaded</p>
-  </li>
-  <li>
-    <p>in the cloud all behavior the same thread</p>
-  </li>
-  <li>
-    <p>asynchronously, more than one thing at a time</p>
-  </li>
-</ul>
+<h3 id="chap-2-the-graphic-rendering-pipeline">Chap 2. The Graphic rendering pipeline</h3>
 
-<h2 id="the-global-object">The global object</h2>
-
-<p>Basic use of global object:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>console.log("hello world");
-
-global.console.log("hello world");
-//get substring
-var hello = "hello world";
-var nodejs = hello.slice(4);
-global.console.log(nodejs);
-global.console.log(`hhahahah ${nodejs}`);
-</code></pre>
-</div>
-
-<p>Get current model and full path:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>console.log(__dirname);
-console.log(__filename);
-</code></pre>
-</div>
-
-<p>require path model:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>var path = require("path");
-console.log(`require from ${path.basename(__filename)}`);
-</code></pre>
-</div>
-
-<p><strong>we can run without .js extension, it doesn’t matter</strong></p>
-
-<h2 id="process-object">Process object</h2>
-
-<p>1.get environment information, grab a information:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>function grab(flag) {
-	var index = process.argv.indexOf(flag);
-	return (index === -1) ? null : process.argv[index+1];
-}
-
-var greeting = grab('--greeting');
-var user = grab('--user');
-
-if (!user || !greeting) {
-	console.log("You Blew it!");
-} else {
-	console.log(`Welcome ${user}, ${greeting}`);
-}
-</code></pre>
-</div>
-
-<p>This is a great tool if we want to specify certain ports, or specify certain file folders for our app to use at the very beginning.</p>
-
-<p>2.Standard input and output(with event liseners):</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>process.stdout.write("Hello~~\n");
-
-var questions = [
- 		"What is your name?",
-  		"What is your fav hobby?",
-  	"What is your preferred programming language?"
-];
-
-var answers = [];
-
-function ask(i) {
-  		process.stdout.write(`\n\n\n\n ${questions[i]}`);
-  		process.stdout.write("  &gt;  ");
-}
-
-process.stdin.on('data', function(data) {
-
-	answers.push(data.toString().trim());
-
-	if (answers.length &lt; questions.length) {
-		ask(answers.length);
-	} else {
-		process.exit();
-	}
-
-	});
-
-	process.on('exit', function() {
-
-	process.stdout.write("\n\n\n\n");
-
-	process.stdout.write(`Go ${answers[1]} ${answers[0]} you can finish writing ${answers[2]} later`);
-
-	process.stdout.write("\n\n\n\n");
-
-});
-
-ask(0);
-</code></pre>
-</div>
-
-<p>So process.stdin and process.stdout are ways that we can communicate with a running process.</p>
-
-<p><strong>Control C will kill application</strong></p>
-
-<p>3.Global timing funcions</p>
-
-<p><code class="highlighter-rouge">setTimeout </code> will create a delay of a certain time and then invoke a callback function</p>
-
-<p><code class="highlighter-rouge">setInterval</code>where setInterval will fire the callback function over and over again on an interval time</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>var waitTime = 3000;
-var currentTime = 0;
-var waitInterval = 10;
-var percentWaited = 0;
-
-function writeWaitingPercent(p) {
-	process.stdout.clearLine();
-	process.stdout.cursorTo(0);
-	process.stdout.write(`waiting ... ${p}%`);
-}
-
-var interval = setInterval(function() {
-	currentTime += waitInterval;
-	percentWaited = Math.floor((currentTime/waitTime) * 100);
-	writeWaitingPercent(percentWaited);
-}, waitInterval);
-
-setTimeout(function() {
-	clearInterval(interval);
-	writeWaitingPercent(100);
-	console.log("\n\n done \n\n");
-}, waitTime);
-
-process.stdout.write("\n\n");
-writeWaitingPercent(percentWaited);
-</code></pre>
-</div>
-
-<h2 id="core-modules">Core modules</h2>
-
-<p>1.util module, v8 (get memory information)</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>var util = require('util');
-var v8 = require('v8');
-
-//also adds date and time stamp on log function
-util.log( path.basename(__filename) );
-//will give us current information on our current memory statistics
-util.log(v8.getHeapStatistics());
-
-var dirUploads = path.join(__dirname, 'www', 'files', 'uploads');
-
-util.log(dirUploads);
-</code></pre>
-</div>
-
-<p>2.collect information with readline</p>
-
-<p>readline instance can create a interface to manage stdin and stdout</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>var rl = readline.createInterface(process.stdin, process.stdout); create a js object realperson to store information from terminal
-
-var realPerson = {
-	name: '',
-	sayings: []
-}; `question` funtion is to ask and trigger a function for this quesion `setPrompt` to ask the question over and over again
-
-rl.question("What is the name of a real person? ", function(answer) {
-
-realPerson.name = answer;
-
-	rl.setPrompt(`What would ${realPerson.name} say? `);
-
-	rl.prompt();
-
-rl.on('line', function(saying) {
-
-	realPerson.sayings.push(saying.trim());
-
-	if (saying.toLowerCase().trim() === 'exit') {
-		rl.close();
-	} else {
-		rl.setPrompt(`What else would ${realPerson.name} say? ('exit' to leave) `);
-	    rl.prompt();
-	}
-
-});
-
-});
-</code></pre>
-</div>
 
             </section>
         
     </section>
     <section>
         <div class="row">
+            
+
+                <article class="6u 12u(small)">
+                    <header>
+                        <h2><a href="/web/2016/03/21/blogbuildup.html">Blog messy build up log</a></h2>
+                    </header>
+                    <section>
+                        <h2 id="about-git-i-dont-know-much">About git I don’t know much</h2>
+
+
+                    </section>
+                    <footer>
+                        <ul class="actions">
+                            <li><a href="/web/2016/03/21/blogbuildup.html" class="button">Read More</a></li>
+                        </ul>
+                    </footer>
+                </article>
+
+            
+
+                <article class="6u$ 12u(small)">
+                    <header>
+                        <h2><a href="/web/2016/03/10/Nodejs-recap.html">Node.JS Recap</a></h2>
+                    </header>
+                    <section>
+                        <h2 id="how-nodejs-works">How Node.js works</h2>
+<p>1.single threaded</p>
+
+<ul>
+  <li>no blocking, single threaded</li>
+</ul>
+
+
+                    </section>
+                    <footer>
+                        <ul class="actions">
+                            <li><a href="/web/2016/03/10/Nodejs-recap.html" class="button">Read More</a></li>
+                        </ul>
+                    </footer>
+                </article>
+
             
 
                 <article class="6u 12u(small)">

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Arksha's blog</title>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <meta name="description" content="" />
+      <meta name="keywords" content="" />
+      <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+      <script src="/js/jquery.min.js"></script>
+      <script src="/js/jquery.poptrox.min.js"></script>
+      <script src="/js/skel.min.js"></script>
+      <script src="/js/init.js"></script>
+      <noscript>
+        <link rel="stylesheet" href="/css/skel.css" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/style-xlarge.css" />
+      </noscript>
+      <!--[if lte IE 8]><link rel="stylesheet" href="/css/ie/v8.css" /><![endif]-->
+    </head>
+
+	<body id="top">
+     
+    <div class="wrap">
+      <header id="header">
+          <a href="#" class="image avatar"><img src="/images/avatar.jpg" alt="" /></a>
+          <h1>I am <strong><a href="/">Arksha</a></strong> ,a developer in LA.<br/>
+          Specific in Web Development and Software Development. Have experience in Graphics and Game Developing.<br/>
+          <br/>Blogging is fun<br/></h1>
+      </header>
+      <div class="container content">
+        <div id="main">
+    <article>
+        <header class="major">
+            <h2 class="post-title">Blog messy build up log</h2>
+                <p class="post-meta">Mar 21, 2016</p>
+        </header>
+
+        <section>
+            <h2 id="about-git-i-dont-know-much">About git I don’t know much</h2>
+
+<p><code class="highlighter-rouge">git help</code>  = <code class="highlighter-rouge">man git-log</code></p>
+
+<p><code class="highlighter-rouge">git help log</code> will show specific usage of command, type <code class="highlighter-rouge">space bar</code> will roll to next page</p>
+
+<p><code class="highlighter-rouge">git diff filename.html</code> to check difference, use<code class="highlighter-rouge">f</code>or <code class="highlighter-rouge">b</code>to move forward and backward to see whole log, it is pager, a page shows the results.</p>
+
+<p><code class="highlighter-rouge">git mv a b</code> to rename a file</p>
+
+<p><code class="highlighter-rouge">git ls -la</code> special -la operation will show the hidden dash file, any file has a . before will be hidden(like .git).</p>
+
+<p><code class="highlighter-rouge">git log -n 2</code> get log of 2 log</p>
+
+<p><code class="highlighter-rouge">git log --since=2016-03-21</code> get log since that date</p>
+
+<p><code class="highlighter-rouge">git log --until=2016-03-21</code> get log until that date</p>
+
+<p><code class="highlighter-rouge">git log --author="Ting"</code>get log by certain author</p>
+
+<p><code class="highlighter-rouge">git log --grep="keyword"</code>get log search commit message with keyword,<strong>this is why good commit message is really improtant</strong></p>
+
+<p><code class="highlighter-rouge">git checkout -- file.html (or directory)</code> stay on the same branch and find this file or dir</p>
+
+<p><code class="highlighter-rouge">git reset HEAD file.html</code> go HEAD pointer go last commit and reset as what last happend to undo changes</p>
+
+<p><code class="highlighter-rouge">git commit --amend -m "message"</code> to amend commit</p>
+
+<h2 id="js-recape">JS Recape</h2>
+
+<p>1.js event delegation</p>
+
+<p>event delegation is a simple way to handel events listeners to avoid adding event listeners to specific nodes especially when child nodes are frequently changed. Event delegation can add listeners to parent rather than on child.</p>
+
+<p>2.about <code class="highlighter-rouge">this</code></p>
+
+<p>When talking about <code class="highlighter-rouge">this</code>, we have to talk about scope (作用域)，just like  <a href="http://web.archive.org/web/20110725013125/http://www.digital-web.com/articles/scope_in_javascript/">This</a> article said: scope is a neighbor of code and effect each other. JS resolves identifiers by climbing up scope chain, locally to globally. So just like two friends are talking about their close person, not a famous but not close person. With this understading, <code class="highlighter-rouge">this</code> is based on scope thing. More generally, in OOP, <code class="highlighter-rouge">this</code> is a way to identify and refer to current working object and get properties of it. There are several scenario of using <code class="highlighter-rouge">this</code>.</p>
+
+<p>Calling an object’s method:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script type="text/javascript"&gt; 
+  		var deep_thought = { 
+    the_answer: 42, 
+		ask_question: function () { 
+		return this.the_answer; 
+		} 
+  	}; 
+	var the_meaning = deep_thought.ask_question(); 
+ 	&lt;/script&gt;
+</code></pre>
+</div>
+
+<p>in this code, When deep_thought.ask_question() is executed, JavaScript establishes an execution context for the function call, setting this to the object referenced by whatever came before the last ”.”, in this case: deep_thought.</p>
+
+<p>constructor:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script type="text/javascript"&gt; 
+  function BigComputer(answer) { 
+   this.the_answer = answer; 
+   this.ask_question = function () { 
+	return this.the_answer; 
+   } 
+  } 
+
+  var deep_thought = new BigComputer(42); 
+  var the_meaning = deep_thought.ask_question(); 
+ &lt;/script&gt;
+</code></pre>
+</div>
+
+<p>Likewise,</p>
+
+<p>Function Call:</p>
+
+<p>Event Handler:</p>
+
+<p>3.prototypal inheritance</p>
+
+
+        </section>
+        
+        <footer>
+            <div class="row">
+            
+            
+                <article class="6u 12u(small) excerpt">
+                    <header>
+                        <h2><a href="/web/2016/03/10/Nodejs-recap.html">Node.JS Recap</a></h2>
+                    </header>
+                    <section>
+                        <h2 id="how-nodejs-works">How Node.js works</h2>
+<p>1.single threaded</p>
+
+<ul>
+  <li>no blocking, single threaded</li>
+</ul>
+
+
+                    </section>
+                    <footer>
+                        <ul class="actions">
+                            <li><a href="/web/2016/03/10/Nodejs-recap.html" class="button">Read More</a></li>
+                        </ul>
+                    </footer>
+                </article>
+            
+            
+            
+            
+                <article class="6u$ 12u(small) excerpt f-right">
+                    <header>
+                        <h2><a href="/graphics/2016/03/22/graphicrecap.html">Graphic Recap</a></h2>
+                    </header>
+                    <section>
+                        <h2 id="real-time-rendering-third-edition-book-review">Real time rendering third Edition book review</h2>
+
+
+                    </section>
+                    <footer>
+                        <ul class="actions">
+                            <li><a href="/graphics/2016/03/22/graphicrecap.html" class="button">Read More</a></li>
+                        </ul>
+                    </footer>
+                </article>
+            
+            </div>
+        </footer>
+
+    </article>
+
+</div>
+
+      </div>
+       <!-- Footer -->
+        <footer id="footer">
+            <ul class="icons">
+
+              
+              <li>
+                <a href="https://github.com/arksha" class="icon fa-github">
+                  <span class="label">GitHub</span>
+                </a>
+              </li>
+              
+
+              
+              <li>
+                <a href="https://twitter.com/gongt92kyo" class="icon fa-twitter">
+                  <span class="label">Twitter</span>
+                </a>
+              </li>
+              
+
+              
+              <li>
+                <a href="https://linkedin.com/in/gongting92@gmail.com" class="icon fa-linkedin">
+                  <span class="label">LinkedIn</span>
+                </a>
+              </li>
+              
+
+              
+              <li>
+                <a href="https://plus.google.com/example" class="icon fa-google-plus">
+                  <span class="label">Google+</span>
+                </a>
+              </li>
+              
+
+              
+              <li>
+                <a href="https://www.facebook.com/Ting Gong" class="icon fa-facebook">
+                  <span class="label">Facebook</span>
+                </a>
+              </li>
+              
+
+              
+              <li>
+                <a href="#" class="icon fa-dribbble">
+                  <span class="label">Dribbble</span>
+                </a>
+              </li>
+              
+
+              
+              <li>
+                <a href="mailto:tingg@usc.edu" class="icon fa-envelope-o">
+                  <span class="label">Email</span>
+                </a>
+              </li>
+              
+            </ul>
+            <ul class="copyright">
+                <li>&copy; Arksha Gong</li>
+            </ul>
+        </footer>
+    </div>
+
+    
+
+	</body>
+</html>
