@@ -5,7 +5,7 @@ date: 2016-03-21
 categories: web
 ---
 
-##About git I don't know much##
+##About git I don't know much
 
 `git help`  = `man git-log`
 
@@ -34,7 +34,7 @@ categories: web
 `git commit --amend -m "message"` to amend commit 
 
 
-##JS Recape##
+##JS Recape
 
 1.js event delegation
 
