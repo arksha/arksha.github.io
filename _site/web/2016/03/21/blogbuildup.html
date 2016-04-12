@@ -64,7 +64,8 @@
 
 <p><code class="highlighter-rouge">git commit --amend -m "message"</code> to amend commit</p>
 
-<h2 id="js-recape">JS Recape</h2>
+<h2 id="update-4102016">update 4/10/2016</h2>
+<p>##JS Recape</p>
 
 <p>1.js event delegation</p>
 
@@ -158,6 +159,25 @@ if the event handler is inline,</p>
 
 <p>3.prototypal inheritance</p>
 
+<p>In JavaScript, the inheritance is prototype-based. That means that there are no classes. Instead, an object inherits from another object</p>
+
+<p><code class="highlighter-rouge">__proto__</code> is to find parent object, also called prototype
+<code class="highlighter-rouge">this</code> is irrelevant to parent object
+<code class="highlighter-rouge">Object.create(proto)</code> create object from proto
+<code class="highlighter-rouge">Object.getPrototypeOf(obj)</code> get proto</p>
+
+<p>4.What do you think of AMD vs CommonJS</p>
+
+<p>AMD:Asynchronous Module Definitions</p>
+
+<p>AMD takes a browser-first approach, using asynchronous behavior and backwards compatibility but doesn’t have a File I/O concept. It supports objects, functions, constructors, strings, JSON and many other types of modules, running natively in the browser. It can be used to lazy load / defer the loading of dependencies.</p>
+
+<p>CommonJS on the other hand takes a server-first approach, assuming synchronous behavior, no globals and it attempts to cater for the future - server side. So, Common JS supports unwrapped modules, freeing you of the define() wrapper that AMD enforces.</p>
+
+<p>5.IIFE</p>
+
+<p>IIFE:Immediately-Invoked Function Expression<br />
+<code class="highlighter-rouge">function foo(){ }();</code> this does not work in IIFE.</p>
 
         </section>
         

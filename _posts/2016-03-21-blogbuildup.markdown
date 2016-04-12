@@ -119,5 +119,23 @@ if it is not inline,
 `this` refers to the DOM element that generated the event.  
 
 3.prototypal inheritance
-
 	
+In JavaScript, the inheritance is prototype-based. That means that there are no classes. Instead, an object inherits from another object  
+
+`__proto__` is to find parent object, also called prototype
+`this` is irrelevant to parent object
+`Object.create(proto)` create object from proto
+`Object.getPrototypeOf(obj)` get proto  
+
+4.What do you think of AMD vs CommonJS  
+	
+AMD:Asynchronous Module Definitions
+
+AMD takes a browser-first approach, using asynchronous behavior and backwards compatibility but doesn't have a File I/O concept. It supports objects, functions, constructors, strings, JSON and many other types of modules, running natively in the browser. It can be used to lazy load / defer the loading of dependencies. 
+
+CommonJS on the other hand takes a server-first approach, assuming synchronous behavior, no globals and it attempts to cater for the future - server side. So, Common JS supports unwrapped modules, freeing you of the define() wrapper that AMD enforces.
+
+5.IIFE  
+
+IIFE:Immediately-Invoked Function Expression  
+`function foo(){ }();` this does not work in IIFE.
