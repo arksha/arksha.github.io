@@ -176,8 +176,22 @@ if the event handler is inline,</p>
 
 <p>5.IIFE</p>
 
-<p>IIFE:Immediately-Invoked Function Expression<br />
+<p>IIFE:Immediately-Invoked Function Expression <a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/#iife">about IIFE</a><br />
 <code class="highlighter-rouge">function foo(){ }();</code> this does not work in IIFE.</p>
+
+<p>6.variable that null, undefined or undeclared</p>
+
+<p><code class="highlighter-rouge">null</code> is a object, <code class="highlighter-rouge">undefined</code> is a type of variable, means a variable has been declared but has not yet assigned with value. <code class="highlighter-rouge">undeclared</code> is used with no <code class="highlighter-rouge">var</code> , it gets created on global object(window), but will throw error 
+how to check:</p>
+
+<p>typeof check: <code class="highlighter-rouge">if(typeof someUndefVar == whatever)</code> 
+can use <code class="highlighter-rouge">value = obj.prop || defaultValue</code> check undefinded properties</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>if ( some_variable == null ){
+  // some_variable is either null or undefined
+}
+</code></pre>
+</div>
 
         </section>
         

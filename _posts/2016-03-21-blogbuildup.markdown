@@ -137,5 +137,17 @@ CommonJS on the other hand takes a server-first approach, assuming synchronous b
 
 5.IIFE  
 
-IIFE:Immediately-Invoked Function Expression  
+IIFE:Immediately-Invoked Function Expression [about IIFE](http://benalman.com/news/2010/11/immediately-invoked-function-expression/#iife)  
 `function foo(){ }();` this does not work in IIFE.
+
+6.variable that null, undefined or undeclared
+
+`null` is a object, `undefined` is a type of variable, means a variable has been declared but has not yet assigned with value. `undeclared` is used with no `var` , it gets created on global object(window), but will throw error 
+how to check:
+
+typeof check: `if(typeof someUndefVar == whatever)` 
+can use `value = obj.prop || defaultValue` check undefinded properties
+	
+	if ( some_variable == null ){
+	  // some_variable is either null or undefined
+	}

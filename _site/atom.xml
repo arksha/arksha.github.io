@@ -4,7 +4,7 @@
  <title>In Side Of ARK</title>
  <link href="arkshagong.com//atom.xml" rel="self"/>
  <link href="arkshagong.com//"/>
- <updated>2016-04-11T22:57:43-07:00</updated>
+ <updated>2016-04-13T23:59:08-07:00</updated>
  <id>arkshagong.com</id>
  <author>
    <name></name>
@@ -169,8 +169,22 @@ if the event handler is inline,&lt;/p&gt;
 
 &lt;p&gt;5.IIFE&lt;/p&gt;
 
-&lt;p&gt;IIFE:Immediately-Invoked Function Expression&lt;br /&gt;
+&lt;p&gt;IIFE:Immediately-Invoked Function Expression &lt;a href=&quot;http://benalman.com/news/2010/11/immediately-invoked-function-expression/#iife&quot;&gt;about IIFE&lt;/a&gt;&lt;br /&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;function foo(){ }();&lt;/code&gt; this does not work in IIFE.&lt;/p&gt;
+
+&lt;p&gt;6.variable that null, undefined or undeclared&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt; is a object, &lt;code class=&quot;highlighter-rouge&quot;&gt;undefined&lt;/code&gt; is a type of variable, means a variable has been declared but has not yet assigned with value. &lt;code class=&quot;highlighter-rouge&quot;&gt;undeclared&lt;/code&gt; is used with no &lt;code class=&quot;highlighter-rouge&quot;&gt;var&lt;/code&gt; , it gets created on global object(window), but will throw error 
+how to check:&lt;/p&gt;
+
+&lt;p&gt;typeof check: &lt;code class=&quot;highlighter-rouge&quot;&gt;if(typeof someUndefVar == whatever)&lt;/code&gt; 
+can use &lt;code class=&quot;highlighter-rouge&quot;&gt;value = obj.prop || defaultValue&lt;/code&gt; check undefinded properties&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if ( some_variable == null ){
+  // some_variable is either null or undefined
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 </content>
  </entry>
  
