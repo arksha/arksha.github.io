@@ -151,3 +151,143 @@ can use `value = obj.prop || defaultValue` check undefinded properties
 	if ( some_variable == null ){
 	  // some_variable is either null or undefined
 	}
+	
+7.closure
+
+[this article explains](http://stackoverflow.com/questions/111102/how-do-javascript-closures-work)
+
+a closure is the local variables for a function — kept alive after the function has returned, or
+a closure is a stack-frame which is not deallocated when the function returns (as if a 'stack-frame' were malloc'ed instead of being on the stack!).  
+A closure in JavaScript is like keeping a copy of all the local variables, just as they were when a function exited.
+
+
+8.What's a typical use case for anonymous functions?
+
+An anonymous function is a function that was declared without any named identifier to refer to it. As such, an anonymous function is usually not accessible after its initial creation.
+
+Use as an argument to other functions:
+
+	setTimeout(function() {
+	  alert('hello');
+	}, 1000);
+
+Above, the anonymous function is passed to setTimeout, which will execute the function in 1000 milliseconds.
+
+Use as a closure:
+
+	(function() {
+	  alert('foo');
+	})();
+
+Breakdown of the above anonymous statements:  
+The surrounding braces is a wrapper for the anonymous function  
+The trailing braces initiates a call to the function and can contain arguments 
+
+Another way to write the previous example and get the same result:  
+
+	(function(message) {
+	  alert(message);
+	}('foo'));
+	
+9.module pattern, classical inheritance
+
+[this blog helps](http://metaduck.com/08-module-pattern-inheritance.html)
+
+10.What's the difference between host objects and native objects?
+
+Difference between: function Person(){}, var person = Person(), and var person = new Person()?
+What's the difference between .call and .apply?
+Explain Function.prototype.bind.
+When would you use document.write()?
+What's the difference between feature detection, feature inference, and using the UA string?
+Explain Ajax in as much detail as possible.
+What are the advantages and disadvantages of using Ajax?
+Explain how JSONP works (and how it's not really Ajax).
+Have you ever used JavaScript templating?
+If so, what libraries have you used?
+Explain "hoisting".
+Describe event bubbling.
+What's the difference between an "attribute" and a "property"?
+Why is extending built-in JavaScript objects not a good idea?
+Difference between document load event and document DOMContentLoaded event?
+What is the difference between == and ===?
+Explain the same-origin policy with regards to JavaScript.
+
+Make this work:
+duplicate([1,2,3,4,5]); // [1,2,3,4,5,1,2,3,4,5]
+
+Why is it called a Ternary expression, what does the word "Ternary" indicate?
+What is "use strict";? what are the advantages and disadvantages to using it?
+Create a for loop that iterates up to 100 while outputting "fizz" at multiples of 3, "buzz" at multiples of 5 and "fizzbuzz" at multiples of 3 and 5
+
+
+Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
+Why would you use something like the load event? Does this event have disadvantages? Do you know any alternatives, and why would you use those?
+Explain what a single page app is and how to make one SEO-friendly.
+What is the extent of your experience with Promises and/or their polyfills?
+What are the pros and cons of using Promises instead of callbacks?
+What are some of the advantages/disadvantages of writing JavaScript code in a language that compiles to JavaScript?
+What tools and techniques do you use debugging JavaScript code?
+What language constructions do you use for iterating over object properties and array items?
+Explain the difference between mutable and immutable objects.
+What is an example of an immutable object in JavaScript?
+What are the pros and cons of immutability?
+How can you achieve immutability in your own code?
+Explain the difference between synchronous and asynchronous functions.
+What is event loop?
+What is the difference between call stack and task queue?
+Explain the differences on the usage of foo between function foo() {} and var foo = function() {}
+
+
+##HTML recap
+
+What does a doctype do?
+What's the difference between full standards mode, almost standards mode and quirks mode?
+What's the difference between HTML and XHTML?
+Are there any problems with serving pages as application/xhtml+xml?
+How do you serve a page with content in multiple languages?
+What kind of things must you be wary of when design or developing for multilingual sites?
+What are data- attributes good for?
+Consider HTML5 as an open web platform. What are the building blocks of HTML5?
+Describe the difference between a cookie, sessionStorage and localStorage.
+Describe the difference between <script>, <script async> and <script defer>.
+Why is it generally a good idea to position CSS <link>s between <head></head> and JS <script>s just before </body>? Do you know any exceptions?
+What is progressive rendering?
+Have you used different HTML templating languages before?
+
+
+##CSS recap
+
+What is the difference between classes and IDs in CSS?
+What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?
+Describe Floats and how they work.
+Describe z-index and how stacking context is formed.
+Describe BFC(Block Formatting Context) and how it works.
+What are the various clearing techniques and which is appropriate for what context?
+Explain CSS sprites, and how you would implement them on a page or site.
+What are your favourite image replacement techniques and which do you use when?
+How would you approach fixing browser-specific styling issues?
+How do you serve your pages for feature-constrained browsers?
+What techniques/processes do you use?
+What are the different ways to visually hide content (and make it available only for screen readers)?
+Have you ever used a grid system, and if so, what do you prefer?
+Have you used or implemented media queries or mobile specific layouts/CSS?
+Are you familiar with styling SVG?
+How do you optimize your webpages for print?
+What are some of the "gotchas" for writing efficient CSS?
+What are the advantages/disadvantages of using CSS preprocessors?
+Describe what you like and dislike about the CSS preprocessors you have used.
+How would you implement a web design comp that uses non-standard fonts?
+Explain how a browser determines what elements match a CSS selector.
+Describe pseudo-elements and discuss what they are used for.
+Explain your understanding of the box model and how you would tell the browser in CSS to render your layout in different box models.
+What does * { box-sizing: border-box; } do? What are its advantages?
+List as many values for the display property that you can remember.
+What's the difference between inline and inline-block?
+What's the difference between a relative, fixed, absolute and statically positioned element?
+The 'C' in CSS stands for Cascading. How is priority determined in assigning styles (a few examples)? How can you use this system to your advantage?
+What existing CSS frameworks have you used locally, or in production? How would you change/improve them?
+Have you played around with the new CSS Flexbox or Grid specs?
+How is responsive design different from adaptive design?
+Have you ever worked with retina graphics? If so, when and what techniques did you use?
+Is there any reason you'd want to use translate() instead of absolute positioning, or vice-versa? And why?
