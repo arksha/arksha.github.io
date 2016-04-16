@@ -37,6 +37,8 @@ update 4/10/2016
 ---
 ##JS Recape
 
+[reference for this interview questions](http://lucybain.com/blog/tags/interview-questions/)
+
 1.js event delegation
 
 event delegation is a simple way to handel events listeners to avoid adding event listeners to specific nodes especially when child nodes are frequently changed. Event delegation can add listeners to parent rather than on child.
@@ -195,7 +197,20 @@ Another way to write the previous example and get the same result:
 
 10.What's the difference between host objects and native objects?
 
-Difference between: function Person(){}, var person = Person(), and var person = new Person()?
+Host objects:   
+  Everything the environment gives you. For the browser, this includes objects like `window`.  
+Native Objects:
+  Native objects are inherent to JS  
+User objects:
+	User objects are anything the user defines. When you create a new object that is not directly a native object, you've made a user object.  
+	
+11. Difference between: `function Person(){}`, var `person = Person()`, and `var person = new Person()`
+
+`function Person(){}`:  
+this defines a constructor, because in JS, a function start with capital letter usually indicates this is a constructor.  
+
+`person = Person()`:
+
 What's the difference between .call and .apply?
 Explain Function.prototype.bind.
 When would you use document.write()?
