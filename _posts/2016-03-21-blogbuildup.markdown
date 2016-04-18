@@ -209,10 +209,18 @@ User objects:
 `function Person(){}`:  
 this defines a constructor, because in JS, a function start with capital letter usually indicates this is a constructor.  
 
-`person = Person()`:
+`person = Person()`:  
+This is a mistake. There are ways of dealing with mistakes like this (one way is the "use strict" method), but ultimately this should be corrected. 
 
-What's the difference between .call and .apply?
-Explain Function.prototype.bind.
+`var person = new Person()`:
+In traditional OOP this may refer to a new instance of `person` class, BUT in JS, using this method `person` will have access to everything `Person.prototype` has access to, as well as any instance variables set in the `Person` constructor.
+
+12.Function.prototype.bind
+
+The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
+
+**always binding `this` will lose access to inner `this`**
+
 When would you use document.write()?
 What's the difference between feature detection, feature inference, and using the UA string?
 Explain Ajax in as much detail as possible.
