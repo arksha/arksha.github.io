@@ -4,13 +4,54 @@
  <title>In Side Of ARK</title>
  <link href="arkshagong.com//atom.xml" rel="self"/>
  <link href="arkshagong.com//"/>
- <updated>2016-04-15T17:25:43-07:00</updated>
+ <updated>2016-04-22T23:18:15-07:00</updated>
  <id>arkshagong.com</id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Roses</title>
+   <link href="arkshagong.com/diary/2016/04/09/ROSES.html"/>
+   <updated>2016-04-09T00:00:00-07:00</updated>
+   <id>arkshagong.com//diary/2016/04/09/ROSES</id>
+   <content type="html">&lt;h1 id=&quot;roses&quot;&gt;ROSES&lt;/h1&gt;
+
+&lt;p&gt;Take it slow but it’s not typical&lt;/p&gt;
+
+&lt;p&gt;He already knows that my love is fire&lt;/p&gt;
+
+&lt;p&gt;His heart was a stone, but then his hands roam&lt;/p&gt;
+
+&lt;p&gt;I turned him to gold and it took him higher&lt;/p&gt;
+
+&lt;p&gt;Oh, I’ll be your daydream, I’ll wear your favorite things&lt;/p&gt;
+
+&lt;p&gt;we could be beautiful, get drunk on the good life&lt;/p&gt;
+
+&lt;p&gt;I’ll take you to paradise&lt;/p&gt;
+
+&lt;p&gt;Say you’ll never let me go&lt;/p&gt;
+
+&lt;p&gt;Deep in my bones i can feel you&lt;/p&gt;
+
+&lt;p&gt;Take me back to a time only we knew&lt;/p&gt;
+
+&lt;p&gt;Hideaway&lt;/p&gt;
+
+&lt;p&gt;We could waste the night with an old film&lt;/p&gt;
+
+&lt;p&gt;Smoke a little weed on the couch in the backroom&lt;/p&gt;
+
+&lt;p&gt;Hideaway&lt;/p&gt;
+
+&lt;p&gt;Say you’ll never let me go&lt;/p&gt;
+
+&lt;p&gt;Say you’ll never let me go&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Graphic Recap</title>
@@ -250,11 +291,19 @@ User objects:
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;function Person(){}&lt;/code&gt;:&lt;br /&gt;
 this defines a constructor, because in JS, a function start with capital letter usually indicates this is a constructor.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;person = Person()&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;person = Person()&lt;/code&gt;:&lt;br /&gt;
+This is a mistake. There are ways of dealing with mistakes like this (one way is the “use strict” method), but ultimately this should be corrected.&lt;/p&gt;
 
-&lt;p&gt;What’s the difference between .call and .apply?
-Explain Function.prototype.bind.
-When would you use document.write()?
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;var person = new Person()&lt;/code&gt;:
+In traditional OOP this may refer to a new instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;person&lt;/code&gt; class, BUT in JS, using this method &lt;code class=&quot;highlighter-rouge&quot;&gt;person&lt;/code&gt; will have access to everything &lt;code class=&quot;highlighter-rouge&quot;&gt;Person.prototype&lt;/code&gt; has access to, as well as any instance variables set in the &lt;code class=&quot;highlighter-rouge&quot;&gt;Person&lt;/code&gt; constructor.&lt;/p&gt;
+
+&lt;p&gt;12.Function.prototype.bind&lt;/p&gt;
+
+&lt;p&gt;The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;always binding &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; will lose access to inner &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When would you use document.write()?
 What’s the difference between feature detection, feature inference, and using the UA string?
 Explain Ajax in as much detail as possible.
 What are the advantages and disadvantages of using Ajax?
@@ -563,47 +612,6 @@ rl.on(&#39;line&#39;, function(saying) {
    <updated>2016-03-10T00:00:00-08:00</updated>
    <id>arkshagong.com//web/2016/03/10/Thread-and-Locks-Review</id>
    <content type="html">
-</content>
- </entry>
- 
- <entry>
-   <title>Roses - My status now</title>
-   <link href="arkshagong.com/diary/2016/01/26/ROSES.html"/>
-   <updated>2016-01-26T00:00:00-08:00</updated>
-   <id>arkshagong.com//diary/2016/01/26/ROSES</id>
-   <content type="html">&lt;h1 id=&quot;roses&quot;&gt;ROSES&lt;/h1&gt;
-
-&lt;p&gt;Take it slow but it’s not typical&lt;/p&gt;
-
-&lt;p&gt;He already knows that my love is fire&lt;/p&gt;
-
-&lt;p&gt;His heart was a stone, but then his hands roam&lt;/p&gt;
-
-&lt;p&gt;I turned him to gold and it took him higher&lt;/p&gt;
-
-&lt;p&gt;Oh, I’ll be your daydream, I’ll wear your favorite things&lt;/p&gt;
-
-&lt;p&gt;we could be beautiful, get drunk on the good life&lt;/p&gt;
-
-&lt;p&gt;I’ll take you to paradise&lt;/p&gt;
-
-&lt;p&gt;Say you’ll never let me go&lt;/p&gt;
-
-&lt;p&gt;Deep in my bones i can feel you&lt;/p&gt;
-
-&lt;p&gt;Take me back to a time only we knew&lt;/p&gt;
-
-&lt;p&gt;Hideaway&lt;/p&gt;
-
-&lt;p&gt;We could waste the night with an old film&lt;/p&gt;
-
-&lt;p&gt;Smoke a little weed on the couch in the backroom&lt;/p&gt;
-
-&lt;p&gt;Hideaway&lt;/p&gt;
-
-&lt;p&gt;Say you’ll never let me go&lt;/p&gt;
-
-&lt;p&gt;Say you’ll never let me go&lt;/p&gt;
 </content>
  </entry>
  

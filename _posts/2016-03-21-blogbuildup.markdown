@@ -3,6 +3,7 @@ layout: post
 title: Blog messy build up log
 date: 2016-03-21
 categories: web
+author: "arksha"
 ---
 
 ##About git I don't know much

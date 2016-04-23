@@ -1,6 +1,6 @@
 # Site settings
 
-title: In Side Of ARK # Title of your site
+title: Arksha - In Side of Ark # Title of your site
 email: tingg@usc.edu # Your contant email
 
 description: > # this means to ignore newlines until "baseurl:"
@@ -16,9 +16,9 @@ url: "arkshagong.com" # the base hostname & protocol for your site
 
 twitter_username:     gongt92kyo  # Replace this with your Twitter username
 github_username:      arksha  # Replace this with your GitHub username
-linkedin_username:    gongting92@gmail.com  # Replace this with your LinkedIn username
+linkedin_username:    gongting92  # Replace this with your LinkedIn username
 google_plus_username: example  # Replace this with your Google+ username
-facebook_username:    Ting Gong  # Replace this with your Facebook username
+facebook_username:    profile.php?id=100008904631011  # Replace this with your Facebook username
 dribbble_username:    example  # Replace this with your Dribbble username
 
 # Build settings

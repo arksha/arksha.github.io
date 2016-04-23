@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Arksha's blog</title>
+      <title>In Side Of ARK</title>
+		
       <meta http-equiv="content-type" content="text/html; charset=utf-8" />
       <meta name="description" content="" />
       <meta name="keywords" content="" />
@@ -19,7 +20,11 @@
     </head>
 
 	<body id="top">
-     
+     <nav role="navigation">
+			<ul class="menu">
+				<li><a herf="//about.html" title="Learn More about me">About</a></li>
+			</ul>
+		</nav>
     <div class="wrap">
       <header id="header">
           <a href="#" class="image avatar"><img src="/images/avatar.jpg" alt="" /></a>
@@ -32,7 +37,7 @@
     <article>
         <header class="major">
             <h2 class="post-title">Blog messy build up log</h2>
-                <p class="post-meta">Mar 21, 2016</p>
+                <p class="post-meta">Mar 21, 2016 • arksha</p>
         </header>
 
         <section>
@@ -257,11 +262,19 @@ User objects:
 <p><code class="highlighter-rouge">function Person(){}</code>:<br />
 this defines a constructor, because in JS, a function start with capital letter usually indicates this is a constructor.</p>
 
-<p><code class="highlighter-rouge">person = Person()</code>:</p>
+<p><code class="highlighter-rouge">person = Person()</code>:<br />
+This is a mistake. There are ways of dealing with mistakes like this (one way is the “use strict” method), but ultimately this should be corrected.</p>
 
-<p>What’s the difference between .call and .apply?
-Explain Function.prototype.bind.
-When would you use document.write()?
+<p><code class="highlighter-rouge">var person = new Person()</code>:
+In traditional OOP this may refer to a new instance of <code class="highlighter-rouge">person</code> class, BUT in JS, using this method <code class="highlighter-rouge">person</code> will have access to everything <code class="highlighter-rouge">Person.prototype</code> has access to, as well as any instance variables set in the <code class="highlighter-rouge">Person</code> constructor.</p>
+
+<p>12.Function.prototype.bind</p>
+
+<p>The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.</p>
+
+<p><strong>always binding <code class="highlighter-rouge">this</code> will lose access to inner <code class="highlighter-rouge">this</code></strong></p>
+
+<p>When would you use document.write()?
 What’s the difference between feature detection, feature inference, and using the UA string?
 Explain Ajax in as much detail as possible.
 What are the advantages and disadvantages of using Ajax?
@@ -428,7 +441,7 @@ Is there any reason you’d want to use translate() instead of absolute position
 
               
               <li>
-                <a href="https://linkedin.com/in/gongting92@gmail.com" class="icon fa-linkedin">
+                <a href="https://linkedin.com/in/gongting92" class="icon fa-linkedin">
                   <span class="label">LinkedIn</span>
                 </a>
               </li>
@@ -444,7 +457,7 @@ Is there any reason you’d want to use translate() instead of absolute position
 
               
               <li>
-                <a href="https://www.facebook.com/Ting Gong" class="icon fa-facebook">
+                <a href="https://www.facebook.com/profile.php?id=100008904631011" class="icon fa-facebook">
                   <span class="label">Facebook</span>
                 </a>
               </li>
