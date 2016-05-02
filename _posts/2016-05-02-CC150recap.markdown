@@ -1,0 +1,32 @@
+---
+layout: post
+title: CC150 Notes
+date: 2016-05-02
+categories: leetcode
+---
+
+This note is to recap basics in CC150, most recap will base on Java. Every topic will have recap of main concepts and solution thoughts of example problems on CC150, code solution in github.
+
+#Data Structures  Date (Due May 13)
+##Arrays and Strings  
+##LinkedList  
+##Stacks and Queues  
+##Trees and Graphs  
+
+#Concepts and Algorithm  (Due May 27)
+##Bit Manipulation  
+##BrainTeasers  
+##Math and Probability    
+##OOD  
+##Recursion and DP  
+##Scalability and Memory Limits  
+##Sorting and Searching  
+##Testing  
+
+#Knowledge Based  (Due May 31)
+##C and C++
+##Java
+##DB
+##Threads and Locks
+
+#Additional 
