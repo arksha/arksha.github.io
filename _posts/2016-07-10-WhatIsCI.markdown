@@ -1,0 +1,16 @@
+---
+layout: post
+title: What is Continuous Integration
+date: 2016-07-10
+categories: diary
+---
+
+What is CI?  
+
+Continuous Integeration
+
+
+Reference:
+
+[Continuous Integration Essentials](https://codeship.com/continuous-integration-essentials)    
+[ruanyifeng blog](http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html)

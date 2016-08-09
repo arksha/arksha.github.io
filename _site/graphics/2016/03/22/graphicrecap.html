@@ -41,6 +41,24 @@
 
 <h3 id="chap-2-the-graphic-rendering-pipeline">Chap 2. The Graphic rendering pipeline</h3>
 
+<p>1.The Architecture:<br />
+Contains Application stage, Geometry stage, Rasterizer stage.</p>
+
+<p>FPS and HZ:
+fps: the slowest of the pipeline stages determines the renderding speed, expressed as fps
+Hz: use hardware more</p>
+
+<p>The Application stage: <br />
+execute on CPU, fully control. Usually implement in parallel on several process cores, called superscalar construction.</p>
+
+<p>Usually implement on this stage:<br />
+collision detection and generate response,<br />
+input from other sources and take different actions,<br />
+texture animation,animation via transforms,<br />
+acceleration algorithms.</p>
+
+<p>The Geometry stage:</p>
+
 
         </section>
         

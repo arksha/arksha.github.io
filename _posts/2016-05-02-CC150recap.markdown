@@ -7,13 +7,14 @@ categories: leetcode
 
 This note is to recap basics in CC150, most recap will base on Java. Every topic will have recap of main concepts and solution thoughts of example problems on CC150, code solution in github.
 
-#Data Structures  Date (Due May 13)
-##Arrays and Strings  
+#Data Structures  
+##Arrays and Strings
+
 ##LinkedList  
 ##Stacks and Queues  
 ##Trees and Graphs  
 
-#Concepts and Algorithm  (Due May 27)
+#Concepts and Algorithm 
 ##Bit Manipulation  
 ##BrainTeasers  
 ##Math and Probability    
@@ -23,7 +24,7 @@ This note is to recap basics in CC150, most recap will base on Java. Every topic
 ##Sorting and Searching  
 ##Testing  
 
-#Knowledge Based  (Due May 31)
+#Knowledge Based  
 ##C and C++
 ##Java
 ##DB

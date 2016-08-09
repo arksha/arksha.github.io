@@ -1,7 +1,7 @@
 ---
 layout: post
 title: After Siemens Interview
-date: 2015-12-13
+date: 2016-01-29
 categories: diary
 ---
 
@@ -24,4 +24,6 @@ categories: diary
 
 ![pic of today](/images/postimg/Siemens.jpg)
 
+Update 2016-08-08:
 
+没想到最后实习还是来了Siemens， 这三个月下来收获了很多。

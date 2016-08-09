@@ -4,13 +4,56 @@
  <title>Arksha - In Side of Ark</title>
  <link href="arkshagong.com//atom.xml" rel="self"/>
  <link href="arkshagong.com//"/>
- <updated>2016-04-29T15:49:52-07:00</updated>
+ <updated>2016-06-17T18:27:34-07:00</updated>
  <id>arkshagong.com</id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Artificial Intelligence</title>
+   <link href="arkshagong.com/ai/2016/06/17/AI.html"/>
+   <updated>2016-06-17T00:00:00-07:00</updated>
+   <id>arkshagong.com//ai/2016/06/17/AI</id>
+   <content type="html">
+</content>
+ </entry>
+ 
+ <entry>
+   <title>CC150 Notes</title>
+   <link href="arkshagong.com/leetcode/2016/05/02/CC150recap.html"/>
+   <updated>2016-05-02T00:00:00-07:00</updated>
+   <id>arkshagong.com//leetcode/2016/05/02/CC150recap</id>
+   <content type="html">&lt;p&gt;This note is to recap basics in CC150, most recap will base on Java. Every topic will have recap of main concepts and solution thoughts of example problems on CC150, code solution in github.&lt;/p&gt;
+
+&lt;h1 id=&quot;data-structures&quot;&gt;Data Structures&lt;/h1&gt;
+&lt;p&gt;##Arrays and Strings&lt;/p&gt;
+
+&lt;h2 id=&quot;linkedlist&quot;&gt;LinkedList&lt;/h2&gt;
+&lt;p&gt;##Stacks and Queues&lt;br /&gt;
+##Trees and Graphs&lt;/p&gt;
+
+&lt;h1 id=&quot;concepts-and-algorithm&quot;&gt;Concepts and Algorithm&lt;/h1&gt;
+&lt;p&gt;##Bit Manipulation&lt;br /&gt;
+##BrainTeasers&lt;br /&gt;
+##Math and Probability  &lt;br /&gt;
+##OOD&lt;br /&gt;
+##Recursion and DP&lt;br /&gt;
+##Scalability and Memory Limits&lt;br /&gt;
+##Sorting and Searching&lt;br /&gt;
+##Testing&lt;/p&gt;
+
+&lt;h1 id=&quot;knowledge-based&quot;&gt;Knowledge Based&lt;/h1&gt;
+&lt;p&gt;##C and C++
+##Java
+##DB
+##Threads and Locks&lt;/p&gt;
+
+&lt;h1 id=&quot;additional&quot;&gt;Additional&lt;/h1&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Roses</title>
@@ -61,6 +104,24 @@
    <content type="html">&lt;h2 id=&quot;real-time-rendering-third-edition-book-review&quot;&gt;Real time rendering third Edition book review&lt;/h2&gt;
 
 &lt;h3 id=&quot;chap-2-the-graphic-rendering-pipeline&quot;&gt;Chap 2. The Graphic rendering pipeline&lt;/h3&gt;
+
+&lt;p&gt;1.The Architecture:&lt;br /&gt;
+Contains Application stage, Geometry stage, Rasterizer stage.&lt;/p&gt;
+
+&lt;p&gt;FPS and HZ:
+fps: the slowest of the pipeline stages determines the renderding speed, expressed as fps
+Hz: use hardware more&lt;/p&gt;
+
+&lt;p&gt;The Application stage: &lt;br /&gt;
+execute on CPU, fully control. Usually implement in parallel on several process cores, called superscalar construction.&lt;/p&gt;
+
+&lt;p&gt;Usually implement on this stage:&lt;br /&gt;
+collision detection and generate response,&lt;br /&gt;
+input from other sources and take different actions,&lt;br /&gt;
+texture animation,animation via transforms,&lt;br /&gt;
+acceleration algorithms.&lt;/p&gt;
+
+&lt;p&gt;The Geometry stage:&lt;/p&gt;
 
 </content>
  </entry>
@@ -607,15 +668,6 @@ rl.on(&#39;line&#39;, function(saying) {
  </entry>
  
  <entry>
-   <title>Node.JS Recap</title>
-   <link href="arkshagong.com/web/2016/03/10/Thread-and-Locks-Review.html"/>
-   <updated>2016-03-10T00:00:00-08:00</updated>
-   <id>arkshagong.com//web/2016/03/10/Thread-and-Locks-Review</id>
-   <content type="html">
-</content>
- </entry>
- 
- <entry>
    <title>BFS</title>
    <link href="arkshagong.com/leetcode/2016/01/26/BFS.html"/>
    <updated>2016-01-26T00:00:00-08:00</updated>
@@ -1153,15 +1205,6 @@ class Trie{
 
 &lt;p&gt;&lt;img src=&quot;/images/postimg/Siemens.jpg&quot; alt=&quot;pic of today&quot; /&gt;&lt;/p&gt;
 
-</content>
- </entry>
- 
- <entry>
-   <title>DFS心得</title>
-   <link href="arkshagong.com/leetcode/2015/12/13/dfs%E6%80%BB%E7%BB%93.html"/>
-   <updated>2015-12-13T00:00:00-08:00</updated>
-   <id>arkshagong.com//leetcode/2015/12/13/dfs总结</id>
-   <content type="html">
 </content>
  </entry>
  
