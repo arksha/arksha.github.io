@@ -10,8 +10,9 @@ layout: default
 
         <section>
             {{ content }}
+            {% include disqus.html %}
         </section>
-        
+
         <footer>
             <div class="row">
             {% if page.previous %}

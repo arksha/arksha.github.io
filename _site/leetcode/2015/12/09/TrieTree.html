@@ -1,5 +1,32 @@
 <!DOCTYPE html>
 <html>
+	<style>
+		@media screen and (max-width:680px) {
+		  ul.menubar li:not(:first-child) {display: none;}
+		  ul.menubar li.icon {
+			float: right;
+			display: inline-block;
+		  }
+		}
+
+		@media screen and (max-width:680px) {
+		  ul.menubar.responsive {position: relative;}
+		  ul.menubar.responsive li.icon {
+			position: absolute;
+			right: 0;
+			top: 0;
+		  }
+		  ul.menubar.responsive li {
+			float: none;
+			display: inline;
+		  }
+		  ul.menubar.responsive li a {
+			display: block;
+			text-align: left;
+		  }
+		}
+		
+	</style>
     <head>
       <title>Arksha - In Side of Ark</title>
 		
@@ -15,21 +42,33 @@
         <link rel="stylesheet" href="/css/skel.css" />
         <link rel="stylesheet" href="/css/style.css" />
         <link rel="stylesheet" href="/css/style-xlarge.css" />
+		
       </noscript>
       <!--[if lte IE 8]><link rel="stylesheet" href="/css/ie/v8.css" /><![endif]-->
     </head>
 
 	<body id="top">
 		
-	<div class="wrap">	
-      <header id="header">
-          <a href="#" class="image avatar"><img src="/images/avatar.jpg" alt="" /></a>
-          <h1>I am <strong><a href="/">Arksha</a></strong> ,a developer in LA.<br/>
-          Specific in Web Development and Software Development. Have experience in Compputer Graphics and Game Development.<br/>
-          <br/>Blogging is fun<br/></h1>
-      </header>
-      <div class="contents">
-		<div id="main">
+		<div class="wrap">	
+			
+			<header id="header">
+				<div class="topmenu">
+					<ul class="menubar" id='menubarnav'>
+						<li><a href="/">Home</a></li>
+						<li><a href="/about.html">More About Me</a></li>
+						<div class="icon"><a id="javascript:void(0);" herf="#" onclick="clickFuction()">&#9776;</a></div>	
+						
+					</ul>
+				</div>
+				<a href="#" class="image avatar"><img src="/images/avatar.jpg" alt="" /></a>
+				
+				<h1>I am <strong><a href="/">Arksha</a></strong> ,a developer in LA.<br/>
+				Specific in Web Development and Software Development. Have experience in Compputer Graphics and Game Development.<br/>
+				<br/>Blogging is fun<br/>
+				</h1>
+		  	</header>
+			<div class="contents">
+			<div id="main">
     <article>
         <header class="major">
             <h2 class="post-title">Word Search 引发的 Trie Tree 系列</h2>
@@ -292,8 +331,9 @@ If the current candidate does not exist in all words’ prefix, you could stop b
 有了TrieTree的数据结构，此题思路非常简单，只需实现前面写过的两个trie函数就好，即addWord（）和search（）。首先是插入word到树中，然后遍历树来查找。这里插入操作完全和前一个题一样， 需要对应题来修改的是search（），用dfs来实现树的遍历。在dfs中，一共有三个参数，一个是用 HashMap实现的children表示子节点，当前位置指针p，查找的字符串word。终止条件是当前位置p到了word结尾，若子节点数量为零，则找到了word，否则不存在。若children中存在当前位置的字符，分三种情况：1.到了倒数第二层节点，其子节点是叶节点，这样word就存在。2.当前字符里面有‘.’，代表其子节点中任意一个字符都是可以的，这里需要遍历整个children HashMap。用到的是Map.Entry()和entryset（）来实现。分别在每个hashmap的元素中再进行dfs搜索，查看接下来的字符是不是在其中。3.如果不符合以上几种情况那么就在树中没有这个word。</p>
 
 
+            
         </section>
-        
+
         <footer>
             <div class="row">
             
@@ -345,74 +385,83 @@ If the current candidate does not exist in all words’ prefix, you could stop b
 
 </div>
 
-		</div>
-       <!-- Footer -->
-        <footer id="footer">
-            <ul class="icons">
+			</div>
+			<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
 
-              
-              <li>
-                <a href="https://github.com/arksha" class="icon fa-github">
-                  <span class="label">GitHub</span>
-                </a>
-              </li>
-              
+				  
+				  <li>
+					<a href="https://github.com/arksha" class="icon fa-github">
+					  <span class="label">GitHub</span>
+					</a>
+				  </li>
+				  
 
-              
-              <li>
-                <a href="https://twitter.com/gongt92kyo" class="icon fa-twitter">
-                  <span class="label">Twitter</span>
-                </a>
-              </li>
-              
+				  
+				  <li>
+					<a href="https://twitter.com/gongt92kyo" class="icon fa-twitter">
+					  <span class="label">Twitter</span>
+					</a>
+				  </li>
+				  
 
-              
-              <li>
-                <a href="https://linkedin.com/in/gongting92" class="icon fa-linkedin">
-                  <span class="label">LinkedIn</span>
-                </a>
-              </li>
-              
+				  
+				  <li>
+					<a href="https://linkedin.com/in/gongting92" class="icon fa-linkedin">
+					  <span class="label">LinkedIn</span>
+					</a>
+				  </li>
+				  
 
-              
-              <li>
-                <a href="https://plus.google.com/example" class="icon fa-google-plus">
-                  <span class="label">Google+</span>
-                </a>
-              </li>
-              
+				  
+				  <li>
+					<a href="https://plus.google.com/example" class="icon fa-google-plus">
+					  <span class="label">Google+</span>
+					</a>
+				  </li>
+				  
 
-              
-              <li>
-                <a href="https://www.facebook.com/profile.php?id=100008904631011" class="icon fa-facebook">
-                  <span class="label">Facebook</span>
-                </a>
-              </li>
-              
+				  
+				  <li>
+					<a href="https://www.facebook.com/profile.php?id=100008904631011" class="icon fa-facebook">
+					  <span class="label">Facebook</span>
+					</a>
+				  </li>
+				  
 
-              
-              <li>
-                <a href="#" class="icon fa-dribbble">
-                  <span class="label">Dribbble</span>
-                </a>
-              </li>
-              
+				  
+				  <li>
+					<a href="#" class="icon fa-dribbble">
+					  <span class="label">Dribbble</span>
+					</a>
+				  </li>
+				  
 
-              
-              <li>
-                <a href="mailto:tingg@usc.edu" class="icon fa-envelope-o">
-                  <span class="label">Email</span>
-                </a>
-              </li>
-              
-            </ul>
-            <ul class="copyright">
-                <li>&copy; Arksha Gong</li>
-            </ul>
-        </footer>
-    </div>
-
-    
-
+				  
+				  <li>
+					<a href="mailto:tingg@usc.edu" class="icon fa-envelope-o">
+					  <span class="label">Email</span>
+					</a>
+				  </li>
+				  
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Arksha Gong</li>
+				</ul>
+			</footer>
+    	</div>
+		
+		<script>
+		function clickFuction() {
+			var x = document.getElementById("menubarnav");
+			if (x.className === "topmenu") {
+				x.className += " responsive";
+			} else {
+				x.className = "topmenu";
+			}
+		}
+		</script>
+		<script id="dsq-count-scr" src="//arkshagong.disqus.com/count.js" async></script>
 	</body>
 </html>

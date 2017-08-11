@@ -4,7 +4,7 @@
  <title>Arksha - In Side of Ark</title>
  <link href="arkshagong.com//atom.xml" rel="self"/>
  <link href="arkshagong.com//"/>
- <updated>2016-06-17T18:27:34-07:00</updated>
+ <updated>2017-08-11T01:47:06-07:00</updated>
  <id>arkshagong.com</id>
  <author>
    <name></name>
@@ -13,11 +13,41 @@
 
  
  <entry>
-   <title>Artificial Intelligence</title>
-   <link href="arkshagong.com/ai/2016/06/17/AI.html"/>
-   <updated>2016-06-17T00:00:00-07:00</updated>
-   <id>arkshagong.com//ai/2016/06/17/AI</id>
-   <content type="html">
+   <title>What is Continuous Integration</title>
+   <link href="arkshagong.com/diary/2016/07/10/WhatIsCI.html"/>
+   <updated>2016-07-10T00:00:00-07:00</updated>
+   <id>arkshagong.com//diary/2016/07/10/WhatIsCI</id>
+   <content type="html">&lt;p&gt;What is CI?&lt;/p&gt;
+
+&lt;p&gt;Continuous Integeration&lt;/p&gt;
+
+&lt;p&gt;Reference:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://codeship.com/continuous-integration-essentials&quot;&gt;Continuous Integration Essentials&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html&quot;&gt;ruanyifeng blog&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>A Saturday in StarBucks met a painter guy</title>
+   <link href="arkshagong.com/diary/2016/07/09/SaturdayinStarbucks.html"/>
+   <updated>2016-07-09T00:00:00-07:00</updated>
+   <id>arkshagong.com//diary/2016/07/09/SaturdayinStarbucks</id>
+   <content type="html">&lt;p&gt;Spending a whole day at starbucks is quite a decent time for me. I have enough drinks, good food, nice air con, wifi and good table. There is no such a good place to study in a cafe.&lt;/p&gt;
+
+&lt;p&gt;It is always to meet some stangers here. Today I met a guy who draw pictures, he draws firetrunks, and many vechels in a really detail way. Though he is not so expert like a professional painter, I can still see how he put the time and effort into his paint. I said to him I cannot paint so well as you, and he just answered me “you can, all you need is little bit more time and several pencils and erasers, you can use erasers when you draw not so good.” He is so right that I could not say more and he is so nice to show me his work. It is a nice file booklet, he also draws police car, helicopter, plane and other cool things.&lt;/p&gt;
+
+&lt;p&gt;He says his father is a fire fighter, and he grew up in those firetrunks. I guess this may be the reason he is so familiar and interested in those veichles. He seems also have some friends in orange county police, I guess he may also be a police officer or retired veteran. He wears like military soldier who spends a relaxing weekend in spare time in the movie and he is also in a very strong and fit shape.&lt;/p&gt;
+
+&lt;p&gt;Anyway, his attitu….&lt;/p&gt;
+
+&lt;p&gt;Okay, his name is David. the interesting thing is while I’m writing this post, he moved a chair besides me and watch my screen. I noticed him and said honestly to him I’m writing a post about you. We introduces ourself again and shaked hands. Now I don’t have to guess and he told me his name. While we are talking, the outside passed a firetrunk, his eyes became shining somehow. I can see he really likes firetrunk. He also showed me another picture about a fire fighter was drawing. He said he can draw stuffs, but he still needs to practice with portrait of people.&lt;/p&gt;
+
+&lt;p&gt;He said he become homeless since last December, he lives around and spend most of his time drawing those things in this starbucks. When He said this, I suddenly don’t know what to say next, I don’t know if it is proper to comfort him, even more, I even don’t know what to say to comfort him cause I just talked a few words with him. He seems polite and don’t want bother me. I said it is okay and really nice to know some new people like him. He replied me a smile.&lt;/p&gt;
+
+&lt;p&gt;He said that he is so focus on his drawing, and could not do other things. But I can still see his passion in drawing and it is really a dream for me to find something to passion on just like him. Though facing the hardness in life, if there is a thing you can stick on, there is nothing to regret.&lt;/p&gt;
+
+&lt;p&gt;Wish him to find a nice place to live in the future.(and also wish me find a decent career).&lt;/p&gt;
 </content>
  </entry>
  
@@ -120,8 +150,6 @@ collision detection and generate response,&lt;br /&gt;
 input from other sources and take different actions,&lt;br /&gt;
 texture animation,animation via transforms,&lt;br /&gt;
 acceleration algorithms.&lt;/p&gt;
-
-&lt;p&gt;The Geometry stage:&lt;/p&gt;
 
 </content>
  </entry>
@@ -668,6 +696,35 @@ rl.on(&#39;line&#39;, function(saying) {
  </entry>
  
  <entry>
+   <title>After Siemens Interview</title>
+   <link href="arkshagong.com/diary/2016/01/29/After-Siemens-Interview.html"/>
+   <updated>2016-01-29T00:00:00-08:00</updated>
+   <id>arkshagong.com//diary/2016/01/29/After-Siemens-Interview</id>
+   <content type="html">&lt;h3 id=&quot;few-things-after-interview-today&quot;&gt;Few things After Interview today&lt;/h3&gt;
+
+&lt;p&gt;今天去Siemens的面试让我反思了很多。&lt;/p&gt;
+
+&lt;p&gt;第一次面试被接待大妈说nervous，我叫不紧张谢谢ˊ_&amp;gt;ˋ，三哥和北航叔轮番问我在project中的OO问题，对于我的project可真是挖到好深。本来45min硬是给问到了2h，因此辛苦好人掌机君开车载我来long beach 从早晨到下午才回来（而且还是堵着回的）想到这里就觉得今天破残的面试就有点对不起辛苦的掌机……&lt;/p&gt;
+
+&lt;p&gt;能遇见掌机觉得自己很幸运，掌机这种心如止水的淡定感是我一直以来难以自身克服而得到的技能。偶然聊到女生找工作的事情，掌机的话感觉很对啊，某人说女生拿到职位很有优势的blahblah，其实并没有优势到哪里去，反而很容易被人误解，能力好的进去了就不是真实力，没进去就是hello world 都不会写。能找到工作其实还是需要基本的技能的，其他的是井上添花的加分项。努力提升自己的技能和不可替代性才是主要的， 在此之上，那种快餐一般快捷方式有可能成功，但是谁又能保证每一次都能够撞倒大运呢？&lt;/p&gt;
+
+&lt;p&gt;面试的问题应该是基础的问题，然而我好像并没有能很流利得答出来，说明准备得不充分。在说简历里的project时候，我只是会泛泛地说出做了什么，具体如何做，做了哪些部分，用到了哪些技术，我在表达上还是没到可以面试的层次。&lt;strong&gt;对于自己的project还是缺少熟悉度&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;当时三哥问我说我想要做什么，我还是会犹豫一下。尽管申请的是SWE的职位，我的简历里的技能很分散，想做web手里只有一个.net的项目，graphic的俩课设，没有focus，没有专攻技能，可替代性太高。明明之前想发展web前端的能力但还是止于没法利用业余时间提升自己。于是现在这个不是紧急事项，但是有一天这个问题还是会再次出现的。&lt;strong&gt;需要在业余时间投入到这个职业的规划中。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;想想最近的生活状况，Things are getting little messy these days. 其实总结下来就是最近活得有点怂，觉得自己什么都做不好，什么都要失败，缩手缩脚，考虑一个简单到不用想的问题还要check十来遍。其实这也是一直以来自己存在的问题了。Social Circle太狭隘，没有很好的维系和朋友的关系，导致渐渐疏远，寄希望于一个人身上，越来越闭塞，越来越怂。 然后发生事情不敢面对，不敢去做，结果当然不会好。期望到还是那么高，自然而然就会崩坏。到底在害怕什么，干嘛这么怂，&lt;strong&gt;不要死抓着自己的缺点不放手。LET IT GO啊&lt;/strong&gt;，面试这点真的是死穴，对自己的不自信即使不是真的也会变成真的。想想自己的长处，想想擅长的，别人没有做到我却做到的，把自己看得太低真的是会吃亏的，现在想起父上的话已经是吃过这亏才能想起来的了。&lt;strong&gt;不要怕，放手去做，立刻去做，失败了没关系，还有机会。只要迈出那一步，接下来不由得你停，会一直在前进。即使在绕圈圈，那也不是原地踏步。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;加油去做！别闲着想这想那的，没时间去想这么多。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/postimg/Siemens.jpg&quot; alt=&quot;pic of today&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Update 2016-08-08:&lt;/p&gt;
+
+&lt;p&gt;没想到最后实习还是来了Siemens， 这三个月下来收获了很多。&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>BFS</title>
    <link href="arkshagong.com/leetcode/2016/01/26/BFS.html"/>
    <updated>2016-01-26T00:00:00-08:00</updated>
@@ -1179,32 +1236,6 @@ class Trie{
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>After Siemens Interview</title>
-   <link href="arkshagong.com/diary/2015/12/13/After-Siemens-Interview.html"/>
-   <updated>2015-12-13T00:00:00-08:00</updated>
-   <id>arkshagong.com//diary/2015/12/13/After-Siemens-Interview</id>
-   <content type="html">&lt;h3 id=&quot;few-things-after-interview-today&quot;&gt;Few things After Interview today&lt;/h3&gt;
-
-&lt;p&gt;今天去Siemens的面试让我反思了很多。&lt;/p&gt;
-
-&lt;p&gt;第一次面试被接待大妈说nervous，我叫不紧张谢谢ˊ_&amp;gt;ˋ，三哥和北航叔轮番问我在project中的OO问题，对于我的project可真是挖到好深。本来45min硬是给问到了2h，因此辛苦好人掌机君开车载我来long beach 从早晨到下午才回来（而且还是堵着回的）想到这里就觉得今天破残的面试就有点对不起辛苦的掌机……&lt;/p&gt;
-
-&lt;p&gt;能遇见掌机觉得自己很幸运，掌机这种心如止水的淡定感是我一直以来难以自身克服而得到的技能。偶然聊到女生找工作的事情，掌机的话感觉很对啊，某人说女生拿到职位很有优势的blahblah，其实并没有优势到哪里去，反而很容易被人误解，能力好的进去了就不是真实力，没进去就是hello world 都不会写。能找到工作其实还是需要基本的技能的，其他的是井上添花的加分项。努力提升自己的技能和不可替代性才是主要的， 在此之上，那种快餐一般快捷方式有可能成功，但是谁又能保证每一次都能够撞倒大运呢？&lt;/p&gt;
-
-&lt;p&gt;面试的问题应该是基础的问题，然而我好像并没有能很流利得答出来，说明准备得不充分。在说简历里的project时候，我只是会泛泛地说出做了什么，具体如何做，做了哪些部分，用到了哪些技术，我在表达上还是没到可以面试的层次。&lt;strong&gt;对于自己的project还是缺少熟悉度&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;当时三哥问我说我想要做什么，我还是会犹豫一下。尽管申请的是SWE的职位，我的简历里的技能很分散，想做web手里只有一个.net的项目，graphic的俩课设，没有focus，没有专攻技能，可替代性太高。明明之前想发展web前端的能力但还是止于没法利用业余时间提升自己。于是现在这个不是紧急事项，但是有一天这个问题还是会再次出现的。&lt;strong&gt;需要在业余时间投入到这个职业的规划中。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;想想最近的生活状况，Things are getting little messy these days. 其实总结下来就是最近活得有点怂，觉得自己什么都做不好，什么都要失败，缩手缩脚，考虑一个简单到不用想的问题还要check十来遍。其实这也是一直以来自己存在的问题了。Social Circle太狭隘，没有很好的维系和朋友的关系，导致渐渐疏远，寄希望于一个人身上，越来越闭塞，越来越怂。 然后发生事情不敢面对，不敢去做，结果当然不会好。期望到还是那么高，自然而然就会崩坏。到底在害怕什么，干嘛这么怂，&lt;strong&gt;不要死抓着自己的缺点不放手。LET IT GO啊&lt;/strong&gt;，面试这点真的是死穴，对自己的不自信即使不是真的也会变成真的。想想自己的长处，想想擅长的，别人没有做到我却做到的，把自己看得太低真的是会吃亏的，现在想起父上的话已经是吃过这亏才能想起来的了。&lt;strong&gt;不要怕，放手去做，立刻去做，失败了没关系，还有机会。只要迈出那一步，接下来不由得你停，会一直在前进。即使在绕圈圈，那也不是原地踏步。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;加油去做！别闲着想这想那的，没时间去想这么多。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/postimg/Siemens.jpg&quot; alt=&quot;pic of today&quot; /&gt;&lt;/p&gt;
-
 </content>
  </entry>
  

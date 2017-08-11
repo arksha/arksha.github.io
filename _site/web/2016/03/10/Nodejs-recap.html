@@ -1,5 +1,32 @@
 <!DOCTYPE html>
 <html>
+	<style>
+		@media screen and (max-width:680px) {
+		  ul.menubar li:not(:first-child) {display: none;}
+		  ul.menubar li.icon {
+			float: right;
+			display: inline-block;
+		  }
+		}
+
+		@media screen and (max-width:680px) {
+		  ul.menubar.responsive {position: relative;}
+		  ul.menubar.responsive li.icon {
+			position: absolute;
+			right: 0;
+			top: 0;
+		  }
+		  ul.menubar.responsive li {
+			float: none;
+			display: inline;
+		  }
+		  ul.menubar.responsive li a {
+			display: block;
+			text-align: left;
+		  }
+		}
+		
+	</style>
     <head>
       <title>Arksha - In Side of Ark</title>
 		
@@ -15,21 +42,33 @@
         <link rel="stylesheet" href="/css/skel.css" />
         <link rel="stylesheet" href="/css/style.css" />
         <link rel="stylesheet" href="/css/style-xlarge.css" />
+		
       </noscript>
       <!--[if lte IE 8]><link rel="stylesheet" href="/css/ie/v8.css" /><![endif]-->
     </head>
 
 	<body id="top">
 		
-	<div class="wrap">	
-      <header id="header">
-          <a href="#" class="image avatar"><img src="/images/avatar.jpg" alt="" /></a>
-          <h1>I am <strong><a href="/">Arksha</a></strong> ,a developer in LA.<br/>
-          Specific in Web Development and Software Development. Have experience in Compputer Graphics and Game Development.<br/>
-          <br/>Blogging is fun<br/></h1>
-      </header>
-      <div class="contents">
-		<div id="main">
+		<div class="wrap">	
+			
+			<header id="header">
+				<div class="topmenu">
+					<ul class="menubar" id='menubarnav'>
+						<li><a href="/">Home</a></li>
+						<li><a href="/about.html">More About Me</a></li>
+						<div class="icon"><a id="javascript:void(0);" herf="#" onclick="clickFuction()">&#9776;</a></div>	
+						
+					</ul>
+				</div>
+				<a href="#" class="image avatar"><img src="/images/avatar.jpg" alt="" /></a>
+				
+				<h1>I am <strong><a href="/">Arksha</a></strong> ,a developer in LA.<br/>
+				Specific in Web Development and Software Development. Have experience in Compputer Graphics and Game Development.<br/>
+				<br/>Blogging is fun<br/>
+				</h1>
+		  	</header>
+			<div class="contents">
+			<div id="main">
     <article>
         <header class="major">
             <h2 class="post-title">Node.JS Recap</h2>
@@ -240,26 +279,25 @@ rl.on('line', function(saying) {
 </code></pre>
 </div>
 
+            
         </section>
-        
+
         <footer>
             <div class="row">
             
             
                 <article class="6u 12u(small) excerpt">
                     <header>
-                        <h2><a href="/leetcode/2016/01/26/BFS.html">BFS</a></h2>
+                        <h2><a href="/diary/2016/01/29/After-Siemens-Interview.html">After Siemens Interview</a></h2>
                     </header>
                     <section>
-                        <h1 id="section">#</h1>
-<p><a href="https://leetcode.com/problems/word-ladder/">传送门</a>
- Solution: BFS, use hashmap to reduce repeat elements,and use queue to implement BFS</p>
+                        <h3 id="few-things-after-interview-today">Few things After Interview today</h3>
 
 
                     </section>
                     <footer>
                         <ul class="actions">
-                            <li><a href="/leetcode/2016/01/26/BFS.html" class="button">Read More</a></li>
+                            <li><a href="/diary/2016/01/29/After-Siemens-Interview.html" class="button">Read More</a></li>
                         </ul>
                     </footer>
                 </article>
@@ -293,74 +331,83 @@ rl.on('line', function(saying) {
 
 </div>
 
-		</div>
-       <!-- Footer -->
-        <footer id="footer">
-            <ul class="icons">
+			</div>
+			<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
 
-              
-              <li>
-                <a href="https://github.com/arksha" class="icon fa-github">
-                  <span class="label">GitHub</span>
-                </a>
-              </li>
-              
+				  
+				  <li>
+					<a href="https://github.com/arksha" class="icon fa-github">
+					  <span class="label">GitHub</span>
+					</a>
+				  </li>
+				  
 
-              
-              <li>
-                <a href="https://twitter.com/gongt92kyo" class="icon fa-twitter">
-                  <span class="label">Twitter</span>
-                </a>
-              </li>
-              
+				  
+				  <li>
+					<a href="https://twitter.com/gongt92kyo" class="icon fa-twitter">
+					  <span class="label">Twitter</span>
+					</a>
+				  </li>
+				  
 
-              
-              <li>
-                <a href="https://linkedin.com/in/gongting92" class="icon fa-linkedin">
-                  <span class="label">LinkedIn</span>
-                </a>
-              </li>
-              
+				  
+				  <li>
+					<a href="https://linkedin.com/in/gongting92" class="icon fa-linkedin">
+					  <span class="label">LinkedIn</span>
+					</a>
+				  </li>
+				  
 
-              
-              <li>
-                <a href="https://plus.google.com/example" class="icon fa-google-plus">
-                  <span class="label">Google+</span>
-                </a>
-              </li>
-              
+				  
+				  <li>
+					<a href="https://plus.google.com/example" class="icon fa-google-plus">
+					  <span class="label">Google+</span>
+					</a>
+				  </li>
+				  
 
-              
-              <li>
-                <a href="https://www.facebook.com/profile.php?id=100008904631011" class="icon fa-facebook">
-                  <span class="label">Facebook</span>
-                </a>
-              </li>
-              
+				  
+				  <li>
+					<a href="https://www.facebook.com/profile.php?id=100008904631011" class="icon fa-facebook">
+					  <span class="label">Facebook</span>
+					</a>
+				  </li>
+				  
 
-              
-              <li>
-                <a href="#" class="icon fa-dribbble">
-                  <span class="label">Dribbble</span>
-                </a>
-              </li>
-              
+				  
+				  <li>
+					<a href="#" class="icon fa-dribbble">
+					  <span class="label">Dribbble</span>
+					</a>
+				  </li>
+				  
 
-              
-              <li>
-                <a href="mailto:tingg@usc.edu" class="icon fa-envelope-o">
-                  <span class="label">Email</span>
-                </a>
-              </li>
-              
-            </ul>
-            <ul class="copyright">
-                <li>&copy; Arksha Gong</li>
-            </ul>
-        </footer>
-    </div>
-
-    
-
+				  
+				  <li>
+					<a href="mailto:tingg@usc.edu" class="icon fa-envelope-o">
+					  <span class="label">Email</span>
+					</a>
+				  </li>
+				  
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Arksha Gong</li>
+				</ul>
+			</footer>
+    	</div>
+		
+		<script>
+		function clickFuction() {
+			var x = document.getElementById("menubarnav");
+			if (x.className === "topmenu") {
+				x.className += " responsive";
+			} else {
+				x.className = "topmenu";
+			}
+		}
+		</script>
+		<script id="dsq-count-scr" src="//arkshagong.disqus.com/count.js" async></script>
 	</body>
 </html>
