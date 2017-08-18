@@ -3,6 +3,7 @@ layout: post
 title: CC150 Notes
 date: 2016-05-02
 categories: leetcode
+comments: true
 ---
 
 This note is to recap basics in CC150, most recap will base on Java. Every topic will have recap of main concepts and solution thoughts of example problems on CC150, code solution in github.

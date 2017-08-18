@@ -3,6 +3,7 @@ layout: post
 title: After Siemens Interview
 date: 2016-01-29
 categories: diary
+comments: true
 ---
 
 
