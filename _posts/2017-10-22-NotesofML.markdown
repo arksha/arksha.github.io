@@ -38,3 +38,20 @@ Application: organize computing clusters, social network analysis, market segmen
 
 2. non-clustering
 Cocktail party problem, to find structure in a chaotic environment.
+
+
+#Model representation
+
+hypothesis: function take input and output estimate value
+
+##Linear regression
+
+Cost function: The difference between the predicted value and the actual value.
+
+choose different parameters. Also called square error function or mean squared error. This takes an average difference (actually a fancier version of an average) of all the results of the hypothesis with inputs from x' s and the actual output y' s. Goal is to minimize cost function.
+
+Use of cost function:
+Different theta is a different prediction. Objective function J(theta0, theta1) want to find a value that minimize cost.
+
+Contour graph / plot: instead of showing as 3D graph, in same line share a parameter, a point represent a pair of parameters.
+
