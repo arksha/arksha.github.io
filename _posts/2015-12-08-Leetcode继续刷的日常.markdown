@@ -5,7 +5,6 @@ date: 2015-12-08
 categories: Leetcode
 ---
 
-今天的日常其实是睡到了中午12点才起床，收拾好屋子之后就来leetcode辣。都是easy题也是题啊嗯ˊ_>ˋ<br/>
 1.Implement Queue using Stacks － 232[ leetcode传送门](https://leetcode.com/problems/implement-queue-using-stacks/)<br/>
 题目：用Stacks来实现Queue.
 
@@ -39,12 +38,3 @@ Bonus points if you could solve it both recursively and iteratively.
 题目：Given an array and a value, remove all instances of that value in place and return the new length.说实话开始题目并没有懂啥意思＝ ＝，以为算出来重复的数然后用数组的长度一减就好了，其实应该还要真的要删掉数组，不要只看反悔类型是int啊。
 
 思路：easy way to use two pointers, when element in array is different form value given, give pointer B element to pointer A, move pointer A to next. Then iterate pointer B till array's end.
-
-结尾：<br/>
-1.啊啊啊markdown总是忘记怎么写orz，明明之前总结了很多现在突然写的话还是会忘，多用的话还是王道，latex不也是这样记住的么。所以practice makes perfect。
-
-2.发现这个templete不好用啊，需要一个索引列表来找每篇blog完全乱进去了。没有sidebar。首页只需要显示有限的字数和标题就好，而且thumbnail显示的问题也很麻烦。之后修复这俩问题还需要加评论系统。还有文章tag和分类系统也需要做好。
-
-3.今天Victoria‘s Secret Show 看到了赶着due都要去参加趴的美帝人民的热情。把复习资料和电脑带过去一遍开趴一遍写论文这是心有多大才能做出来的事情(￣▽￣)。对对我final完了才过来乱晃来吃一堆甜食（大满足）又意外被抽中一个Victoria‘s secret 礼物wwww。 虽然今天星战估计还在lorenzo人民黑五的包裹山下吧´д` ；心塞，明明是为了快一点来才在amazon上买的orz，结果和gamestop有啥区别掀～
-
-4.下次要把leetcode和日常分开写。

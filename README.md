@@ -9,6 +9,6 @@ YAML:Ain't Markup Language, is used for data serializing, to store data, site va
 Liquid: Ruby based templating language, in this site used for build template and drive page logic  
 Markdown: Text to HTML converter to write post mainly  
 
-
+Comment: disqus
 
 
