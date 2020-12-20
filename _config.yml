@@ -20,3 +20,5 @@ linkedin_username:    gongting92  # Replace this with your LinkedIn username
 
 # Build settings
 markdown: kramdown
+
+include: [_pages]

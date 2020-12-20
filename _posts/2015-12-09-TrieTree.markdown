@@ -3,9 +3,10 @@ layout: post
 title: Word Search 引发的 Trie Tree 系列
 date: 2015-12-09
 categories: Leetcode
+comments: true
 ---
 
-###Word Search ->[Leetcode传送门](https://leetcode.com/problems/word-search/)
+### Word Search ->[Leetcode传送门](https://leetcode.com/problems/word-search/)
 
 题目：要把给定word在一个board里找出来。
 
@@ -16,17 +17,17 @@ categories: Leetcode
 
 回路：from the Word Search method, it is normal to follow the first method of Word Search to solve this problem. Just to check if every word in the list or not, call the function to do this. However, this could run out exceed time limit. Therefore, Trie Tree, this data structure can be used to solve this.
 
-##What is Trie Tree##
+## What is Trie Tree
 Trie Tree, also call prefix tree（radix tree， digital tree，Yes =_= all those are the same thing！）. Trie for retrieval. It has node conatains character, its children have a common prefix. The root is associated with empty string, values only associated with leaves, and some inner nodes.
 ![trie](/images/postimg/2015-12-09-trie.png) from wiki
 
 于是， 有到leetcode题目可以拿来练手辣～
 
-###Implement Trie (Prefix Tree)->[leetcode传送门](https://leetcode.com/problems/implement-trie-prefix-tree/)
+### Implement Trie (Prefix Tree)->[leetcode传送门](https://leetcode.com/problems/implement-trie-prefix-tree/)
 此题用来实现三个方法：Implement a trie with insert, search, and startsWith methods.
 可以用HashMap来存node信息。
 
-1.Trie Node 
+1. Trie Node 
 
 由节点和是否为叶子节点组成。HashMap里用char来当key，value存储的是TrieNode节点。
 	
@@ -41,7 +42,7 @@ Trie Tree, also call prefix tree（radix tree， digital tree，Yes =_= all thos
 		}
 	}
 	
-2.Trie Tree
+2. Trie Tree
 
 有根节点和三个基本操作组成。
 	
@@ -55,7 +56,7 @@ Trie Tree, also call prefix tree（radix tree， digital tree，Yes =_= all thos
 		public boolean starsWith(String prefix){}
 	}
 
-3.Insert(String word)
+3. Insert(String word)
 
 遍历插入的字，如果在hashmap里查到的话就把map中的节点加到map中，不存在的话就新建节点加到map中。最后设定所有的叶节点的值。
 
@@ -81,7 +82,7 @@ Trie Tree, also call prefix tree（radix tree， digital tree，Yes =_= all thos
         }
     }
 
-4.search(String word)
+4. search(String word)
 
 遍历hashmap，从root开始查找，终结在叶节点或者是中间节点则是查找成功，否则不存在。使用searchNode（）来遍历hashmap，返回查找的最后一个节点。
 
@@ -94,7 +95,7 @@ Trie Tree, also call prefix tree（radix tree， digital tree，Yes =_= all thos
             return false;
     }
 
-5.startsWith(String prefix)
+5. startsWith(String prefix)
 
 若在遍历trie tree 的时候发现prefix最后的节点是空，则不存在树中。
 	 
@@ -105,7 +106,7 @@ Trie Tree, also call prefix tree（radix tree， digital tree，Yes =_= all thos
             return true;
     }
 
-6.searchNode(String str)
+6. searchNode(String str)
 
 给定string，返回string最后的TrieNode。
 
@@ -125,7 +126,7 @@ Trie Tree, also call prefix tree（radix tree， digital tree，Yes =_= all thos
         return t;
     }
 
-###回来再看Word Search 2### 
+### 回来再看Word Search 2
 绝对是follow up 的解法。这题好难> <,整理一下。
 
 First, we need to implement trie Tree. We can simply use array of TrieNode instead of HashMap. Every node has at most 26 children, use a string to store word that node represents.
@@ -231,14 +232,10 @@ You would need to optimize your backtracking to pass the larger test. Could you 
 If the current candidate does not exist in all words' prefix, you could stop backtracking immediately. What kind of data structure could answer such query efficiently? Does a hash table work? Why or why not? How about a Trie?<br/>
 用trie 完全可以解决这些了。
 
-好吧最后一个题是<br/>
-###Add and Search Word - Data structure design ->[Leetcode传送门](https://leetcode.com/problems/add-and-search-word-data-structure-design/)
-
-好累明天再写总结orz
+### Add and Search Word - Data structure design ->[Leetcode传送门](https://leetcode.com/problems/add-and-search-word-data-structure-design/)
 
 Update 2015-12-10：
 
-星战到了！手好残，不玩游戏默默回来写总结：<br/>
 有了TrieTree的数据结构，此题思路非常简单，只需实现前面写过的两个trie函数就好，即addWord（）和search（）。首先是插入word到树中，然后遍历树来查找。这里插入操作完全和前一个题一样， 需要对应题来修改的是search（），用dfs来实现树的遍历。在dfs中，一共有三个参数，一个是用 HashMap实现的children表示子节点，当前位置指针p，查找的字符串word。终止条件是当前位置p到了word结尾，若子节点数量为零，则找到了word，否则不存在。若children中存在当前位置的字符，分三种情况：1.到了倒数第二层节点，其子节点是叶节点，这样word就存在。2.当前字符里面有‘.’，代表其子节点中任意一个字符都是可以的，这里需要遍历整个children HashMap。用到的是Map.Entry()和entryset（）来实现。分别在每个hashmap的元素中再进行dfs搜索，查看接下来的字符是不是在其中。3.如果不符合以上几种情况那么就在树中没有这个word。
 
 

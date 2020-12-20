@@ -1,8 +1,9 @@
 ---
 layout: post
-title: Leetcode继续刷的日常
+title: Leetcode Notes
 date: 2015-12-08
 categories: Leetcode
+comments: true
 ---
 
 1.Implement Queue using Stacks － 232[ leetcode传送门](https://leetcode.com/problems/implement-queue-using-stacks/)<br/>
@@ -30,11 +31,10 @@ For this problem, a height-balanced binary tree is defined as a binary tree in w
 5.Symmetric Tree [leetcode传送门](https://leetcode.com/problems/symmetric-tree/)<br/>
 题目: 判断一颗树是否对称
 Bonus points if you could solve it both recursively and iteratively.
-**诶？！这个居然没看见，只是实现了recursive版，用DFS。之后写iterative～～补充进来。**
 
 思路：同样DFS，left child compare with right chiild
 
 6.Remove Element [leetcode传送门](https://leetcode.com/problems/remove-element/)<br/>
-题目：Given an array and a value, remove all instances of that value in place and return the new length.说实话开始题目并没有懂啥意思＝ ＝，以为算出来重复的数然后用数组的长度一减就好了，其实应该还要真的要删掉数组，不要只看反悔类型是int啊。
+题目：Given an array and a value, remove all instances of that value in place and return the new length.
 
 思路：easy way to use two pointers, when element in array is different form value given, give pointer B element to pointer A, move pointer A to next. Then iterate pointer B till array's end.

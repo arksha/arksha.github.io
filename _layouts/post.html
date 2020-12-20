@@ -1,7 +1,8 @@
 ---
 layout: default
 ---
-<div id="main">
+
+<div id="post-container">
     <article>
         <header class="major">
             <h2 class="post-title">{{ page.title }}</h2>
@@ -10,9 +11,11 @@ layout: default
 
         <section>
             {{ content }}
-            {% include disqus.html %}
         </section>
-
+        <div>
+            {% include disqus.html %}
+        </div>
+            
         <footer>
             <div class="row">
             {% if page.previous %}

@@ -13,3 +13,7 @@ hs_err_pid*
 
 #ignore .idea
 .idea
+
+_site
+.jekyll-cache
+.jekyll-metadata
