@@ -1,0 +1,56 @@
+---
+layout: post
+title: DFS
+date: 2020-12-21
+categories: Leetcode
+comments: true
+---
+
+# DFS
+
+## [332. Reconstruct Itinerary](https://leetcode.com/problems/reconstruct-itinerary/)
+
+__Thoughts__
+
+Euler Path, build path with DFS backtracking. One line draw graph problem.
+
+- Delete every visited edge, if no path visit, add to result list
+- sort destination in lexical order in order to greedy pick smallest lexical destination from neightbors
+- use `Map<String, List<String>>` as adjacent graph
+- use linkedList to remove element
+- use linkedList result to build point in reverse order since dfs is calling in opposite order
+- O(|E|log|E|) for sorting neighbors, O(|E| + |V|) dfs visit, overall O(|E|log|E|)
+
+```
+class Solution {
+    public List<String> findItinerary(List<List<String>> tickets) {
+        List<String> result = new LinkedList<>(); // reverse order, use linked List
+        if (tickets == null || tickets.size() == 0) {
+            return result;
+        }
+        
+        Map<String, List<String>> map = new HashMap<>();
+    
+        for (List<String> ticket: tickets) {
+            // need to remove edge, use linkedList
+            List<String> neighbors = map.computeIfAbsent(ticket.get(0), a -> new LinkedList<String>());
+            neighbors.add(ticket.get(1));
+        }
+        
+        // sort destinations
+        map.values().forEach(destination -> destination.sort(String::compareTo));
+        // dfs all path
+        String start = "JFK";
+        dfs(map, start, result);
+        return result;
+    }
+    private void dfs(Map<String, List<String>> map, String start, List<String> result) {
+        List<String> neighbors = map.get(start);
+        while (neighbors != null && neighbors.size() > 0) {
+            String visitedDestination = neighbors.remove(0); // remove first smallest lexical destination
+            dfs(map, visitedDestination, result); // from this destination to next place
+        }
+        result.add(0, start); // add to first place when no where else to go
+    }
+}
+```
