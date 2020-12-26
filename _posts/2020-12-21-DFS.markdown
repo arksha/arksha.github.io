@@ -6,11 +6,11 @@ categories: Leetcode
 comments: true
 ---
 
-# DFS
+Gather DFS problem together for reference
 
 ## [332. Reconstruct Itinerary](https://leetcode.com/problems/reconstruct-itinerary/)
 
-__Thoughts__
+**Thoughts**
 
 Euler Path, build path with DFS backtracking. One line draw graph problem.
 
@@ -19,7 +19,7 @@ Euler Path, build path with DFS backtracking. One line draw graph problem.
 - use `Map<String, List<String>>` as adjacent graph
 - use linkedList to remove element
 - use linkedList result to build point in reverse order since dfs is calling in opposite order
-- O(|E|log|E|) for sorting neighbors, O(|E| + |V|) dfs visit, overall O(|E|log|E|)
+- `O(|E|log|E|)` for sorting neighbors, `O(|E| + |V|)` dfs visit, overall `O(|E|log|E|)`
 
 ```
 class Solution {

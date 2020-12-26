@@ -29,23 +29,11 @@
 	</style>
 	{% include head.html %}
 	<body id="top">
-			
 			{% include header.html %}
 			<div class="contents" id="main">
 				{{content}}
 			</div>
 			{% include footer.html %}
-   
-		<script>
-			function clickFuction() {
-				var x = document.getElementById("menubarnav");
-				if (x.className === "topmenu") {
-					x.className += " responsive";
-				} else {
-					x.className = "topmenu";
-				}
-			}
-		</script>
 		<script id="dsq-count-scr" src="//arkshagong.disqus.com/count.js" async></script>
 	</body>
 </html>

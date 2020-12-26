@@ -4,10 +4,10 @@ title: About
 permalink: /about/
 ---
 
-# this is a page about me
+# This is a page about me
 
 Current info about me:
 
-Swimmer, Surfer, Scuba diver, Skier & Snowboarder, Kayaker, Paddle boarder
+An outdoor person absolutely. Swimmer, Surfer, Scuba diver, Skier & Snowboarder, Kayaker, Paddle boarder.
 
-Currently in WA
+Currently work from home in WA

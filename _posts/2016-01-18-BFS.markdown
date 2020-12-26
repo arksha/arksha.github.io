@@ -7,12 +7,15 @@ categories: Leetcode
 
 
 ##
-[传送门](https://leetcode.com/problems/word-ladder/)
- Solution: BFS, use hashmap to reduce repeat elements,and use queue to implement BFS
+[word-ladder](https://leetcode.com/problems/word-ladder/)
+ 
+**Solution**
+- BFS
+- use hashmap to reduce repeat elements
+- use queue to implement BFS
 
-code:
-
- 	public class Solution {
+```
+public class Solution {
     public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
         if(wordList.size()==0||wordList==null) return 0;
         HashSet<String> hash = new HashSet<>();
@@ -58,4 +61,4 @@ code:
         return nextWords;
     }
 }
-
+```

@@ -8,18 +8,21 @@ layout: default
             <h2 class="post-title">{{ page.title }}</h2>
                 <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
         </header>
-
-        <section>
+        
+        <div class="post-table-of-content">
+            <h3>Table of content</h3>
+            {% include toc.html html=content %}
+        </div>
+        <div class="post-content">
             {{ content }}
-        </section>
-        <div>
+        </div>
+        <div class="post-comment">
             {% include disqus.html %}
         </div>
             
         <footer>
             <div class="row">
             {% if page.previous %}
-            
                 <article class="{% cycle '6u', '6u$' %} 12u(small) excerpt">
                     <header>
                         <h2><a href="{{ page.previous.url }}">{{ page.previous.title }}</a></h2>
@@ -51,9 +54,6 @@ layout: default
                     </footer>
                 </article>
             {% endif %}
-            </div class="pagenav">
-				
-			<div>
 			</div>
         </footer>
 

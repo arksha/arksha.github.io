@@ -7,7 +7,7 @@ categories: Leetcode
 
 
 #Word Ladder#
-[传送门](https://leetcode.com/problems/word-ladder/)
+[Word Ladder](https://leetcode.com/problems/word-ladder/)
  Solution: BFS, use hashmap to reduce repeat elements,and use queue to implement BFS
 
 code:
