@@ -6,7 +6,7 @@ categories: web
 author: "arksha"
 ---
 
-##About git I don't know much
+## About git I don't know much
 
 `git help`  = `man git-log`
 
@@ -36,15 +36,15 @@ author: "arksha"
 
 update 4/10/2016  
 ---
-##JS Recape
+## JS Recape
 
 [reference for this interview questions](http://lucybain.com/blog/tags/interview-questions/)
 
-1.js event delegation
+1. js event delegation
 
 event delegation is a simple way to handel events listeners to avoid adding event listeners to specific nodes especially when child nodes are frequently changed. Event delegation can add listeners to parent rather than on child.
 
-2.about `this` 
+2. about `this` 
 
 When talking about `this`, we have to talk about scope (作用域)，just like  [This](http://web.archive.org/web/20110725013125/http://www.digital-web.com/articles/scope_in_javascript/ ) article said: scope is a neighbor of code and effect each other. JS resolves identifiers by climbing up scope chain, locally to globally. So just like two friends are talking about their close person, not a famous but not close person. With this understading, `this` is based on scope thing. More generally, in OOP, `this` is a way to identify and refer to current working object and get properties of it. There are several scenario of using `this`.  
 
@@ -121,7 +121,7 @@ if it is not inline,
 	 
 `this` refers to the DOM element that generated the event.  
 
-3.prototypal inheritance
+3. prototypal inheritance
 	
 In JavaScript, the inheritance is prototype-based. That means that there are no classes. Instead, an object inherits from another object  
 
@@ -130,7 +130,7 @@ In JavaScript, the inheritance is prototype-based. That means that there are no 
 `Object.create(proto)` create object from proto
 `Object.getPrototypeOf(obj)` get proto  
 
-4.What do you think of AMD vs CommonJS  
+4. What do you think of AMD vs CommonJS  
 	
 AMD:Asynchronous Module Definitions
 
@@ -138,7 +138,7 @@ AMD takes a browser-first approach, using asynchronous behavior and backwards co
 
 CommonJS on the other hand takes a server-first approach, assuming synchronous behavior, no globals and it attempts to cater for the future - server side. So, Common JS supports unwrapped modules, freeing you of the define() wrapper that AMD enforces.
 
-5.IIFE  
+5. IIFE  
 
 IIFE:Immediately-Invoked Function Expression [about IIFE](http://benalman.com/news/2010/11/immediately-invoked-function-expression/#iife)  
 `function foo(){ }();` this does not work in IIFE.
@@ -155,7 +155,7 @@ can use `value = obj.prop || defaultValue` check undefinded properties
 	  // some_variable is either null or undefined
 	}
 	
-7.closure
+7. closure
 
 [this article explains](http://stackoverflow.com/questions/111102/how-do-javascript-closures-work)
 
@@ -164,7 +164,7 @@ a closure is a stack-frame which is not deallocated when the function returns (a
 A closure in JavaScript is like keeping a copy of all the local variables, just as they were when a function exited.
 
 
-8.What's a typical use case for anonymous functions?
+8. What's a typical use case for anonymous functions?
 
 An anonymous function is a function that was declared without any named identifier to refer to it. As such, an anonymous function is usually not accessible after its initial creation.
 
@@ -192,11 +192,11 @@ Another way to write the previous example and get the same result:
 	  alert(message);
 	}('foo'));
 	
-9.module pattern, classical inheritance
+9. module pattern, classical inheritance
 
 [this blog helps](http://metaduck.com/08-module-pattern-inheritance.html)
 
-10.What's the difference between host objects and native objects?
+10. What's the difference between host objects and native objects?
 
 Host objects:   
   Everything the environment gives you. For the browser, this includes objects like `window`.  
@@ -216,7 +216,7 @@ This is a mistake. There are ways of dealing with mistakes like this (one way is
 `var person = new Person()`:
 In traditional OOP this may refer to a new instance of `person` class, BUT in JS, using this method `person` will have access to everything `Person.prototype` has access to, as well as any instance variables set in the `Person` constructor.
 
-12.Function.prototype.bind
+12. Function.prototype.bind
 
 The bind() method creates a new function that, when called, has its this keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
 
@@ -263,7 +263,7 @@ What is the difference between call stack and task queue?
 Explain the differences on the usage of foo between function foo() {} and var foo = function() {}
 
 
-##HTML recap
+## HTML recap
 
 What does a doctype do?
 What's the difference between full standards mode, almost standards mode and quirks mode?
@@ -280,7 +280,7 @@ What is progressive rendering?
 Have you used different HTML templating languages before?
 
 
-##CSS recap
+## CSS recap
 
 What is the difference between classes and IDs in CSS?
 What's the difference between "resetting" and "normalizing" CSS? Which would you choose, and why?

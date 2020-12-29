@@ -2,13 +2,15 @@
 layout: post
 title: Graphic Recap
 date: 2016-03-22
-categories: Graphics
+categories: Note
 ---
-##Real time rendering third Edition book review
 
-###Chap 2. The Graphic rendering pipeline
+Graphic notes to recap TBD
+## Real time rendering third Edition book review
 
-1.The Architecture:  
+### Chap 2. The Graphic rendering pipeline
+
+1. The Architecture:  
 Contains Application stage, Geometry stage, Rasterizer stage.
 
 FPS and HZ:

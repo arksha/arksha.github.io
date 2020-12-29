@@ -5,8 +5,8 @@ date: 2016-03-10
 categories: web
 ---
 
-##How Node.js works##
-1.single threaded
+## How Node.js works
+1. single threaded
 	
 * no blocking, single threaded
 
@@ -14,7 +14,7 @@ categories: web
 
 * asynchronously, more than one thing at a time 
 
-##The global object##
+## The global object
 	
 Basic use of global object:
 
@@ -39,9 +39,9 @@ require path model:
 
 **we can run without .js extension, it doesn't matter**
 
-##Process object##
+## Process object
 
-1.get environment information, grab a information:
+1. get environment information, grab a information:
 
 	function grab(flag) {
 		var index = process.argv.indexOf(flag);
@@ -60,7 +60,7 @@ require path model:
 
 This is a great tool if we want to specify certain ports, or specify certain file folders for our app to use at the very beginning.
 
-2.Standard input and output(with event liseners):
+2. Standard input and output(with event liseners):
 	
 	process.stdout.write("Hello~~\n");
 	
@@ -105,7 +105,7 @@ So process.stdin and process.stdout are ways that we can communicate with a runn
 
 **Control C will kill application**
 
-3.Global timing funcions
+3. Global timing funcions
 
 `setTimeout ` will create a delay of a certain time and then invoke a callback function
 
@@ -137,9 +137,9 @@ So process.stdin and process.stdout are ways that we can communicate with a runn
 	process.stdout.write("\n\n");
 	writeWaitingPercent(percentWaited);
 	
-##Core modules##
+## Core modules
 
-1.util module, v8 (get memory information)
+1. util module, v8 (get memory information)
 	
 	var util = require('util');
 	var v8 = require('v8');
@@ -153,7 +153,7 @@ So process.stdin and process.stdout are ways that we can communicate with a runn
 
 	util.log(dirUploads);
 
-2.collect information with readline
+2. collect information with readline
 
 readline instance can create a interface to manage stdin and stdout
 

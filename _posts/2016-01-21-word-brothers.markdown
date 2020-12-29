@@ -6,7 +6,7 @@ categories: Leetcode
 ---
 
 
-#Word Ladder#
+## Word Ladder
 [Word Ladder](https://leetcode.com/problems/word-ladder/)
  Solution: BFS, use hashmap to reduce repeat elements,and use queue to implement BFS
 
@@ -62,7 +62,7 @@ code:
 }
 
 
-#Word Ladder ii#
+## Word Ladder ii
 [传送门](https://leetcode.com/problems/word-ladder-ii/)
 
 solution：
@@ -148,13 +148,13 @@ code：
     }
 }
 
-#Word Break#
+## Word Break
 
 solution:
 
 code:
 
-1.naive approach:
+1. naive approach:
 
 	public class Solution {
     public boolean wordBreak(String s, Set<String> dict) {
@@ -182,7 +182,7 @@ code:
 	    }
 	}
 
-2.DP
+2. DP
 
 code:
 
@@ -215,7 +215,7 @@ code:
 	    }
 	}
 
-#Word Break II#
+## Word Break II
 
 solution: DP
 
@@ -273,7 +273,7 @@ code:
 	    }
 	}
 
-#Word Search#
+## Word Search
 
 solution:
 
@@ -319,7 +319,7 @@ code:
     	}
 	}
 
-#Word Search II#
+## Word Search II
 
 solution: use trie tree
 
@@ -416,7 +416,7 @@ code:
     	}
 	}
 
-#Word Pattern#
+## Word Pattern
 
 solution:
 

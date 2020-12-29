@@ -2,7 +2,7 @@
 layout: post
 title: What is Continuous Integration
 date: 2016-07-10
-categories: diary
+categories: Note
 ---
 
 What is CI?  

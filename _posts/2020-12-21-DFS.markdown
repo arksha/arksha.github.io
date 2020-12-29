@@ -6,7 +6,7 @@ categories: Leetcode
 comments: true
 ---
 
-Gather DFS problem together for reference
+Gather DFS problem together for reference.
 
 ## [332. Reconstruct Itinerary](https://leetcode.com/problems/reconstruct-itinerary/)
 
